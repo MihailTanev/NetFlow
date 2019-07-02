@@ -4,14 +4,14 @@
 <p>
 
 # NetFlow 
-##User Friendly Platform for Digital Exams and Assessments
+## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.
 It has three main user roles: Administrator, Student and Teacher. Administrator is authorized to perform a CRUD operations on the users. 
 Student can register and login to their account. Student can view and sign up for desired educational courses. Student will be able
 to upload his assignment as a .pdf or .zip file up till 10MB. Teacher is authorized to create courses and conducting assessment of
 the student assignments. A search dialog at the Layout page allows the user to search for specific course or post.
 
-### Implementation Technologies
+## Implementation Technologies
 
 -  Visual Studio Community Edition 2019
 -  ASP.NET MVC CORE 2.2
