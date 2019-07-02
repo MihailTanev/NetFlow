@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using NetFlow.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetFlow.Data.Models;
 
 namespace NetFlow.Web
 {
@@ -33,14 +34,30 @@ namespace NetFlow.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            });         
 
+
+            // Configure Db context
             services.AddDbContext<NetFlowDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<NetFlowDbContext>();
+                           options.UseSqlServer(
+                               Configuration.GetConnectionString("DefaultConnection")));
+
+            // Configure Identity
+            services.AddIdentity<User, IdentityRole>()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<NetFlowDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequiredLength = 5;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

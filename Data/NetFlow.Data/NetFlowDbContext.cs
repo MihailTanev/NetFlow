@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-namespace NetFlow.Data
+﻿namespace NetFlow.Data
 {
-    public class NetFlowDbContext : IdentityDbContext
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using NetFlow.Data.Models;
+
+    public class NetFlowDbContext : IdentityDbContext<User>
     {
         public NetFlowDbContext(DbContextOptions<NetFlowDbContext> options)
             : base(options)
