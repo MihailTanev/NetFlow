@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data.Models", "Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Common", "Common\NetFlow.Common\NetFlow.Common.csproj", "{937A0C02-421D-467B-8092-D6026DF53777}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data.Configuration", "NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj", "{C6E8C9D2-9ACF-4EB7-855E-547806EA4369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data.Configuration", "Data\NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj", "{C6E8C9D2-9ACF-4EB7-855E-547806EA4369}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D8AB2DE-9FE9-4F73-8C42-337180CC4516}"
 	ProjectSection(SolutionItems) = preProject

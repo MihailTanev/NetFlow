@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\NetFlow.Common\NetFlow.Common.csproj" />
+    <ProjectReference Include="..\..\Data\NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
   </ItemGroup>
