@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7789BC93-BA41-4246-80EB-08E9F0B1A9AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{ACFB1C4E-E92D-4998-A90F-11EC5C3B575C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AC0E34B4-09E9-45ED-B5D6-F9B3239A176D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3F26FB3F-0348-47E3-B56F-DBD113077E12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{78C1135B-D73E-49CE-AFD0-CFB4EB157DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Web", "Web\NetFlow.Web\NetFlow.Web.csproj", "{8755DC63-6DC5-450D-A109-AD265FC6AF49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data", "Data\NetFlow.Data\NetFlow.Data.csproj", "{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8755DC63-6DC5-450D-A109-AD265FC6AF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8755DC63-6DC5-450D-A109-AD265FC6AF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8755DC63-6DC5-450D-A109-AD265FC6AF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8755DC63-6DC5-450D-A109-AD265FC6AF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8755DC63-6DC5-450D-A109-AD265FC6AF49} = {ACFB1C4E-E92D-4998-A90F-11EC5C3B575C}
+		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83} = {7789BC93-BA41-4246-80EB-08E9F0B1A9AA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {777222BD-A847-4ABF-BF8D-64569B89EC8D}
+	EndGlobalSection
+EndGlobal
