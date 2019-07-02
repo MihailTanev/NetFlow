@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj" />
     <ProjectReference Include="..\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />
   </ItemGroup>
 

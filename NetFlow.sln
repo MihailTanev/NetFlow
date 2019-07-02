@@ -13,15 +13,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{78C1135B-D73E-49CE-AFD0-CFB4EB157DC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Web", "Web\NetFlow.Web\NetFlow.Web.csproj", "{8755DC63-6DC5-450D-A109-AD265FC6AF49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Web", "Web\NetFlow.Web\NetFlow.Web.csproj", "{8755DC63-6DC5-450D-A109-AD265FC6AF49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data", "Data\NetFlow.Data\NetFlow.Data.csproj", "{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data", "Data\NetFlow.Data\NetFlow.Data.csproj", "{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data.Models", "Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj", "{B3964335-B11C-4C56-A871-64AB39AA97CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data.Models", "Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj", "{B3964335-B11C-4C56-A871-64AB39AA97CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Common", "Common\NetFlow.Common\NetFlow.Common.csproj", "{937A0C02-421D-467B-8092-D6026DF53777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Common", "Common\NetFlow.Common\NetFlow.Common.csproj", "{937A0C02-421D-467B-8092-D6026DF53777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data.Configuration", "NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj", "{C6E8C9D2-9ACF-4EB7-855E-547806EA4369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Data.Configuration", "NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj", "{C6E8C9D2-9ACF-4EB7-855E-547806EA4369}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D8AB2DE-9FE9-4F73-8C42-337180CC4516}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
