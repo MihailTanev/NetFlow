@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data", "Data\NetFlo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Data.Models", "Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj", "{B3964335-B11C-4C56-A871-64AB39AA97CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Common", "Common\NetFlow.Common\NetFlow.Common.csproj", "{937A0C02-421D-467B-8092-D6026DF53777}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{B3964335-B11C-4C56-A871-64AB39AA97CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3964335-B11C-4C56-A871-64AB39AA97CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3964335-B11C-4C56-A871-64AB39AA97CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{937A0C02-421D-467B-8092-D6026DF53777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{937A0C02-421D-467B-8092-D6026DF53777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{937A0C02-421D-467B-8092-D6026DF53777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{937A0C02-421D-467B-8092-D6026DF53777}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{8755DC63-6DC5-450D-A109-AD265FC6AF49} = {ACFB1C4E-E92D-4998-A90F-11EC5C3B575C}
 		{46C5AC48-9BE1-42C9-86BC-FE54B9F59F83} = {7789BC93-BA41-4246-80EB-08E9F0B1A9AA}
 		{B3964335-B11C-4C56-A871-64AB39AA97CA} = {7789BC93-BA41-4246-80EB-08E9F0B1A9AA}
+		{937A0C02-421D-467B-8092-D6026DF53777} = {78C1135B-D73E-49CE-AFD0-CFB4EB157DC4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {777222BD-A847-4ABF-BF8D-64569B89EC8D}

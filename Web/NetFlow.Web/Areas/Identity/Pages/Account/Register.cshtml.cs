@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using NetFlow.Common.GlobalConstants;
 using NetFlow.Data.Models;
 
 namespace NetFlow.Web.Areas.Identity.Pages.Account
@@ -41,6 +41,28 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            [DataType(DataType.Text)]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [MinLength(UserConstants.MIN_USERNAME_LENGTH)]
+            [MaxLength(UserConstants.MAX_USERNAME_LENGTH)]
+            [RegularExpression("[a-zA-Z0-9-_.*~]+")]
+            public string Username { get; set; }
+
+            [Required]
+            [Display(Name = "Date of Birth")]
+            [DataType(DataType.Date)]
+            public DateTime Birthdate { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -67,7 +89,15 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User
+                {
+                    UserName = this.Input.Username,
+                    FirstName = this.Input.FirstName,
+                    LastName = this.Input.LastName,
+                    BirthDate = this.Input.Birthdate,
+                    Email = this.Input.Email,
+                    CreatedOn = DateTime.UtcNow,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
