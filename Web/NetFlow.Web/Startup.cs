@@ -14,6 +14,7 @@ using NetFlow.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetFlow.Data.Models;
+using NetFlow.Web.Middleware.Extensions;
 
 namespace NetFlow.Web
 {
@@ -76,6 +77,9 @@ namespace NetFlow.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //Middleware for adding roles in the database
+            app.UseSeedRoles();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
