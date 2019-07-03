@@ -42,40 +42,40 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "First Name")]
+            [Display(Name = UserConstants.REGISTER_USER_FIRST_NAME)]
             public string FirstName { get; set; }
 
             [Required]
-            [Display(Name = "Last Name")]
+            [Display(Name = UserConstants.REGISTER_USER_LAST_NAME)]
             [DataType(DataType.Text)]
             public string LastName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [MinLength(UserConstants.MIN_USERNAME_LENGTH)]
+            [MinLength(UserConstants.MIN_USERNAME_LENGTH, ErrorMessage =UserConstants.USERNAME_LENGHT_ERROR_MESSAGE)]
             [MaxLength(UserConstants.MAX_USERNAME_LENGTH)]
-            [RegularExpression("[a-zA-Z0-9-_.*~]+")]
+            [RegularExpression(UserConstants.REGEX_USERNAME)]
             public string Username { get; set; }
 
             [Required]
-            [Display(Name = "Date of Birth")]
+            [Display(Name = UserConstants.REGISTER_USER_BIRTHDAY)]
             [DataType(DataType.Date)]
             public DateTime Birthdate { get; set; }
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = UserConstants.EMAIL)]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = UserConstants.PASSWORD_ERROR_MESSAGE, MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = UserConstants.PASSWORD)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = UserConstants.CONFIRM_PASSWORD)]
+            [Compare(UserConstants.COMPARE_PASSWORD, ErrorMessage = UserConstants.PASSWORD_DO_NOT_MATCH)]
             public string ConfirmPassword { get; set; }
         }
 
