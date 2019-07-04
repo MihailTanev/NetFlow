@@ -73,6 +73,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
             [Display(Name = UserConstants.PASSWORD)]
             public string Password { get; set; }
 
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = UserConstants.CONFIRM_PASSWORD)]
             [Compare(UserConstants.COMPARE_PASSWORD, ErrorMessage = UserConstants.PASSWORD_DO_NOT_MATCH)]

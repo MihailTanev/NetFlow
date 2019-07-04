@@ -20,14 +20,13 @@
 
         public const string EMAIL = "Email";
         public const string PASSWORD = "Password";
+
         public const string CONFIRM_PASSWORD = "Confirm Password";
+        public const string PASSWORD_DO_NOT_MATCH = "The password and confirmation password do not match.";
+
 
         public const string PASSWORD_ERROR_MESSAGE = "The {0} must be at least {2} and at max {1} characters long.";
-
-        public const string PASSWORD_DO_NOT_MATCH = "The {0} must be at least {2} and at max {1} characters long.";
         public const string COMPARE_PASSWORD = "Password";
-
-
 
         //Login User Constants
         public const string ACCOUNT_USERNAME = "Username";
