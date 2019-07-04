@@ -14,7 +14,7 @@
         public const string USERNAME_LENGHT_ERROR_MESSAGE = "The {0} must be at least {1} characters long!";
 
         public const string REGISTER_USER_FIRST_NAME = "First Name";
-        public const string REGISTER_USER_LAST_NAME = "First Name";
+        public const string REGISTER_USER_LAST_NAME = "Last Name";
 
         public const string REGISTER_USER_BIRTHDAY = "Birth Date";
 
