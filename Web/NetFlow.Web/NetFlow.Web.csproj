@@ -22,4 +22,9 @@
     <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+
 </Project>

@@ -13,6 +13,8 @@
     public class SeedRolesMiddleware
     {
         private readonly RequestDelegate next;
+        private UserManager<User> userManager;
+
 
         public SeedRolesMiddleware(RequestDelegate next)
         {
@@ -36,6 +38,27 @@
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.ADMIN_ROLE));
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.TEACHER_ROLE));
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.USER_ROLE));
+
+            var adminEmail = "admin@admin.com";
+            var adminRole = RoleConstants.ADMIN_ROLE;
+
+            var adminUser = await userManager.FindByNameAsync(adminRole);
+
+            if (adminUser == null)
+            {
+                adminUser = new User
+                {
+                    Email = adminEmail,
+                    UserName = adminRole,
+                    FirstName = adminRole,
+                    LastName = adminRole,
+                    BirthDate = new DateTime(2000, 1, 1),
+                };
+
+                await userManager.CreateAsync(adminUser, "admin123");
+
+                await userManager.AddToRoleAsync(adminUser, adminRole);
+            }
         }
     }
 }

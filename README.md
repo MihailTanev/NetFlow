@@ -3,7 +3,7 @@
 	<a href="https://www.asp.net/"><img src="https://i.udemycdn.com/course/750x422/2120618_cfe6.jpg" alt="ASP.NET Core" width="300" height="200" align="center"></a>
 <p>
 
-# NetFlow 
+# Netflow 
 
 ## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.

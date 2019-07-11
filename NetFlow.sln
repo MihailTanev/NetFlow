@@ -28,9 +28,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.AutoMapping", "Services\NetFlow.AutoMapping\NetFlow.AutoMapping.csproj", "{2884E7C8-C57F-46FC-9B16-87FDB6EB69B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.AutoMapping", "Services\NetFlow.AutoMapping\NetFlow.AutoMapping.csproj", "{2884E7C8-C57F-46FC-9B16-87FDB6EB69B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Services", "Services\NetFlow.Services\NetFlow.Services.csproj", "{C85E0BA7-4443-43AE-9CCB-4D44184B9650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Services", "Services\NetFlow.Services\NetFlow.Services.csproj", "{C85E0BA7-4443-43AE-9CCB-4D44184B9650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
