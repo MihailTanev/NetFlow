@@ -1,8 +1,6 @@
-<p align="center">
-	<a href="https://softuni.bg/"><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Logo_Software_University_%28SoftUni%29_-_blue.png" alt="Softuni logo" width="300" align="center"></a>
-	<a href="https://www.asp.net/"><img src="https://i.udemycdn.com/course/750x422/2120618_cfe6.jpg" alt="ASP.NET Core" width="300" height="200" align="center"></a>
-<p>
-
+<div>
+    <img src="https://mihailtanev.blob.core.windows.net/netflow/netflow.png?sp=r&st=2019-07-12T14:27:50Z&se=2019-07-12T22:27:50Z&spr=https&sv=2018-03-28&sig=Ifmkl%2Fu%2FgPWiWTUFBvL%2Bi2GdyK5kSmHP7sKqJRiFYcU%3D&sr=b" />
+</div>	
 # Netflow 
 
 ## User Friendly Platform for Digital Exams and Assessments
