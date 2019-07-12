@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="obj\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
