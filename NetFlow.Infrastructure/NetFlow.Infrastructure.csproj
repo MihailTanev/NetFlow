@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="HtmlSanitizer" Version="4.0.217" />
   </ItemGroup>
 
 </Project>

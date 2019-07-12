@@ -13,7 +13,6 @@
     public class SeedRolesMiddleware
     {
         private readonly RequestDelegate next;
-        private UserManager<User> userManager;
 
 
         public SeedRolesMiddleware(RequestDelegate next)
