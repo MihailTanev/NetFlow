@@ -30,7 +30,7 @@
             <div class="d-flex justify-content-center">
                 <label asp-for="Input.Username" class="font-weight-bold"></label>
             </div>
-            <input asp-for="Input.Username" class="form-control" type="text"/>
+            <input asp-for="Input.Username" class="form-control" type="text" />
             <span asp-validation-for="Input.Username" class="text-danger"></span>
         </div>
         <div class="form-group w-45">
@@ -47,7 +47,7 @@
             <div class="d-flex justify-content-center">
                 <label asp-for="Input.Password" class="font-weight-bold"></label>
             </div>
-            <input asp-for="Input.Password" class="form-control" type="Password"  />
+            <input asp-for="Input.Password" class="form-control" type="Password" />
             <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
         <div class="form-group w-45">
@@ -61,6 +61,11 @@
     <hr class="mt-3  hr-2" />
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    <div id="navigation-links" class="d-flex justify-content-center mt-3">
+        <div class="d-flex flex-column">
+            <a class="mt-2" href="/Identity/Account/Register">Login as a existing user</a>
+        </div>
     </div>
 </form>
 
