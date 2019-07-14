@@ -22,3 +22,9 @@ the student assignments. A search dialog at the Layout page allows the user to s
 -  Razor
 -  Bootstrap 4
 -  HTML & CSS
+
+## DevOps pipeline
+
+[![Build Status](https://dev.azure.com/mihailvtanev/NetFlow/_apis/build/status/NetFlow-CI?branchName=master)](https://dev.azure.com/mihailvtanev/NetFlow/_build/latest?definitionId=14&branchName=master)
+
+This build syncs between Github and VSTS (Azure DevOps) repo
