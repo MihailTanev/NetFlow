@@ -3,71 +3,105 @@
 @{
     ViewData["Title"] = "Register";
 }
-<h1 class="text-center mt-3">Register</h1>
-<hr class="mt-3  hr-2" />
-<form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="w-50 mx-auto">
+
+<h1 class="text-center p-3 mx-auto">Register</h1>
+<div class="title-underline bg-dark"></div>
+
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3 w-50 mt-3">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="d-flex justify-content-between">
-        <div class="form-group w-45">
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.FirstName" class="font-weight-bold"></label>
+                <label asp-for="Input.FirstName" class="text-primary">First Name</label>
             </div>
-            <input asp-for="Input.FirstName" class="form-control" type="text" />
+            <input type="text" asp-for="Input.FirstName"
+                   placeholder="First Name"
+                   id="firstName"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Input.FirstName" class="text-danger"></span>
         </div>
-        <div class="form-group w-45">
+
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.LastName" class="font-weight-bold"></label>
+                <label asp-for="Input.LastName" class="text-primary">Last Name</label>
             </div>
-            <input asp-for="Input.LastName" class="form-control" type="text" />
+            <input type="text" asp-for="Input.LastName"
+                   placeholder="Last Name"
+                   id="lastName"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Input.LastName" class="text-danger"></span>
         </div>
     </div>
-    <hr class="mt-3  hr-2" />
+
     <div class="d-flex justify-content-between">
-        <div class="form-group w-45">
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.Username" class="font-weight-bold"></label>
+                <label asp-for="Input.Birthdate" class="text-primary">Birth Date</label>
             </div>
-            <input asp-for="Input.Username" class="form-control" type="text" />
-            <span asp-validation-for="Input.Username" class="text-danger"></span>
+            <input type="date" asp-for="Input.Birthdate"
+                   id="birthdate"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
         </div>
-        <div class="form-group w-45">
+
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.Email" class="font-weight-bold"></label>
+                <label asp-for="Input.Email" class="text-primary">Email</label>
             </div>
-            <input asp-for="Input.Email" class="form-control" type="email" />
+            <input type="email" asp-for="Input.Email"
+                   id="email"
+                   placeholder="Email"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
     </div>
-    <hr class="mt-3  hr-2" />
+    <div class="d-flex justify-content-center">
+        <label asp-for="Input.Birthdate" class="text-primary">Username</label>
+    </div>
+    <div class="form-group">
+        <input type="text" asp-for="Input.Username"
+               id="username"
+               placeholder="Username"
+               class="form-control form-control-lg text-primary text-center" />
+        <span asp-validation-for="Input.Username" class="text-danger"></span>
+    </div>
+
     <div class="d-flex justify-content-between">
-        <div class="form-group w-45">
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.Password" class="font-weight-bold"></label>
+                <label asp-for="Input.Password" class="text-primary">Password</label>
             </div>
-            <input asp-for="Input.Password" class="form-control" type="Password" />
+            <input type="password" asp-for="Input.Password"
+                   id="password"
+                   placeholder="Password"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
-        <div class="form-group w-45">
+
+        <div class="form-group mt-3">
             <div class="d-flex justify-content-center">
-                <label asp-for="Input.ConfirmPassword" class="font-weight-bold"></label>
+                <label asp-for="Input.ConfirmPassword" class="text-primary">Confirm Password</label>
             </div>
-            <input asp-for="Input.ConfirmPassword" class="form-control" type="password" />
+            <input type="password" asp-for="Input.ConfirmPassword"
+                   id="confirmPassword"
+                   placeholder="Confirm Password"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
-    <hr class="mt-3  hr-2" />
-    <div class="d-flex justify-content-center">
+
+    <div class="d-flex justify-content-center mt-3">
         <button type="submit" class="btn btn-primary">Register</button>
     </div>
-    <div id="navigation-links" class="d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center mt-3">
         <div class="d-flex flex-column">
-            <a class="mt-2" href="/Identity/Account/Login">Login as a existing user</a>
+            <a class="mt-2" href="/Identity/Account/Login">Login to an existing account</a>
         </div>
     </div>
 </form>
+<hr class="m-2" />
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
