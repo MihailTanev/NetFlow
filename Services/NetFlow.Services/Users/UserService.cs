@@ -22,7 +22,7 @@
         public async Task<IEnumerable<UserServiceModel>> GetAllUsers()
         {
             var users = await this.context.Users
-                .OrderByDescending(x => x.LastName)
+                .OrderBy(x => x.UserName)
                 .To<UserServiceModel>()
                 .ToListAsync();
 
