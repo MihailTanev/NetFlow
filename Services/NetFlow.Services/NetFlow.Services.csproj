@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="HtmlSanitizer" Version="4.0.217" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
+    <ProjectReference Include="..\NetFlow.Services.Mapping\NetFlow.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>
