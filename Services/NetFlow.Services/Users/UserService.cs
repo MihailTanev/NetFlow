@@ -2,28 +2,27 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AutoMapper;
-    using Microsoft.AspNetCore.Identity;
     using NetFlow.Data;
-    using NetFlow.Data.Models;
     using NetFlow.Services.Users.Interface;
     using NetFlow.Services.Users.Models;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
-    using Stopify.Services.Mapping;
+    using AutoMapper.QueryableExtensions;
 
-    public class UserService : BaseService, IUserService
+    public class UserService : IUserService
     {
-        public UserService(NetFlowDbContext context, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
-            : base(context, mapper, userManager, signInManager)
+        private readonly NetFlowDbContext context;
+
+        public UserService(NetFlowDbContext context)
         {
+            this.context = context;
         }
 
         public async Task<IEnumerable<UserServiceModel>> GetAllUsers()
         {
             var users = await this.context.Users
                 .OrderBy(x => x.UserName)
-                .To<UserServiceModel>()
+                .ProjectTo<UserServiceModel>()
                 .ToListAsync();
 
             return users;
@@ -41,7 +40,7 @@
         {
             var userId = await this.context.Users
                 .Where(u => u.Id == id)
-                .To<UserServiceModel>()    
+                .ProjectTo<UserServiceModel>()    
                 .FirstOrDefaultAsync();
 
             return userId;

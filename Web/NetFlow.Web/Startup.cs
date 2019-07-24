@@ -9,7 +9,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetFlow.Data.Models;
 using NetFlow.Web.Middleware.Extensions;
-using AutoMapper;
+using NetFlow.Services.Users;
+using NetFlow.Services.Users.Interface;
+using Stopify.Services.Mapping;
+using NetFlow.Services.Users.Models;
+using System.Reflection;
 
 namespace NetFlow.Web
 {
@@ -53,9 +57,7 @@ namespace NetFlow.Web
                 options.Password.RequiredLength = 5;
             });
 
-
-            // Add AutoMapper
-            services.AddAutoMapper();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -63,6 +65,9 @@ namespace NetFlow.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(
+                 typeof(UserServiceModel).GetTypeInfo().Assembly);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -86,6 +91,11 @@ namespace NetFlow.Web
 
             app.UseMvc(routes =>
             {
+               
+                routes.MapRoute(
+                   name: "areas",
+                   template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
