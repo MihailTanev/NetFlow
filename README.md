@@ -3,7 +3,7 @@
 </div>	
 
 
-# [Netflow](https://netflow-core.azurewebsites.net/)  <img src="https://mihailtanev.blob.core.windows.net/netflow/2019-01-25_23-33-061.jpg?sp=r&st=2019-07-13T16:48:36Z&se=2019-07-14T00:48:36Z&spr=https&sv=2018-03-28&sig=L1H6eBdjTh6B44gIs2osG2PD1k0%2FLSYJ%2F5URYtlM2sM%3D&sr=b" width="48px" height="48px" />
+# [Netflow](https://netflow-core.azurewebsites.net/)  <img src="https://mihailtanev.blob.core.windows.net/netflow/2019-01-25_23-33-061.jpg?sp=r&st=2019-07-25T17:05:42Z&se=2019-07-26T01:05:42Z&spr=https&sv=2018-03-28&sig=K4kGslHX%2By%2BZd0DOnfZ9FlbWD%2FszzViNTezjJKmOSBE%3D&sr=b" width="48px" height="48px" />
 
 ## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.

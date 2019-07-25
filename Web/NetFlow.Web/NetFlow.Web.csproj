@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-NetFlow.Web-26AC6AF7-AFDB-4162-83F7-32A3538E6527</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ApplicationInsightsResourceId>/subscriptions/111e4d3d-dd90-4972-9976-41367ef5ea04/resourcegroups/NetFlowResourceGroup/providers/microsoft.insights/components/NetFlowApplicationResource</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/111e4d3d-dd90-4972-9976-41367ef5ea04/resourcegroups/NetFlowResourceGroup/providers/microsoft.insights/components/NetFlowApplicationResource</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +20,7 @@
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="HtmlSanitizer" Version="4.0.217" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
@@ -30,6 +33,11 @@
     <ProjectReference Include="..\..\Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
     <ProjectReference Include="..\..\Services\NetFlow.Services\NetFlow.Services.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
