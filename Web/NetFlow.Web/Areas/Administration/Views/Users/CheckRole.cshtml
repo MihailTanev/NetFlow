@@ -1,0 +1,62 @@
+﻿@model NetFlow.Web.Areas.Administration.Models.RoleViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = Model.Username;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="text-center p-3 mx-auto">@ViewData["Title"] for @User.Identity.Name</h1>
+<div class="title-underline bg-dark"></div>
+<div class="row">
+    <div class="col-md-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model.Roles)
+                {
+                    <tr>
+                        <td>@role</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Username</td>
+            <td>
+                <form asp-controller="Users" asp-action="DestroyRole" method="post">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="hidden" name="UserId" value="@Model.Id" />
+                            <select name="Role" asp-items="Model.ListRole" class="form-control"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                        </div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="col-md-2">
+    <input type="submit" value="Add to Role" class="btn btn-sm btn-primary" />
+</div>
+<a asp-area="Admin" asp-controller="Users" asp-action="Index" class="btn btn-default">Back</a>
+
+

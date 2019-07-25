@@ -49,9 +49,6 @@
                 {
                     Email = adminEmail,
                     UserName = adminRole,
-                    FirstName = adminRole,
-                    LastName = adminRole,
-                    BirthDate = new DateTime(2000, 1, 1),
                 };
 
                 await userManager.CreateAsync(adminUser, "admin123");

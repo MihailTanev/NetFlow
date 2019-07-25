@@ -7,7 +7,5 @@
     {
         public IEnumerable<UserServiceModel> Users { get; set; }
 
-        public int TotalUsers { get; set; }
-
     }
 }

@@ -27,7 +27,7 @@
 
             return users;
 
-        }
+        }        
 
         public async Task<int> GetTotalUsers()
         {
@@ -45,5 +45,6 @@
 
             return userId;
         }
+
     }
 }

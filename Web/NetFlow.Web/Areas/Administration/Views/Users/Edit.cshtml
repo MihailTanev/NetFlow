@@ -1,0 +1,69 @@
+﻿@model NetFlow.Web.Areas.Administration.Models.EditUserViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = Model.Username;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center font-weight-bold p-3 mx-auto">User Information for @ViewData["Title"] account</h2>
+<div class="title-underline bg-primary"></div>
+
+<form method="post" enctype="multipart/form-data" class="mx-auto p-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="FirstName" class="text-primary">First Name</label>
+            </div>
+            <input type="text" asp-for="FirstName"
+                   placeholder="Username"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="LastName" class="text-primary">Last Name</label>
+            </div>
+            <input type="text" asp-for="LastName"
+                   placeholder="Username"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Email" class="text-primary">Email</label>
+            </div>
+            <input type="email" asp-for="Email"
+                   placeholder="Username"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Username" class="text-primary">Username</label>
+            </div>
+            <input type="text" asp-for="Username"
+                   placeholder="Username"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center m-3">
+        <button type="submit" class="btn btn-primary">update</button>
+    </div>
+</form>
+<hr class="mb-2" />
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
