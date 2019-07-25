@@ -104,3 +104,6 @@ body {
     height: 2px;
     margin: 0 auto;
 }
+.table td {
+    padding: 1.0rem !important;
+}

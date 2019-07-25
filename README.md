@@ -28,3 +28,6 @@ the student assignments. A search dialog at the Layout page allows the user to s
 [![Build Status](https://dev.azure.com/mihailvtanev/NetFlow/_apis/build/status/NetFlow-CI?branchName=master)](https://dev.azure.com/mihailvtanev/NetFlow/_build/latest?definitionId=14&branchName=master)
 
 This build syncs between Github and VSTS (Azure DevOps) repo
+
+### Test Users
+Login as a Administrator with username: Administrator and password: admin123

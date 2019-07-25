@@ -3,6 +3,7 @@
     using NetFlow.Data.Models;
     using Stopify.Services.Mapping;
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class UserServiceModel : IMapFrom<User>
     {
@@ -17,5 +18,8 @@
         public string Username { get; set; }
 
         public string Email { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
     }
 }
