@@ -8,6 +8,7 @@
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using AutoMapper.QueryableExtensions;
+    using Stopify.Services.Mapping;
 
     public class UserService : IUserService
     {
@@ -16,7 +17,7 @@
         public UserService(NetFlowDbContext context)
         {
             this.context = context;
-        }
+        }      
 
         public async Task<IEnumerable<UserServiceModel>> GetAllUsers()
         {
@@ -46,5 +47,9 @@
             return userId;
         }
 
+        public bool IsUsernameExist(string username)
+        {
+            return this.context.Users.Any(u => u.UserName == username);
+        }
     }
 }

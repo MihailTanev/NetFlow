@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
+    using NetFlow.Common.GlobalConstants;
     using NetFlow.Data.Models;
     using NetFlow.Services.Users.Interface;
     using NetFlow.Web.Areas.Administration.Models;
@@ -117,8 +118,6 @@
         {
             var user = await this.userManager.FindByIdAsync(addToRole.UserId);
 
-            var roleExists = await this.roleManager.RoleExistsAsync(addToRole.RoleName);
-
             if (ModelState.IsValid)
             {
                 await this.userManager.AddToRoleAsync(user, addToRole.RoleName);
@@ -128,6 +127,43 @@
             {
                 return this.View(addToRole);
             }
-        }        
+        }
+
+        public IActionResult AddUser()
+        {
+            ViewBag.Name = new SelectList(roleManager.Roles.Select(u => u.Name)
+                                                        .ToList());
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(CreateUserViewModel addUser)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(addUser);
+            }           
+
+            var user = new User
+            {                
+                FirstName = addUser.FirstName,
+                LastName = addUser.LastName,
+                UserName = addUser.Username,
+                Email = addUser.Email,                
+            };          
+
+            var result = await this.userManager.CreateAsync(user, addUser.Password);      
+
+            if (result.Succeeded)
+            {
+                await this.userManager.AddToRoleAsync(user, addUser.UserRole);
+
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+            else
+            {
+                return this.View(addUser);
+            }
+        }    
     }
 }
