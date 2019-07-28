@@ -33,6 +33,7 @@
     <ProjectReference Include="..\..\Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data\NetFlow.Data.csproj" />
     <ProjectReference Include="..\..\Services\NetFlow.Services\NetFlow.Services.csproj" />
+    <ProjectReference Include="..\NetFlow.Web.ViewModels\NetFlow.Web.ViewModels.csproj" />
   </ItemGroup>
 
 

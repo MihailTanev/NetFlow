@@ -1,4 +1,4 @@
-﻿namespace NetFlow.Web.Areas.Administration.Models
+﻿namespace NetFlow.Web.ViewModels.Users
 {
     using NetFlow.Common.GlobalConstants;
     using System;

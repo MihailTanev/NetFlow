@@ -23,11 +23,19 @@ the student assignments. A search dialog at the Layout page allows the user to s
 -  Bootstrap 4
 -  HTML & CSS
 
+## Online Demo (Azure Website)
+
+[www.netflow-core.azurewebsites.net](http://netflow-core.azurewebsites.net)
+
+## Configuration
+
+- Download Visual Studio 2017 or higher
+- Configure the connection string in appsettings.json file with the correct SQL Server instance
+- Build the solution by pressing "Ctrl + F5"
+- The back-office can be accessed via Admin Panel using the pre-created account : username: Administrator, password: admin123
+
 ## DevOps pipeline
 
 [![Build Status](https://dev.azure.com/mihailvtanev/NetFlow/_apis/build/status/NetFlow-CI?branchName=master)](https://dev.azure.com/mihailvtanev/NetFlow/_build/latest?definitionId=14&branchName=master)
 
-This build syncs between Github and VSTS (Azure DevOps) repo
-
-### Test Users
-Login as a Administrator with username: Administrator and password: admin123
+This build syncs between Github and Azure DevOps repo

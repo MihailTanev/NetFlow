@@ -1,18 +1,17 @@
-﻿namespace NetFlow.Web.Areas.Administration.Models
+﻿namespace NetFlow.Web.ViewModels.Users
 {
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CreateUserViewModel
     {
         public string UserRole { get; set; }
+
         public string Username { get; set; }
-       
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-      
+
         public string Email { get; set; }
 
         [DataType(DataType.Password)]

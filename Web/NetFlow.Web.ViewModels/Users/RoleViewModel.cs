@@ -1,4 +1,4 @@
-﻿namespace NetFlow.Web.Areas.Administration.Models
+﻿namespace NetFlow.Web.ViewModels.Users
 {
     using Microsoft.AspNetCore.Mvc.Rendering;
     using System.Collections.Generic;
