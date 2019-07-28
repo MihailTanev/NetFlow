@@ -1,12 +1,10 @@
 ﻿@model NetFlow.Web.ViewModels.Users.EditUserViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = Model.Username;
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center font-weight-bold p-3 mx-auto">User Information for @ViewData["Title"] account</h2>
+<h2 class="text-center font-weight-bold p-3 mx-auto">Edit @ViewData["Title"] account</h2>
 <div class="title-underline bg-primary"></div>
 
 <form method="post" enctype="multipart/form-data" class="mx-auto p-3">
@@ -59,7 +57,7 @@
     </div>
 
     <div class="d-flex justify-content-center m-3">
-        <button type="submit" class="btn btn-primary">update</button>
+        <button type="submit" class="btn btn-primary">save</button>
     </div>
 </form>
 <hr class="mb-2" />

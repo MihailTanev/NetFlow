@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.EntityFrameworkCore;
     using NetFlow.Common.GlobalConstants;
     using NetFlow.Data.Models;
     using NetFlow.Services.Users.Interface;
@@ -122,17 +123,17 @@
             }
         }
 
-        public async Task<IActionResult> CheckUserRole(string id)
+        public async Task<IActionResult> ManageRole(string id)
         {
-            var user = await this.userManager.FindByIdAsync(id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
            
-            var userRole = await this.userManager.GetRolesAsync(user);
+            var currentUserRole = await this.userManager.GetRolesAsync(user);
 
-            var roles = userRole
-                .Select(r => new SelectListItem
+            var roles = currentUserRole
+                .Select(role => new SelectListItem
                 {
-                    Text = r,
-                    Value = r
+                    Text = role,
+                    Value = role
                 })
                 .ToList();
 
@@ -140,11 +141,55 @@
             {
                 Id = user.Id,
                 Username = user.UserName,
+                RoleList = roles,
                 Roles = await this.userManager.GetRolesAsync(user),
-                ListRole = roles
             };
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(DeleteUserRoleViewModel model)
+        {
+            var user = await this.userManager.FindByIdAsync(model.UserId);           
+
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+
+            var result = await this.userManager.RemoveFromRoleAsync(user, model.Role);
+
+            if (result.Succeeded)
+            {
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        public async Task<IActionResult> AddRole(string id)
+        {
+            var user = await this.userService.GetUserById(id);           
+          
+            var roles = await this.roleManager
+                .Roles
+                .Select(role => new SelectListItem
+                {
+                    Text = role.Name,
+                    Value = role.Name
+                })
+                .ToListAsync();
+
+            var model = new ChangeUserRoleViewModel
+            {
+                User = user,
+                Roles = roles
+            };
+
+            return View(model);
+        }      
     }
 }

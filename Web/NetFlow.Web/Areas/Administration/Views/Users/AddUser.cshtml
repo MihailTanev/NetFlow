@@ -1,12 +1,10 @@
 ﻿@model NetFlow.Web.ViewModels.Users.CreateUserViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Add User";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center font-weight-bold p-3 mx-auto">@ViewData["Title"]</h2>
+<h2 class="text-center font-weight-bold pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
 <form method="post" enctype="multipart/form-data" class="mx-auto p-3">
@@ -83,15 +81,18 @@
                 <label asp-for="UserRole" class="text-primary"></label>
             </div>
             <select asp-for="UserRole" asp-items="ViewBag.Name"
-                    class="form-control">
+                    class="form-control form-control-lg text-primary text-center">
             <option value="0">--Select User Role--</option>
                 </select>
             <span asp-validation-for="UserRole" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center m-3">
-        <button type="submit" class="btn btn-primary">create</button>
+    <div class="text-white font-weight-bold text-center p-3 w-25 mx-auto">
+        <div class="d-flex justify-content-between">
+            <a asp-area="Administration" asp-controller="Users" asp-action="Index" class="btn btn-outline-dark">Cancel</a>      
+            <a asp-area="Administration" asp-controller="Users" asp-action="AddUser" class="btn btn-dark">Create</a>
+        </div>
     </div>
 </form>
 <hr class="mb-2" />

@@ -1,0 +1,45 @@
+﻿@model NetFlow.Web.ViewModels.Users.ChangeUserRoleViewModel
+
+@{
+    ViewData["Title"] = Model.User.FirstName + " " + Model.User.LastName;
+}
+
+<div class="mx-auto p-3 w-75">
+    <h2 class="text-center font-weight-bold p-3 mx-auto">Add Role to @ViewData["Title"] account</h2>
+    <div class="title-underline bg-primary"></div>
+</div>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Add Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.User.Username</td>
+            <td>@Model.User.Email</td>
+            <td>@Model.User.FirstName @Model.User.LastName</td>
+            <td>
+                <form asp-controller="Users" asp-action="AddRole" method="post">
+                    <div class="d-flex justify-content-between">
+                        <input type="hidden" name="UserId" value="@Model.User.Id" />
+                        <select class="form-control" name="Role" asp-items="Model.Roles"></select>
+                    </div>
+                    <div class="d-flex justify-content-end p-3">
+                        <input type="submit" value="confirm" class="btn btn-danger" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+

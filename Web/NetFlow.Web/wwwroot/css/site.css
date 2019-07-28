@@ -107,3 +107,9 @@ body {
 .table td {
     padding: 1.0rem !important;
 }
+.table th{
+    padding: 1.0rem;
+}
+.form-control{
+    padding: 0rem 2rem !important;
+}

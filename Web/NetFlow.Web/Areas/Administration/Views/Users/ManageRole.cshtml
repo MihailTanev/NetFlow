@@ -1,0 +1,59 @@
+﻿@model NetFlow.Web.ViewModels.Users.RoleViewModel
+
+@{
+    ViewData["Title"] = Model.Username;
+}
+
+<h1 class="text-center p-3 mx-auto">User Role for @ViewData["Title"] </h1>
+<div class="title-underline bg-dark"></div>
+
+<div class="row">
+    <div class="col-md-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model.Roles)
+                {
+                    <tr>
+                        <td>@role</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<form method="post" asp-action="DeleteRole" asp-controller="Users">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Delete Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Username</td>
+                <td>
+                    <div class="d-flex justify-content-between">
+                        <input type="hidden" name="UserId" value="@Model.Id" />
+                        <select class="form-control" name="Role" asp-items="Model.RoleList"></select>
+                    </div>
+                    <div class="d-flex justify-content-center p-3">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+
+<a asp-area="Administration" asp-controller="Users" asp-action="Index" class="btn btn-primary">Back</a>
+
+
+
+

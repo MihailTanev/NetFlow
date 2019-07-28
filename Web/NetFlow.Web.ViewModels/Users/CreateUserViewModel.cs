@@ -4,6 +4,7 @@
 
     public class CreateUserViewModel
     {
+        [Display(Name = "User Role")]
         public string UserRole { get; set; }
 
         public string Username { get; set; }
