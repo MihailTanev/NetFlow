@@ -3,18 +3,12 @@
     using NetFlow.Common.GlobalConstants;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateUserViewModel
+    public class ChangePasswordViewModel
     {
-        [Display(Name = "User Role")]
-        public string UserRole { get; set; }
+        public string Email { get; set; }
 
         public string Username { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = UserConstants.PASSWORD_ERROR_MESSAGE, MinimumLength = 6)]

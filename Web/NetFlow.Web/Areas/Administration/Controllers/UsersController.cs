@@ -215,5 +215,41 @@
 
             return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
         }
+
+        public async Task<IActionResult> ChangePassword(string id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ChangePasswordViewModel
+            {
+                Username = user.UserName,
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(string id, ChangePasswordViewModel model)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            var code = await this.userManager.GeneratePasswordResetTokenAsync(user);
+
+            var result = await this.userManager.ResetPasswordAsync(user, code, model.Password);
+
+            if (result.Succeeded)
+            {
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+            else
+            {
+                return this.View(model);
+            }
+        }
     }
 }
