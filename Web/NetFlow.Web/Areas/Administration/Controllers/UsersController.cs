@@ -251,5 +251,44 @@
                 return this.View(model);
             }
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new DeleteUserViewModel
+            {
+                UserId = user.Id,                
+                Username = user.UserName,
+            };
+
+            return this.View(model);
+        }
+
+        public async Task<IActionResult> DeleteUser(DeleteUserViewModel model, string id)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await this.userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
     }
 }
