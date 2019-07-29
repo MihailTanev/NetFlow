@@ -7,7 +7,7 @@
 <h2 class="text-center font-weight-bold pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
-<form method="post" enctype="multipart/form-data" class="mx-auto p-3">
+<form method="post" asp-area="Administration" asp-controller="Users" asp-action="AddUser" enctype="multipart/form-data" class="mx-auto p-3">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="d-flex justify-content-center">
@@ -89,9 +89,8 @@
     </div>
 
     <div class="text-white font-weight-bold text-center p-3 w-25 mx-auto">
-        <div class="d-flex justify-content-between">
-            <a asp-area="Administration" asp-controller="Users" asp-action="Index" class="btn btn-outline-dark">Cancel</a>      
-            <a asp-area="Administration" asp-controller="Users" asp-action="AddUser" class="btn btn-dark">Create</a>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">create</button>
         </div>
     </div>
 </form>

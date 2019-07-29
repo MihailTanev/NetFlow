@@ -1,9 +1,9 @@
 ﻿namespace NetFlow.Web.ViewModels.Users
 {
-    public class AddUserToRoleViewModel
+    public class UserRoleViewModel
     {
         public string UserId { get; set; }
 
-        public string RoleName { get; set; }
+        public string Role { get; set; }
     }
 }

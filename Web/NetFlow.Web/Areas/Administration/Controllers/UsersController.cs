@@ -35,6 +35,45 @@
             return View(users);
         }
 
+        public IActionResult AddUser()
+        {
+            ViewBag.Name = new SelectList(roleManager.Roles.Select(u => u.Name)
+                                                        .ToList());
+            return this.View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(CreateUserViewModel addUser)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(addUser);
+            }
+
+            var user = new User
+            {
+                FirstName = addUser.FirstName,
+                LastName = addUser.LastName,
+                UserName = addUser.Username,
+                Email = addUser.Email,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            var result = await this.userManager.CreateAsync(user, addUser.Password);
+
+            if (result.Succeeded)
+            {
+                await this.userManager.AddToRoleAsync(user, addUser.UserRole);
+
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            }
+            else
+            {
+                return this.View(addUser);
+            }
+        }
+
         public async Task<IActionResult> Edit(string id)
         {
             var user = await this.userManager.FindByIdAsync(id);
@@ -84,49 +123,10 @@
             }
         }
 
-        public IActionResult AddUser()
-        {
-            ViewBag.Name = new SelectList(roleManager.Roles.Select(u => u.Name)
-                                                        .ToList());
-            return this.View();
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> AddUser(CreateUserViewModel addUser)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(addUser);
-            }
-
-            var user = new User
-            {
-                FirstName = addUser.FirstName,
-                LastName = addUser.LastName,
-                UserName = addUser.Username,
-                Email = addUser.Email,
-                CreatedOn = DateTime.UtcNow,
-            };
-
-            var result = await this.userManager.CreateAsync(user, addUser.Password);
-
-            if (result.Succeeded)
-            {
-                await this.userManager.AddToRoleAsync(user, addUser.UserRole);
-
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
-            }
-            else
-            {
-                return this.View(addUser);
-            }
-        }
-
         public async Task<IActionResult> ManageRole(string id)
         {
             var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-           
+          
             var currentUserRole = await this.userManager.GetRolesAsync(user);
 
             var roles = currentUserRole
@@ -141,21 +141,23 @@
             {
                 Id = user.Id,
                 Username = user.UserName,
-                RoleList = roles,
-                Roles = await this.userManager.GetRolesAsync(user),
+                Roles = currentUserRole,
+                RoleList = roles
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteRole(DeleteUserRoleViewModel model)
+        public async Task<IActionResult> DeleteRole(UserRoleViewModel model)
         {
-            var user = await this.userManager.FindByIdAsync(model.UserId);           
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
 
-            if (!ModelState.IsValid)
+            bool roleExists = await this.roleManager.RoleExistsAsync(model.Role);
+
+            if (!roleExists)
             {
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                ModelState.AddModelError(string.Empty, "Invalid Idenity details.");
             }
 
             var result = await this.userManager.RemoveFromRoleAsync(user, model.Role);
@@ -166,20 +168,25 @@
             }
             else
             {
-                return View(model);
+                return this.View(model);
             }
         }
 
-        public async Task<IActionResult> AddRole(string id)
+        public async Task<IActionResult> UserRole(string id)
         {
-            var user = await this.userService.GetUserById(id);           
-          
+            var user = await this.userService.GetUserById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var roles = await this.roleManager
                 .Roles
-                .Select(role => new SelectListItem
+                .Select(r => new SelectListItem
                 {
-                    Text = role.Name,
-                    Value = role.Name
+                    Text = r.Name,
+                    Value = r.Name
                 })
                 .ToListAsync();
 
@@ -190,6 +197,23 @@
             };
 
             return View(model);
-        }      
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRole(UserRoleViewModel model)
+        {
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
+
+            bool roleExists = await this.roleManager.RoleExistsAsync(model.Role);
+
+            if (!roleExists)
+            {
+                return this.View(model);
+            }
+           
+            await this.userManager.AddToRoleAsync(user, model.Role);
+
+            return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+        }
     }
 }
