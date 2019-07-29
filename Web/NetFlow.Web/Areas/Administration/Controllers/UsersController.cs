@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
     using NetFlow.Common.GlobalConstants;
+    using NetFlow.Common.Messages.User;
     using NetFlow.Data.Models;
     using NetFlow.Services.Users.Interface;
     using NetFlow.Web.ViewModels.Users;
@@ -66,10 +67,14 @@
             {
                 await this.userManager.AddToRoleAsync(user, addUser.UserRole);
 
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_CREATED;
+
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_WAS_NOT_CREATED;
+
                 return this.View(addUser);
             }
         }
@@ -80,6 +85,8 @@
 
             if (user == null)
             {
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_DOES_NOT_EXIST;
+
                 return NotFound();
             }
 
@@ -103,7 +110,8 @@
 
             if (user == null)
             {
-                return NotFound();
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_WAS_NOT_UPDATED;
+                return this.View(model);
             }
 
             user.FirstName = model.FirstName;
@@ -115,7 +123,10 @@
             if (ModelState.IsValid)
             {
                 await this.userManager.UpdateAsync(user);
-                return RedirectToAction(nameof(Index));
+
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_UPDATED;
+
+                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -164,6 +175,8 @@
 
             if (result.Succeeded)
             {
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_DELETED;
+
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
@@ -213,6 +226,8 @@
            
             await this.userManager.AddToRoleAsync(user, model.Role);
 
+            this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_ADDED;
+
             return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
         }
 
@@ -244,6 +259,8 @@
 
             if (result.Succeeded)
             {
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.PASSWORD_HAS_BEEN_CHANGED;
+
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
@@ -283,6 +300,8 @@
 
             if (result.Succeeded)
             {
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_HAS_BEEN_DELETED;
+
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else

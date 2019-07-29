@@ -28,6 +28,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\NetFlow.Common.Messages\NetFlow.Common.Messages.csproj" />
     <ProjectReference Include="..\..\Common\NetFlow.Common\NetFlow.Common.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data.Configuration\NetFlow.Data.Configuration.csproj" />
     <ProjectReference Include="..\..\Data\NetFlow.Data.Models\NetFlow.Data.Models.csproj" />

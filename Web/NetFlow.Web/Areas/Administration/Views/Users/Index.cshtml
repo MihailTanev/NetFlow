@@ -1,13 +1,29 @@
 ﻿@model NetFlow.Web.ViewModels.Users.UsersViewModel
+@using NetFlow.Common.Messages.User
 
 @{
     ViewData["Title"] = "Regestered Users";
 }
+
 <h1 class="text-center p-3 mx-auto">@ViewData["Title"]</h1>
 <div class="title-underline bg-dark"></div>
 <br />
 
 <br />
+
+
+@if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+    </div>
+}
+@if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+    </div>
+}
 <div>
     <a asp-area="Administration" asp-controller="Users" asp-action="AddUser" class="btn btn-primary">Add User</a>
 </div>
