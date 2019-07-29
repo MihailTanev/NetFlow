@@ -4,14 +4,13 @@
     ViewData["Title"] = "Delete User " + Model.Username;
 }
 
-<h2 class="text-center font-weight-bold p-3 mx-auto">@ViewData["Title"]</h2>
+<h2 class="text-center p-3 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
 <form method="post" asp-area="Administration" asp-action="DeleteUser" asp-controller="Users" asp-route-id="@Model.UserId">
+
     <div class="d-flex justify-content-center m-3">
-        <div class="d-flex justify-content-center">
-            <h4>Are you sure you want to @ViewData["Title"]?</h4>
-        </div>
+        <h4>Are you sure you want to @ViewData["Title"]?</h4>
     </div>
 
     <div class="d-flex justify-content-center m-3">
