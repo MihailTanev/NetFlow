@@ -33,7 +33,7 @@
                 Users = await this.userService.GetAllUsers(),
             };
 
-            return View(users);
+            return this.View(users);
         }
 
         public IActionResult AddUser()
@@ -100,7 +100,7 @@
                 BirthDate = user.BirthDate
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -130,7 +130,7 @@
             }
             else
             {
-                return View(model);
+                return this.View(model);
             }
         }
 
@@ -209,7 +209,7 @@
                 Roles = roles
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -306,7 +306,7 @@
             }
             else
             {
-                return View(model);
+                return this.View(model);
             }
         }
     }
