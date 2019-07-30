@@ -8,5 +8,6 @@
     {
         Task<IEnumerable<CourseServiceModel>> GetAllCourses();
 
+        Task<CourseServiceModel> GetCourseById(int id);
     }
 }

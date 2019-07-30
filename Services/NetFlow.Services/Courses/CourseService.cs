@@ -28,5 +28,19 @@
 
             return courses;
         }
+
+        public async Task<CourseServiceModel> GetCourseById(int id)
+        {
+            var course = await this.context
+                .Courses
+                .Where(x => x.Id == id)
+                .OrderByDescending(x => x.StartDate)
+                .ProjectTo<CourseServiceModel>()
+                .FirstOrDefaultAsync();
+
+            return course;
+        }
+
+
     }
 }
