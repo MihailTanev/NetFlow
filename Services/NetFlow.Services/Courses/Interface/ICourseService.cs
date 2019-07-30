@@ -9,5 +9,10 @@
         Task<IEnumerable<CourseServiceModel>> GetAllCourses();
 
         Task<CourseServiceModel> GetCourseById(int id);
+
+        Task<IEnumerable<CourseServiceModel>> GetUpComingCourses();
+
+        Task<IEnumerable<CourseServiceModel>> GetActiveCourses();
+
     }
 }

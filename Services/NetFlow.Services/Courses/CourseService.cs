@@ -8,6 +8,7 @@
     using NetFlow.Services.Courses.Models;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
+    using System;
 
     public class CourseService : ICourseService
     {
@@ -40,7 +41,28 @@
 
             return course;
         }
+       
+        public async Task<IEnumerable<CourseServiceModel>> GetUpComingCourses()
+        {
+            var courses = await this.context.Courses
+                .Where(x => x.StartDate >= DateTime.UtcNow)
+                .OrderByDescending(x => x.StartDate)
+                .ProjectTo<CourseServiceModel>()
+                .ToListAsync();
 
+            return courses;
+        }
+
+        public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
+        {
+            var courses = await this.context.Courses
+                .Where(x => x.EndDate <= DateTime.UtcNow)
+                .OrderByDescending(x => x.StartDate)
+                .ProjectTo<CourseServiceModel>()
+                .ToListAsync();
+
+            return courses;
+        }
 
     }
 }
