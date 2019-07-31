@@ -64,40 +64,6 @@ body {
 #picture{
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../images/netflow.jpg) center/cover no-repeat fixed;
 }
-.hr.hr-2{
-    height:2px;
-}
-.w-30 {
-    width: 30%;
-}
-
-.w-40 {
-    width: 40%;
-}
-
-.w-45 {
-    width: 45%;
-}
-
-.w-55 {
-    width: 55%;
-}
-
-.w-60 {
-    width: 60%;
-}
-
-.w-65 {
-    width: 65%;
-}
-
-.w-70 {
-    width: 70%;
-}
-
-.w-85 {
-    width: 85%;
-}
 
 .title-underline {
     width: 8rem;
@@ -111,5 +77,6 @@ body {
     padding: 1.0rem;
 }
 .form-control{
-    padding: 1.75rem 2rem !important;
+    padding: 1.4rem 2rem !important;
+    font-size:1rem!important;
 }
