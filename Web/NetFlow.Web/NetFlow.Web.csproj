@@ -42,4 +42,9 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\Courses\" />
+  </ItemGroup>
+
 </Project>

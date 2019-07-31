@@ -2015,7 +2015,7 @@ pre code {
   display: block;
   width: 100%;
   height: calc(1.5em + 1.5rem + 0);
-  //padding: 0.75rem 2rem;
+  padding: 0.75rem 2rem;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;

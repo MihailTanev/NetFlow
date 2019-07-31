@@ -106,13 +106,13 @@
         [HttpPost]
         public async Task<IActionResult> Edit(string id, EditUserViewModel model)
         {
-            var user = await this.userManager.FindByIdAsync(id);
-
-            if (user == null)
+            if (!this.ModelState.IsValid)
             {
                 this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_WAS_NOT_UPDATED;
                 return this.View(model);
             }
+
+            var user = await this.userManager.FindByIdAsync(id);          
 
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
@@ -120,18 +120,12 @@
             user.BirthDate = model.BirthDate;
             user.UserName = model.Username;
 
-            if (ModelState.IsValid)
-            {
-                await this.userManager.UpdateAsync(user);
+            await this.userManager.UpdateAsync(user);
 
-                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_UPDATED;
+            this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_UPDATED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
-            }
-            else
-            {
-                return this.View(model);
-            }
+            return this.View(model);           
+            
         }
 
         public async Task<IActionResult> ManageRole(string id)

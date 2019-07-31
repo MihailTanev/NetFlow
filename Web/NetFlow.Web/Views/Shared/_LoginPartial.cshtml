@@ -7,21 +7,21 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="fas fa-user-edit"></i> @UserManager.GetUserName(User)</a>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link">Logout</button>
+                <button type="submit" class="nav-link btn btn-link"><i class="fas fa-user-slash"></i> sign out  </button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link bg-success text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link bg-success text-white" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-user-plus"></i> create account</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link bg-danger text-white"   asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link bg-danger text-white"   asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-user"></i> sign in</a>
         </li>
     }
 </ul>
