@@ -56,7 +56,7 @@
         public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
         {
             var courses = await this.context.Courses
-                .Where(x => x.StartDate>=DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
+                .Where(x => x.StartDate>=DateTime.UtcNow && x.EndDate <= DateTime.UtcNow)
                 .OrderByDescending(x => x.StartDate)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
