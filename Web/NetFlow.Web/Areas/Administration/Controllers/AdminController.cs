@@ -5,7 +5,7 @@
     using NetFlow.Common.GlobalConstants;
 
     [Area(AreaConstants.ADMINISTRATION_AREA)]
-    [Authorize(Roles = RoleConstants.ADMIN_ROLE)]
+    //[Authorize(Roles = RoleConstants.ADMIN_ROLE)]
     public abstract class AdminController : Controller
     {        
     }

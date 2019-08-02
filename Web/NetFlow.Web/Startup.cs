@@ -14,6 +14,9 @@ using NetFlow.Services.Users.Interface;
 using Stopify.Services.Mapping;
 using NetFlow.Services.Users.Models;
 using System.Reflection;
+using NetFlow.Services.Courses;
+using NetFlow.Services.Courses.Interface;
+using AutoMapper;
 
 namespace NetFlow.Web
 {
@@ -58,6 +61,9 @@ namespace NetFlow.Web
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICourseService, CourseService>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -67,6 +73,7 @@ namespace NetFlow.Web
         {
             AutoMapperConfig.RegisterMappings(
                  typeof(UserServiceModel).GetTypeInfo().Assembly);
+
 
             if (env.IsDevelopment())
             {
