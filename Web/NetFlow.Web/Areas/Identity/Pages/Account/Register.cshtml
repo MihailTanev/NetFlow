@@ -1,103 +1,103 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Create Account";
 }
 
-<h1 class="text-center p-3 mx-auto">Register</h1>
-<div class="title-underline bg-dark"></div>
+<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
+<div class="title-underline bg-primary"></div>
 
-<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3 w-50 mt-3">
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="d-flex justify-content-between">
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.FirstName" class="text-primary">First Name</label>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Input.FirstName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="Input.FirstName" class="form-control" placeholder="First Name" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
-            <input type="text" asp-for="Input.FirstName"
-                   placeholder="First Name"
-                   id="firstName"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
         </div>
-
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.LastName" class="text-primary">Last Name</label>
+        <div class="col-md-4 form-group">
+            <label asp-for="Input.LastName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="Input.LastName" class="form-control" placeholder="Last Name" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
-            <input type="text" asp-for="Input.LastName"
-                   placeholder="Last Name"
-                   id="lastName"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="Input.LastName" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="d-flex justify-content-between">
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.Birthdate" class="text-primary">Birth Date</label>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Input.Email" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                </div>
+                <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <input type="date" asp-for="Input.Birthdate"
-                   id="birthdate"
-                   class="form-control form-control-lg text-primary text-center" />
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="Input.Username" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input asp-for="Input.Username" class="form-control" placeholder="Username" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Input.Password" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="Input.ConfirmPassword" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-4 col-md-4 offset-md-4 form-group">
+            <label asp-for="Input.Birthdate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                </div>
+                <input asp-for="Input.Birthdate" class="form-control" placeholder="Birth Date" />
+            </div>
             <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
         </div>
-
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.Email" class="text-primary">Email</label>
-            </div>
-            <input type="email" asp-for="Input.Email"
-                   id="email"
-                   placeholder="Email"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <label asp-for="Input.Birthdate" class="text-primary">Username</label>
-    </div>
-    <div class="form-group">
-        <input type="text" asp-for="Input.Username"
-               id="username"
-               placeholder="Username"
-               class="form-control form-control-lg text-primary text-center" />
-        <span asp-validation-for="Input.Username" class="text-danger"></span>
     </div>
 
-    <div class="d-flex justify-content-between">
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.Password" class="text-primary">Password</label>
-            </div>
-            <input type="password" asp-for="Input.Password"
-                   id="password"
-                   placeholder="Password"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-        </div>
-
-        <div class="form-group mt-3">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Input.ConfirmPassword" class="text-primary">Confirm Password</label>
-            </div>
-            <input type="password" asp-for="Input.ConfirmPassword"
-                   id="confirmPassword"
-                   placeholder="Confirm Password"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-        </div>
+    <br />
+    <div class="form-group text-center">
+        <input type="submit" value="Create Account" class="btn btn-primary" />
     </div>
 
-    <div class="d-flex justify-content-center mt-3">
-        <button type="submit" class="btn btn-primary">Register</button>
-    </div>
-    <div class="d-flex justify-content-center mt-3">
-        <div class="d-flex flex-column">
-            <a class="mt-2" href="/Identity/Account/Login">Login to an existing account</a>
-        </div>
+    <div class="text-center">
+        <h6>Already have an account? <a href="/Identity/Account/Login">Sign In</a></h6>
     </div>
 </form>
 <hr class="m-2" />

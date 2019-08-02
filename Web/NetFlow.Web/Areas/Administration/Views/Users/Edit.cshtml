@@ -1,62 +1,78 @@
 ﻿@model NetFlow.Web.ViewModels.Users.EditUserViewModel
+@using NetFlow.Common.Messages.User
+
 
 @{
     ViewData["Title"] = Model.Username;
 }
 
-<h2 class="text-center font-weight-bold p-3 mx-auto">Edit @ViewData["Title"] account</h2>
+<h2 class="text-center p-3 mx-auto">Edit @ViewData["Title"] account</h2>
 <div class="title-underline bg-primary"></div>
+
+@if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+    </div>
+}
+@if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+    </div>
+}
+
 
 <form method="post" enctype="multipart/form-data" class="mx-auto p-3">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="d-flex justify-content-center">
-        <div class="col-md-4 form-group">
-            <div class="d-flex justify-content-center">
-                <label asp-for="FirstName" class="text-primary">First Name</label>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="FirstName" class="form-control" placeholder="First Name" />
             </div>
-            <input type="text" asp-for="FirstName"
-                   placeholder="Username"
-                   id="name"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
         <div class="col-md-4 form-group">
-            <div class="d-flex justify-content-center">
-                <label asp-for="LastName" class="text-primary">Last Name</label>
+            <label asp-for="LastName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input asp-for="LastName" class="form-control" placeholder="Last Name" />
             </div>
-            <input type="text" asp-for="LastName"
-                   placeholder="Username"
-                   id="name"
-                   class="form-control form-control-lg text-primary text-center" />
-            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <div class="col-md-4 form-group">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Email" class="text-primary">Email</label>
+
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
             </div>
-            <input type="email" asp-for="Email"
-                   placeholder="Username"
-                   id="name"
-                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="col-md-4 form-group">
-            <div class="d-flex justify-content-center">
-                <label asp-for="Username" class="text-primary">Username</label>
+            <label asp-for="Username" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input asp-for="Username" class="form-control" placeholder="Username" />
             </div>
-            <input type="text" asp-for="Username"
-                   placeholder="Username"
-                   id="name"
-                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center m-3">
+    <br />
+    <div class="form-group text-center">
         <button type="submit" class="btn btn-primary">save</button>
     </div>
 </form>

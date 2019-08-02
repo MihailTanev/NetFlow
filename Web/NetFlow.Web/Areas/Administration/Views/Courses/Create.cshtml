@@ -1,0 +1,94 @@
+@model NetFlow.Web.ViewModels.Courses.CreateCourseViewModel
+
+@{
+    ViewData["Title"] = "Create new course";
+}
+
+<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
+<div class="title-underline bg-primary"></div>
+
+<form method="post" asp-area="Administration" asp-controller="Courses" asp-action="Create" enctype="multipart/form-data" class="mx-auto p-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                </div>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-info"></i></span>
+                </div>
+                <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+            </div>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 offset-md-2 form-group">
+            <label asp-for="StartDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="StartDate" class="form-control" placeholder="Username" />
+            </div>
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 form-group">
+            <label asp-for="EndDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="EndDate" class="form-control" placeholder="Email" />
+            </div>
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Credit" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-hand-point-right"></i></span>
+                </div>
+                <input asp-for="Credit" class="form-control" placeholder="Password" />
+            </div>
+            <span asp-validation-for="Credit" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="TeacherId" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <select asp-for="TeacherId" asp-items="@Model.Teachers" style="padding:0rem 2rem!important"
+                        class="form-control form-control-lg text-primary text-center">
+                    <option value="0">-- Select Teacher --</option>
+                </select>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">create</button>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

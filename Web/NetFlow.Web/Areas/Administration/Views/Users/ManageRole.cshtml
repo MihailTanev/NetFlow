@@ -40,7 +40,8 @@
                 <td>
                     <div class="d-flex justify-content-between">
                         <input type="hidden" name="UserId" value="@Model.Id" />
-                        <select class="form-control" name="Role" asp-items="Model.RoleList"></select>
+                        <select class="form-control form-control-lg text-primary text-center"
+                                style="padding:0rem 2rem!important" name="Role" asp-items="Model.RoleList"></select>
                     </div>
                     <div class="d-flex justify-content-center p-3">
                         <input type="submit" value="Delete" class="btn btn-danger" />
