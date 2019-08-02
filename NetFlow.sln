@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Services.Mapping", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Common.Messages", "Common\NetFlow.Common.Messages\NetFlow.Common.Messages.csproj", "{65CE775C-B91C-491E-951E-EB908C97E7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFlow.Tests", "Tests\NetFlow.Tests\NetFlow.Tests.csproj", "{3715632C-953A-47C2-B63E-756C2AB3A4FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetFlow.Tests", "Tests\NetFlow.Tests\NetFlow.Tests.csproj", "{3715632C-953A-47C2-B63E-756C2AB3A4FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
