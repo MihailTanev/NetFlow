@@ -27,7 +27,6 @@
                             <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Admin Panel
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="adminDropDown">
                                 <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Index">Regestered Users</a>
                                 <div class="dropdown-divider"></div>
@@ -53,7 +52,7 @@
         </nav>
     </header>
 }
-else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.TEACHER_ROLE))
+else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.USER_ROLE))
 {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

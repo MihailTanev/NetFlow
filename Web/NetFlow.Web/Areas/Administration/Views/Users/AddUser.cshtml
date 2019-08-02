@@ -4,98 +4,97 @@
     ViewData["Title"] = "Add User";
 }
 
-<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
+<h2 class="text-center font-weight-bold pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
 <form method="post" asp-area="Administration" asp-controller="Users" asp-action="AddUser" enctype="multipart/form-data" class="mx-auto p-3">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
-            <label asp-for="FirstName" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-user"></i></span>
-                </div>
-                <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="FirstName" class="text-primary">First Name</label>
             </div>
+            <input type="text" asp-for="FirstName"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
         <div class="col-md-4 form-group">
-            <label asp-for="LastName" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-user"></i></span>
-                </div>
-                <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+            <div class="d-flex justify-content-center">
+                <label asp-for="LastName" class="text-primary">Last Name</label>
             </div>
+            <input type="text" asp-for="LastName"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
     </div>
-    <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
-            <label asp-for="Username" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                </div>
-                <input asp-for="Username" class="form-control" placeholder="Username" />
-            </div>
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
+
+    <div class="d-flex justify-content-center">
         <div class="col-md-4 form-group">
-            <label asp-for="Email" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                </div>
-                <input asp-for="Email" class="form-control" placeholder="Email" />
+            <div class="d-flex justify-content-center">
+                <label asp-for="Email" class="text-primary">Email</label>
             </div>
+            <input type="email" asp-for="Email"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-    </div>
-    <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
-            <label asp-for="Password" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input asp-for="Password" class="form-control" placeholder="Password" />
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Username" class="text-primary">Username</label>
             </div>
+            <input type="text" asp-for="Username"
+                   id="name"
+                   class="form-control form-control-lg text-primary text-center" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 form-group">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Password" class="text-primary">Password</label>
+            </div>
+            <input type="password" asp-for="Password"
+                   id="password"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="col-md-4 form-group">
-            <label asp-for="ConfirmPassword" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                </div>
-                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            <div class="d-flex justify-content-center">
+                <label asp-for="ConfirmPassword" class="text-primary">Confirm Password</label>
             </div>
+            <input type="password" asp-for="ConfirmPassword"
+                   id="confirmPassword"
+                   class="form-control form-control-lg text-primary text-center" />
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
-    <div class="row text-center">
-        <div class="offset-md-4 col-md-4 offset-md-4 form-group">
-            <label asp-for="UserRole" class="control-label"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                </div>
 
-                <select asp-for="UserRole" asp-items="ViewBag.Name" style="padding:0rem 2rem!important"
-                        class="form-control form-control-lg text-primary text-center">
-                    <option value="0">--Select User Role--</option>
-                </select>
-                <span asp-validation-for="UserRole" class="text-danger"></span>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 form-group">
+
+            <div class="d-flex justify-content-center">
+                <label asp-for="UserRole" class="text-primary"></label>
             </div>
+            <select asp-for="UserRole" asp-items="ViewBag.Name"
+                    class="form-control form-control-lg text-primary text-center">
+            <option value="0">--Select User Role--</option>
+                </select>
+            <span asp-validation-for="UserRole" class="text-danger"></span>
         </div>
     </div>
-    <br />
-    <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">create</button>
+
+    <div class="text-white font-weight-bold text-center p-3 w-25 mx-auto">
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">create</button>
+        </div>
     </div>
 </form>
+<hr class="mb-2" />
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
