@@ -7,11 +7,11 @@
 <h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
-<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3">
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="Input.FirstName" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -21,7 +21,7 @@
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="Input.LastName" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="Input.Email" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -44,7 +44,7 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="Input.Username" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -57,7 +57,7 @@
     </div>
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="Input.Password" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -67,7 +67,7 @@
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="Input.ConfirmPassword" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="row text-center">
-        <div class="offset-md-4 col-md-4 offset-md-4 form-group">
+        <div class="offset-md-1 col-md-10 offset-md-1 form-group">
             <label asp-for="Input.Birthdate" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -95,9 +95,9 @@
     <div class="form-group text-center">
         <input type="submit" value="Create Account" class="btn btn-primary" />
     </div>
-
+    <br />
     <div class="text-center">
-        <h6>Already have an account? <a href="/Identity/Account/Login">Sign In</a></h6>
+        <h6>Already have an account? <a href="/Identity/Account/Login" class="text-info">Sign In</a></h6>
     </div>
 </form>
 <hr class="m-2" />

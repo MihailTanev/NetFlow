@@ -7,7 +7,7 @@
 <h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
-<form method="post" asp-area="Administration" asp-controller="Courses" asp-action="Create" enctype="multipart/form-data" class="mx-auto p-3">
+<form method="post" asp-area="Administration" asp-controller="Courses" asp-action="Create" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row text-center">
         <div class="offset-md-2 col-md-8 offset-md-2 form-group">
@@ -86,6 +86,7 @@
     <br />
     <div class="form-group text-center">
         <button type="submit" class="btn btn-primary">create</button>
+        <a class="btn btn-dark" asp-area="Administration" asp-controller="Users" asp-action="Index">cancel</a>
     </div>
 </form>
 

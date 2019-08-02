@@ -4,14 +4,14 @@
     ViewData["Title"] = "Add User";
 }
 
-<h2 class="text-center font-weight-bold pt-5 mx-auto">@ViewData["Title"]</h2>
+<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
 
-<form method="post" asp-area="Administration" asp-controller="Users" asp-action="AddUser" enctype="multipart/form-data" class="mx-auto p-3">
+<form method="post" asp-area="Administration" asp-controller="Users" asp-action="AddUser" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="FirstName" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -20,7 +20,7 @@
                 <input asp-for="FirstName" class="form-control" placeholder="First Name" />
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="LastName" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="Email" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -41,7 +41,7 @@
                 <input asp-for="Email" class="form-control" placeholder="Email" />
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="Username" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -54,20 +54,20 @@
 
 
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="col-md-5 offset-md-1 form-group">
             <label asp-for="Password" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-key"></i></span>
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input asp-for="Password" class="form-control" placeholder="Password" />
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label asp-for="ConfirmPassword" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-key"></i></span>
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
             </div>
@@ -76,7 +76,7 @@
 
 
     <div class="row text-center">
-        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+        <div class="offset-md-1 col-md-10 offset-md-1 form-group">
             <label asp-for="UserRole" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -94,6 +94,7 @@
     <br />
     <div class="form-group text-center">
         <button type="submit" class="btn btn-primary">create</button>
+        <a class="btn btn-dark" asp-area="Administration" asp-controller="Users" asp-action="Index">cancel</a>
     </div>
 </form>
 <hr class="mb-2" />
