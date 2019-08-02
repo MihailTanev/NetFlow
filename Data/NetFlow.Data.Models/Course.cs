@@ -17,10 +17,6 @@
 
         public DateTime EndDate { get; set; }
 
-        public int? ImageId { get; set; }     
-        
-        public Image Image { get; set; }
-
         public string TeacherId { get; set; }
 
         public User Teacher { get; set; }

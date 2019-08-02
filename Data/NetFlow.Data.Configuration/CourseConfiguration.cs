@@ -12,11 +12,7 @@
 
             builder.HasOne(c => c.Teacher)
                 .WithMany(t => t.Courses)
-                .HasForeignKey(c => c.TeacherId);
-
-            builder.HasOne(c => c.Image)
-                .WithMany()
-                .HasForeignKey(c => c.ImageId);
+                .HasForeignKey(c => c.TeacherId);            
         }
     }
 }

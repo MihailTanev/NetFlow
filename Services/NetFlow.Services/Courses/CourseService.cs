@@ -9,6 +9,7 @@
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using NetFlow.Data.Models;
 
     public class CourseService : ICourseService
     {
@@ -56,13 +57,47 @@
         public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
         {
             var courses = await this.context.Courses
-                .Where(x => x.StartDate>=DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
+                .Where(x => x.StartDate >= DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
                 .OrderByDescending(x => x.StartDate)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 
             return courses;
+        }        
+
+        public async Task CreateCourse(string name, int credit, string description, DateTime startDate, DateTime endDate, string teacherId)
+        {
+            var course = new Course
+            {
+                Name = name,
+                Credit = credit,
+                Description = description,
+                StartDate = startDate,
+                EndDate = endDate,
+                TeacherId = teacherId
+            };
+
+            await this.context
+                .Courses
+                .AddAsync(course);
+
+            await this.context.SaveChangesAsync();
         }
 
+        public async Task CreateCourse(string name, string description, int credit, DateTime startDate, DateTime endDate, string teacherId)
+        {
+            var course = new Course
+            {
+                Name = name,
+                Description = description,
+                Credit = credit,
+                StartDate = startDate,
+                EndDate = endDate,
+                TeacherId = teacherId
+            };
+
+            await this.context.Courses.AddAsync(course);
+            await this.context.SaveChangesAsync();
+        }
     }
 }

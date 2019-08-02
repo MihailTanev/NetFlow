@@ -1,6 +1,7 @@
 ﻿namespace NetFlow.Services.Courses.Interface
 {
     using NetFlow.Services.Courses.Models;
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -14,5 +15,6 @@
 
         Task<IEnumerable<CourseServiceModel>> GetActiveCourses();
 
+        Task CreateCourse(string name, string description, int credit, DateTime startDate, DateTime endDate, string teacherId);
     }
 }

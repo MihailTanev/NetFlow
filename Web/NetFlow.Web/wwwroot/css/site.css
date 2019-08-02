@@ -113,3 +113,6 @@ body {
 .form-control{
     padding: 1.75rem 2rem !important;
 }
+select {
+    text-align-last: center;
+}
