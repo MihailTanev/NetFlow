@@ -3,12 +3,12 @@
 <h1 class="text-center p-3 mx-auto">courses</h1>
 <div class="title-underline bg-dark"></div>
 
-<section id="courses" class="p-5">
-    <div class="row">
+<section id="courses">
+    <div class="row pt-5">
         @foreach (var course in Model)
         {
             <div class="col-sm-4 col-md-4 col-md-4">
-                <div class="card text-center p-3" style="width:20rem;">
+                <div class="card text-center pt-2">
                     @if (!course.Picture.Equals(null))
                     {
                         <img class="card-img-top" src="@course.Picture" alt="@course.Name">
@@ -20,8 +20,7 @@
                     </div>
                 </div>
                 <br />
-            </div>
-            
+            </div>            
         }
     </div>
 </section>
