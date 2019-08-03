@@ -22,10 +22,11 @@
         [Required]
         public int Credit { get; set; }
 
-        [DataType(DataType.Date)]
+        [Display(Name = CourseConstants.COURSE_START_DATE)]
         public DateTime StartDate { get; set; } = DateTime.UtcNow;
 
-        [DataType(DataType.Date)]
+
+        [Display(Name = CourseConstants.COURSE_END_DATE)]
         public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(30);
 
         [Required]

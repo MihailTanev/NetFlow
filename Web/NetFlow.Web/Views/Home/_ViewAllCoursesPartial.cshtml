@@ -1,0 +1,20 @@
+﻿@model IEnumerable<NetFlow.Services.Courses.Models.CourseServiceModel>
+
+<h1 class="text-center p-3 mx-auto">courses</h1>
+<div class="title-underline bg-dark"></div>
+
+<div class="row p-5">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4">
+            <div class="card text-center" style="width: 15rem;">         
+                <div class="card-body">
+                    <h6 class="card-title text-center text-info">@course.Name</h6>
+                    <p class="text-center">@course.StartDate.ToString("dd MMM yyyy") - @course.EndDate.ToString("dd MMM yyyy")</p>
+                    <a asp-area="" asp-controller="Course" asp-action="Details" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+            <br />
+        </div>
+    }
+</div>

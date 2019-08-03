@@ -24,7 +24,7 @@
         {
             var courses = await this.context
                 .Courses
-                .OrderByDescending(x => x.StartDate)
+                .OrderBy(x => x.StartDate)                
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 

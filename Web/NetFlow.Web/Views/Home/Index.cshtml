@@ -1,4 +1,5 @@
-﻿@{
+﻿@model NetFlow.Web.ViewModels.Home.HomeViewModel
+@{
     ViewData["Title"] = "Home";
 }
 <div class="row d-flex height-index align-items-center" id="picture">
@@ -21,4 +22,8 @@
             </div>
         </form>
     </div>
+</div>
+
+<div class="container">
+        @await Html.PartialAsync("_ViewAllCoursesPartial", Model.Courses)
 </div>

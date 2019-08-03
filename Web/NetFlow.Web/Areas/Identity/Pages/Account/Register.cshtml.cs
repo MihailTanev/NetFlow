@@ -69,8 +69,8 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = UserConstants.PASSWORD_ERROR_MESSAGE, MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [StringLength(20, ErrorMessage = UserConstants.PASSWORD_ERROR_MESSAGE, MinimumLength = 6)]
             [Display(Name = UserConstants.PASSWORD)]
             public string Password { get; set; }
 
