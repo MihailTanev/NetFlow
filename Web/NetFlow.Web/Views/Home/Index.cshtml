@@ -11,10 +11,10 @@
             NetFlow - more than paperless. A digital exam and assessment platform
             that is easy to use and provides great functionality
         </p>
-        <form class="row">
+        <form class="row" asp-action="Search">
             <div class="col-md-5">
                 <div class="input-group">
-                    <input class="form-control" placeholder="Search..." />
+                    <input asp-for="SearchString" class="form-control" placeholder="Search..." />
                     <div class="input-group-prepend">
                         <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
                     </div>

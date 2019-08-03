@@ -11,14 +11,10 @@
     using System;
     using NetFlow.Data.Models;
     using AutoMapper;
-    using Microsoft.AspNetCore.Identity;
-    using NetFlow.Common.GlobalConstants;
-    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CourseService : ICourseService
     {
         private readonly NetFlowDbContext context;
-        private readonly RoleManager<IdentityRole> roleManager;
 
         public CourseService(NetFlowDbContext context)
         {

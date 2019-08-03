@@ -1,0 +1,21 @@
+﻿@model NetFlow.Web.ViewModels.Home.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search for " + Model.SearchString;
+}
+
+<h1 class="text-center p-3 mx-auto">@ViewData["Title"]</h1>
+<div class="title-underline bg-dark"></div>
+
+@if (Model.Courses.Any())
+{
+    <div class="container">
+        <div class="row p-5">
+            @await Html.PartialAsync("_CourseSearchedResultsPartial", Model.Courses)
+        </div>
+    </div>
+}
+else
+{
+    <h4 class="text-center text-danger">No courses found, please try with different name</h4>
+}

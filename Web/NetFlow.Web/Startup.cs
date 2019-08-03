@@ -1,18 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NetFlow.Data;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using NetFlow.Data.Models;
-using NetFlow.Web.Middleware.Extensions;
-using NetFlow.Services.Users;
-using NetFlow.Services.Users.Interface;
-using NetFlow.Services.Mapping;
-using NetFlow.Services.Users.Models;
+﻿using NetFlow.Services.Users.Models;
 using System.Reflection;
 using NetFlow.Services.Courses;
 using NetFlow.Services.Courses.Interface;
@@ -20,9 +6,26 @@ using CloudinaryDotNet;
 using NetFlow.Services.Cloudinary;
 using NetFlow.Services.Courses.Models;
 using NetFlow.Web.ViewModels.Courses;
+using NetFlow.Services.Search.Interface;
+using NetFlow.Services.Search;
 
 namespace NetFlow.Web
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using NetFlow.Data;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using NetFlow.Data.Models;
+    using NetFlow.Web.Middleware.Extensions;
+    using NetFlow.Services.Users;
+    using NetFlow.Services.Users.Interface;
+    using NetFlow.Services.Mapping;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -77,6 +80,8 @@ namespace NetFlow.Web
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<ISearchService, SearchService>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
