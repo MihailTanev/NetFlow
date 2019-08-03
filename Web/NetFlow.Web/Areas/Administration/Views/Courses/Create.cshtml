@@ -32,6 +32,17 @@
             </div>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
+    </div>   
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Picture" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                </div>
+                <input type="file" asp-for="Picture" class="form-control" />
+            </div>
+        </div>
     </div>
     <div class="row text-center">
         <div class="col-md-4 offset-md-2 form-group">

@@ -1,11 +1,14 @@
 ﻿namespace NetFlow.Web.Areas.Administration.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using NetFlow.Common.GlobalConstants;
     using NetFlow.Data.Models;
+    using NetFlow.Services.Cloudinary;
     using NetFlow.Services.Courses.Interface;
+    using NetFlow.Services.Courses.Models;
     using NetFlow.Services.Users.Interface;
     using NetFlow.Web.ViewModels.Courses;
     using System.Collections.Generic;
@@ -16,13 +19,13 @@
     {
         private readonly ICourseService courseService;
         private readonly UserManager<User> userManager;
-        private readonly IUserService userService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public CoursesController(ICourseService courseService, UserManager<User> userManager,IUserService userService)
+        public CoursesController(ICourseService courseService, UserManager<User> userManager, ICloudinaryService cloudinaryService)
         {
             this.userManager = userManager;
             this.courseService = courseService;
-            this.userService = userService;
+            this.cloudinaryService = cloudinaryService;
         }
         public async Task<IActionResult> Create()
         {
@@ -41,10 +44,13 @@
         {
             if (ModelState.IsValid)
             {
-                await this.courseService.CreateCourse(model.Name, model.Description, model.Credit, model.StartDate,
-                                 model.EndDate.AddDays(1),
-                                 model.TeacherId);
+                string pictureUrl = await this.cloudinaryService.UploadCoursePictureAsync(model.Picture, model.Name);
 
+                CourseServiceModel courseService = Mapper.Map<CourseServiceModel>(model);
+
+                courseService.Picture = pictureUrl;
+
+                this.courseService.CreateCourse(courseService, model.TeacherId);
 
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }

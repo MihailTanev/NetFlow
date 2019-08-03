@@ -1,10 +1,10 @@
 ﻿namespace NetFlow.Services.Courses.Models
 {
     using NetFlow.Data.Models;
-    using Stopify.Services.Mapping;
+    using NetFlow.Services.Mapping;
     using System;
 
-    public class CourseServiceModel : IMapFrom<Course>
+    public class CourseServiceModel : IMapFrom<Course>,IMapTo<Course>
     {
         public int Id { get; set; }
 
@@ -18,8 +18,8 @@
 
         public DateTime EndDate { get; set; }
 
-        public string Image { get; set; }
+        public string Picture { get; set; }
 
-        public string Teacher { get; set; }
+        public string Teacher { get; set; }       
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace NetFlow.Services.Users.Models
 {
     using NetFlow.Data.Models;
-    using Stopify.Services.Mapping;
+    using NetFlow.Services.Mapping;
     using System;
     using System.ComponentModel.DataAnnotations;
 

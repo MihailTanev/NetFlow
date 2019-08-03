@@ -10,10 +10,15 @@
     using Microsoft.EntityFrameworkCore;
     using System;
     using NetFlow.Data.Models;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Identity;
+    using NetFlow.Common.GlobalConstants;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CourseService : ICourseService
     {
         private readonly NetFlowDbContext context;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public CourseService(NetFlowDbContext context)
         {
@@ -63,41 +68,16 @@
                 .ToListAsync();
 
             return courses;
-        }        
+        }            
 
-        public async Task CreateCourse(string name, int credit, string description, DateTime startDate, DateTime endDate, string teacherId)
-        {
-            var course = new Course
-            {
-                Name = name,
-                Credit = credit,
-                Description = description,
-                StartDate = startDate,
-                EndDate = endDate,
-                TeacherId = teacherId
-            };
+        public Course CreateCourse(CourseServiceModel model,string id)
+        {   
+            Course course = Mapper.Map<Course>(model);
+            course.TeacherId = id;
+            this.context.Courses.Add(course);
+            this.context.SaveChanges();
 
-            await this.context
-                .Courses
-                .AddAsync(course);
-
-            await this.context.SaveChangesAsync();
-        }
-
-        public async Task CreateCourse(string name, string description, int credit, DateTime startDate, DateTime endDate, string teacherId)
-        {
-            var course = new Course
-            {
-                Name = name,
-                Description = description,
-                Credit = credit,
-                StartDate = startDate,
-                EndDate = endDate,
-                TeacherId = teacherId
-            };
-
-            await this.context.Courses.AddAsync(course);
-            await this.context.SaveChangesAsync();
+            return course;
         }
     }
 }

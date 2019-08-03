@@ -92,3 +92,7 @@ select {
     border-radius: 10px;
     border: 6px solid #305A72;
 }
+.course-image {
+    width: 200px;
+    height: 200px;
+}

@@ -164,6 +164,8 @@ namespace NetFlow.Web.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Picture");
+
                     b.Property<DateTime>("StartDate");
 
                     b.Property<string>("TeacherId");

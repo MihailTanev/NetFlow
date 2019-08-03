@@ -13,6 +13,8 @@
 
         public int Credit { get; set; }
 
+        public string Picture { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

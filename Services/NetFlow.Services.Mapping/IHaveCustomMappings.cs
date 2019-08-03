@@ -1,4 +1,4 @@
-﻿namespace Stopify.Services.Mapping
+﻿namespace NetFlow.Services.Mapping
 {
     using AutoMapper;
 

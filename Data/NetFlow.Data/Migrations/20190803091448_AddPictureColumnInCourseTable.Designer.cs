@@ -10,8 +10,8 @@ using NetFlow.Data;
 namespace NetFlow.Web.Data.Migrations
 {
     [DbContext(typeof(NetFlowDbContext))]
-    [Migration("20190731120728_RemoveImageTable")]
-    partial class RemoveImageTable
+    [Migration("20190803091448_AddPictureColumnInCourseTable")]
+    partial class AddPictureColumnInCourseTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,8 @@ namespace NetFlow.Web.Data.Migrations
                     b.Property<DateTime>("EndDate");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Picture");
 
                     b.Property<DateTime>("StartDate");
 

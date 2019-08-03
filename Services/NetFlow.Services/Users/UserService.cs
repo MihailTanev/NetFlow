@@ -8,7 +8,6 @@
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using AutoMapper.QueryableExtensions;
-    using Stopify.Services.Mapping;
 
     public class UserService : IUserService
     {

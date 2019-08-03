@@ -1,12 +1,15 @@
 ﻿namespace NetFlow.Web.ViewModels.Courses
 {
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using NetFlow.Common.GlobalConstants;
+    using NetFlow.Services.Courses.Models;
+    using NetFlow.Services.Mapping;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateCourseViewModel
+    public class CreateCourseViewModel : IMapTo<CourseServiceModel>
     {
         public int Id { get; set; }
 
@@ -24,6 +27,8 @@
 
         [Display(Name = CourseConstants.COURSE_START_DATE)]
         public DateTime StartDate { get; set; } = DateTime.UtcNow;
+
+        public IFormFile Picture { get; set; }
 
 
         [Display(Name = CourseConstants.COURSE_END_DATE)]

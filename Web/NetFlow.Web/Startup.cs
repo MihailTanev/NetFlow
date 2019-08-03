@@ -11,11 +11,15 @@ using NetFlow.Data.Models;
 using NetFlow.Web.Middleware.Extensions;
 using NetFlow.Services.Users;
 using NetFlow.Services.Users.Interface;
-using Stopify.Services.Mapping;
+using NetFlow.Services.Mapping;
 using NetFlow.Services.Users.Models;
 using System.Reflection;
 using NetFlow.Services.Courses;
 using NetFlow.Services.Courses.Interface;
+using CloudinaryDotNet;
+using NetFlow.Services.Cloudinary;
+using NetFlow.Services.Courses.Models;
+using NetFlow.Web.ViewModels.Courses;
 
 namespace NetFlow.Web
 {
@@ -48,6 +52,17 @@ namespace NetFlow.Web
                 .AddEntityFrameworkStores<NetFlowDbContext>()
                 .AddDefaultTokenProviders();
 
+            //Configure Cloudinary
+            Account cloudinaryCredential = new Account(
+               this.Configuration["Cloudinary:CloudName"],
+               this.Configuration["Cloudinary:ApiKey"],
+               this.Configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(cloudinaryCredential);
+
+            services.AddSingleton(cloudinary);
+
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = false;
@@ -61,7 +76,7 @@ namespace NetFlow.Web
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICourseService, CourseService>();
-
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -70,7 +85,9 @@ namespace NetFlow.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             AutoMapperConfig.RegisterMappings(
-                 typeof(UserServiceModel).GetTypeInfo().Assembly);
+                 typeof(UserServiceModel).GetTypeInfo().Assembly,
+                 typeof(CourseServiceModel).GetTypeInfo().Assembly,
+                 typeof(CreateCourseViewModel).GetTypeInfo().Assembly);
 
 
             if (env.IsDevelopment())
