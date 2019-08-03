@@ -36,7 +36,7 @@
                 SearchString = model.SearchString
             };
 
-            searchViewModel.Courses = await this.searchService.FindSearchedCoursestAsync(model.SearchString);
+            searchViewModel.Courses = await this.searchService.SearchCoursesAsync(model.SearchString);
 
             return this.View(searchViewModel);
         }
