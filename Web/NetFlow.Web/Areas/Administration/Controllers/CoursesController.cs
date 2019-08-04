@@ -46,11 +46,9 @@
             {
                 string pictureUrl = await this.cloudinaryService.UploadCoursePictureAsync(model.Picture, model.Name);
 
-                CourseServiceModel courseService = Mapper.Map<CourseServiceModel>(model);
+                CourseServiceModel courseServiceModel = Mapper.Map<CourseServiceModel>(model);
 
-                courseService.Picture = pictureUrl;
-
-                this.courseService.CreateCourse(courseService, model.TeacherId);
+                this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
                 return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
             }

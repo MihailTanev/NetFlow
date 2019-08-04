@@ -1,9 +1,13 @@
-﻿@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Core
+
+@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
 @{
     ViewData["Title"] = "All Courses";
 }
 
-<h2 class="text-center p-3 mx-auto">@ViewData["Title"]</h2>
+<h2 class="text-center pt-3 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-dark"></div>
 
 <div class="container">
@@ -11,7 +15,7 @@
         @foreach (var course in Model.Courses)
         {
             <div class="col-md-6">
-                <div class="card">  
+                <div class="card">
                     <div class="card-body">
                         <a asp-action="Details" asp-controller="Courses" asp-area="Trainings" asp-route-id="@course.Id">
                             <h3 class="card-title text-info">
@@ -20,7 +24,7 @@
                         </a>
                         <h6>Start date: @course.StartDate.ToString("dd MMM yyyy")</h6>
                         <h6>End date: @course.EndDate.ToString("dd MMM yyyy") </h6>
-                        <p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>
+                        @*<p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>*@
                         <a href="#" class="btn btn-primary">@(course.StartDate < DateTime.UtcNow ? "Passive" : "Active")</a>
                     </div>
                     <div class="card-footer"></div>
@@ -31,3 +35,19 @@
         }
     </div>
 </div>
+
+<div class="text-center">
+    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>
+
+<br />
