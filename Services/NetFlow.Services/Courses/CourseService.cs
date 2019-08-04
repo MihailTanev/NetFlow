@@ -11,6 +11,7 @@
     using System;
     using NetFlow.Data.Models;
     using AutoMapper;
+    using NetFlow.Services.Mapping;
 
     public class CourseService : ICourseService
     {
@@ -32,16 +33,12 @@
             return courses;
         }
 
-        public async Task<CourseServiceModel> GetCourseById(int id)
+        public CourseServiceModel GetCourseById(int id)
         {
-            var course = await this.context
+            return this.context
                 .Courses
-                .Where(x => x.Id == id)
-                .OrderByDescending(x => x.StartDate)
-                .ProjectTo<CourseServiceModel>()
-                .FirstOrDefaultAsync();
-
-            return course;
+                .To<CourseServiceModel>()
+                .SingleOrDefault(course => course.Id == id);
         }
        
         public async Task<IEnumerable<CourseServiceModel>> GetUpComingCourses()

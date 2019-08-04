@@ -1,0 +1,33 @@
+﻿@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
+@{
+    ViewData["Title"] = "All Courses";
+}
+
+<h2 class="text-center p-3 mx-auto">@ViewData["Title"]</h2>
+<div class="title-underline bg-dark"></div>
+
+<div class="container">
+    <div class="row pt-5">
+        @foreach (var course in Model.Courses)
+        {
+            <div class="col-md-6">
+                <div class="card">  
+                    <div class="card-body">
+                        <a asp-action="Details" asp-controller="Courses" asp-area="Trainings" asp-route-id="@course.Id">
+                            <h3 class="card-title text-info">
+                                @course.Name
+                            </h3>
+                        </a>
+                        <h6>Start date: @course.StartDate.ToString("dd MMM yyyy")</h6>
+                        <h6>End date: @course.EndDate.ToString("dd MMM yyyy") </h6>
+                        <p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>
+                        <a href="#" class="btn btn-primary">@(course.StartDate < DateTime.UtcNow ? "Passive" : "Active")</a>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+                <br />
+            </div>
+
+        }
+    </div>
+</div>

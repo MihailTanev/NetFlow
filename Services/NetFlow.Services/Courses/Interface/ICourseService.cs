@@ -10,7 +10,7 @@
     {
         Task<IEnumerable<CourseServiceModel>> GetAllCourses();
 
-        Task<CourseServiceModel> GetCourseById(int id);
+        CourseServiceModel GetCourseById(int id);
 
         Task<IEnumerable<CourseServiceModel>> GetUpComingCourses();
 

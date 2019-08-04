@@ -73,15 +73,5 @@
 
             return teachers;
         }
-
-        public async Task<IActionResult> Index()
-        {
-            var users = new CoursesViewModel
-            {
-                Users = await this.courseService.GetAllCourses()
-            };
-
-            return this.View(users);
-        }
     }
 }

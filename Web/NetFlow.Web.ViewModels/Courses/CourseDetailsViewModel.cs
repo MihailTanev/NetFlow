@@ -1,10 +1,11 @@
-﻿namespace NetFlow.Services.Courses.Models
+﻿namespace NetFlow.Web.ViewModels.Courses
 {
     using NetFlow.Data.Models;
+    using NetFlow.Services.Courses.Models;
     using NetFlow.Services.Mapping;
     using System;
 
-    public class CourseServiceModel : IMapFrom<Course>,IMapTo<Course>
+    public class CourseDetailsViewModel : IMapFrom<CourseServiceModel>
     {
         public int Id { get; set; }
 
@@ -20,6 +21,6 @@
 
         public string Picture { get; set; }
 
-        public User Teacher { get; set; }       
+        public User Teacher { get; set; }
     }
 }

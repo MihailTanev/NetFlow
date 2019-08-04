@@ -17,8 +17,10 @@ the student assignments. A search dialog at the Layout page allows the user to s
 -  Visual Studio Community Edition 2019
 -  ASP.NET MVC CORE 2.2
 -  Microsoft SQL Server
+-  Cloudinary
+-  Azure DevOps
 -  Entity Framework Core
--  AutoMapper
+-  AutoMapper  
 -  Razor
 -  Bootstrap 4
 -  HTML & CSS
