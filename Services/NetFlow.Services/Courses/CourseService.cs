@@ -48,7 +48,7 @@
         {
             var courses = await this.context.Courses
                 .Where(x => x.StartDate >= DateTime.UtcNow)
-                .OrderByDescending(x => x.StartDate)
+                .OrderBy(x => x.StartDate)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 
@@ -59,12 +59,23 @@
         {
             var courses = await this.context.Courses
                 .Where(x => x.StartDate>=DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
-                .OrderByDescending(x => x.StartDate)
+                .OrderBy(x => x.StartDate)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 
             return courses;
-        }            
+        }
+
+        public async Task<IEnumerable<CourseServiceModel>> GetPastCourses()
+        {
+            var courses = await this.context.Courses
+                .Where(x => x.StartDate <= DateTime.UtcNow && x.EndDate <= DateTime.UtcNow)
+                .OrderBy(x => x.StartDate)
+                .ProjectTo<CourseServiceModel>()
+                .ToListAsync();
+
+            return courses;
+        }
 
         public Course CreateCourse(CourseServiceModel model,string id)
         {   
