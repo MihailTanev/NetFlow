@@ -1,10 +1,25 @@
 ﻿@model NetFlow.Web.ViewModels.Courses.CourseDetailsViewModel
+@using NetFlow.Common.Messages.Course
+
 @{
     ViewData["Title"] = Model.Name;
 }
 <div class="container">
     <h2 class="text-center pt-3 mx-auto">@ViewData["Title"]</h2>
     <div class="title-underline bg-dark"></div>
+    <br />
+    @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+        </div>
+    }
+    @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+        </div>
+    }
 
     <div class="row pt-5">
         <div class="col-md-6">
@@ -17,8 +32,42 @@
                     <li><h4>Start Date:</h4><p class="text-info">@Model.StartDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>End Date:</h4><p class="text-info">@Model.EndDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>Credit:</h4><p class="text-info">@Model.Credit</p></li>
-                    @*<li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>*@
+                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>
                 </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (Model.StartDate > DateTime.UtcNow)
+                    {
+
+                        if (Model.StudentIsEnrolledInCourse)
+                        {
+                            <form asp-action="SignOut" asp-route-courseId="@Model.Id" method="post">
+                                <input type="submit" class="btn btn-danger" value="Sign Out" />
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="Participate" asp-route-courseId="@Model.Id" method="post">
+                                <input type="submit" class="btn btn-primary" value="participate" />
+                            </form>
+                        }
+                    }
+                    else
+                    {
+                        if (Model.EndDate < DateTime.UtcNow)
+                        {
+                            <h2 class="text-center bg-info text-white pt-2">This course has already finished</h2>
+                        }
+                        else
+                        {
+                            <h2 class="text-center bg-info text-white pt-2">This course has already started</h2>
+                        }
+                    }
+                }
+                else
+                {
+                    <span>Please <a href="/Identity/Account/Login">login</a> into your account to sign up for this course.</span>
+                }
             </div>
         </div>
     </div>

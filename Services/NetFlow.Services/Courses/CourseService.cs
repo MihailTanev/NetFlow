@@ -57,6 +57,7 @@
             var courses = await this.context.Courses
                 .Where(x => x.StartDate>=DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
                 .OrderBy(x => x.StartDate)
+                .Take(3)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 

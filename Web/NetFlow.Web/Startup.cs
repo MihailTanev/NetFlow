@@ -80,6 +80,7 @@ namespace NetFlow.Web
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<IStudentsEnrolledInCourseService, StudentsEnrolledInCourseService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<ISearchService, SearchService>();
 

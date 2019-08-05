@@ -24,7 +24,7 @@
         {
             var model = new HomeViewModel()
             {
-                Courses = await this.courseService.GetAllCourses()
+                Courses = await this.courseService.GetActiveCourses()
             };
             return this.View(model);
         }   

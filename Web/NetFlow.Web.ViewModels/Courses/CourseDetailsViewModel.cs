@@ -22,5 +22,8 @@
         public string Picture { get; set; }
 
         public User Teacher { get; set; }
+
+        public bool StudentIsEnrolledInCourse { get; set; }
+
     }
 }
