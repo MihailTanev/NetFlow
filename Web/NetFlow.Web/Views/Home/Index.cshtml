@@ -24,6 +24,17 @@
     </div>
 </div>
 
-<div class="container">
-        @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+<div class="container p-5">
+    @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+</div>
+
+<div class="row d-flex align-items-center p-5" id="login">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="text-success">Still managing assignments & projects in-house?</h1>
+        <p class="lead text-white">
+            Join NetFlow - The digital exam and assessment platform that eases the creation of exams, 
+            simplifies administration, and makes assessment much more efficient.
+        </p>
+        <a href="/Identity/Account/register" class="btn btn-danger m-2">sign up for free</a>
+    </div>
 </div>

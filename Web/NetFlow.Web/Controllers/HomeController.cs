@@ -24,7 +24,7 @@
         {
             var model = new HomeViewModel()
             {
-                Courses = await this.courseService.GetActiveCourses()
+                Courses = await this.courseService.GetIndexCourses()
             };
             return this.View(model);
         }   

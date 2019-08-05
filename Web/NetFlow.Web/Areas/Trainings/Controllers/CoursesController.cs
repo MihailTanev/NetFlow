@@ -3,8 +3,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using NetFlow.Common.GlobalConstants;
     using NetFlow.Common.Messages.Course;
     using NetFlow.Data.Models;
     using NetFlow.Services.Courses.Interface;
@@ -30,6 +28,16 @@
             var courses = new CoursesIndexViewModel
             {
                 Courses = await this.courseService.GetAllCourses()
+            };
+
+            return this.View(courses);
+        }
+
+        public async Task<IActionResult> ActiveCourses()
+        {
+            var courses = new CoursesActiveCoursesViewModel
+            {
+                Courses = await this.courseService.GetActiveCourses()
             };
 
             return this.View(courses);

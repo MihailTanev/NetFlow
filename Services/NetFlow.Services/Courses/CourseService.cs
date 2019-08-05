@@ -41,7 +41,7 @@
                 .SingleOrDefault(course => course.Id == id);
         }
        
-        public async Task<IEnumerable<CourseServiceModel>> GetUpComingCourses()
+        public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
         {
             var courses = await this.context.Courses
                 .Where(x => x.StartDate >= DateTime.UtcNow)
@@ -52,10 +52,10 @@
             return courses;
         }
 
-        public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
+        public async Task<IEnumerable<CourseServiceModel>> GetIndexCourses()
         {
             var courses = await this.context.Courses
-                .Where(x => x.StartDate>=DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
+                .Where(x => x.StartDate >= DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
                 .OrderBy(x => x.StartDate)
                 .Take(3)
                 .ProjectTo<CourseServiceModel>()

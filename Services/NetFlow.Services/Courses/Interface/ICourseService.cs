@@ -12,9 +12,9 @@
 
         CourseServiceModel GetCourseById(int id);
 
-        Task<IEnumerable<CourseServiceModel>> GetUpComingCourses();
-
         Task<IEnumerable<CourseServiceModel>> GetActiveCourses();
+
+        Task<IEnumerable<CourseServiceModel>> GetIndexCourses();
 
         Task<IEnumerable<CourseServiceModel>> GetPastCourses();
 
