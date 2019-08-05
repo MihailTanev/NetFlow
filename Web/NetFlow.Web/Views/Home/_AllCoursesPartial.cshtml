@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<NetFlow.Services.Courses.Models.CourseServiceModel>
+@using NetFlow.Web.UrlStrings
+
 
 <h1 class="text-center p-3 mx-auto">courses</h1>
 <div class="title-underline bg-dark"></div>
@@ -16,11 +18,16 @@
                     <div class="card-body">
                         <h5 class="card-title text-info">@course.Name</h5>
                         <p class="text-center">@course.StartDate.ToString("dd MMM yyyy") - @course.EndDate.ToString("dd MMM yyyy")</p>
-                        <a asp-area="" asp-controller="Course" asp-action="Details" class="btn btn-primary">Details</a>
+                        <a asp-area="Trainings"
+                           asp-controller="Courses"
+                           asp-action="Details"
+                           asp-route-courseId="@course.Id"
+                           asp-route-name="@course.Name.ToFriendlyUrl()"
+                           class="btn btn-primary">Details</a>
                     </div>
                 </div>
                 <br />
-            </div>            
+            </div>
         }
     </div>
 </section>

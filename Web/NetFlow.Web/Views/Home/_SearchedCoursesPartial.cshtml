@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<NetFlow.Services.Search.Models.SearchCourseServiceModel>
+@using NetFlow.Web.UrlStrings
+
 
 <div class="row">
     @foreach (var course in Model)
@@ -12,9 +14,16 @@
                 <div class="card-body">
                     <h5 class="card-title">@course.Name</h5>
                     <p class="text-center">@course.StartDate.ToString("dd MMM yyyy") - @course.EndDate.ToString("dd MMM yyyy")</p>
-                    <a asp-area="" asp-controller="Course" asp-action="Details" class="btn btn-primary">Details</a>
+                    <a asp-area="Trainings"
+                       asp-controller="Courses"
+                       asp-action="Details"
+                       asp-route-courseId="@course.Id"
+                       asp-route-name="@course.Name.ToFriendlyUrl()"
+                       class="btn btn-primary">Details</a>
                 </div>
             </div>
+            <br />
         </div>
     }
 </div>
+

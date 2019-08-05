@@ -1,4 +1,5 @@
 ﻿@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
+@using NetFlow.Web.UrlStrings
 @{
     ViewData["Title"] = "All Courses";
 }
@@ -13,7 +14,9 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <a asp-action="Details" asp-controller="Courses" asp-area="Trainings" asp-route-id="@course.Id">
+                        <a asp-action="Details"
+                           asp-route-courseId="@course.Id"
+                           asp-route-name="@course.Name.ToFriendlyUrl()">
                             <h3 class="card-title text-info">
                                 @course.Name
                             </h3>

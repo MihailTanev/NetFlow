@@ -24,9 +24,9 @@
             return this.View(courses);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int courseId)
         {     
-            CourseDetailsViewModel model = this.courseService.GetCourseById(id)
+            CourseDetailsViewModel model = this.courseService.GetCourseById(courseId)
                 .To<CourseDetailsViewModel>();
 
             return this.View(model);

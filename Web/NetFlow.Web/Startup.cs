@@ -25,6 +25,7 @@ namespace NetFlow.Web
     using NetFlow.Services.Users;
     using NetFlow.Services.Users.Interface;
     using NetFlow.Services.Mapping;
+    using NetFlow.Common.GlobalConstants;
 
     public class Startup
     {
@@ -126,6 +127,11 @@ namespace NetFlow.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                   name: "trainings",
+                   template: "trainings/courses/{courseId}/{name}",
+                   defaults: new { area = AreaConstants.TRAININGS_AREA, controller = "Courses", action = "Details" });
             });
         }
     }
