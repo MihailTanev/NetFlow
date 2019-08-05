@@ -1,8 +1,4 @@
-﻿@using X.PagedList
-@using X.PagedList.Mvc.Common
-@using X.PagedList.Mvc.Core
-
-@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
+﻿@model NetFlow.Web.ViewModels.Courses.CoursesIndexViewModel
 @{
     ViewData["Title"] = "All Courses";
 }
@@ -24,7 +20,7 @@
                         </a>
                         <h6>Start date: @course.StartDate.ToString("dd MMM yyyy")</h6>
                         <h6>End date: @course.EndDate.ToString("dd MMM yyyy") </h6>
-                        @*<p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>*@
+                        <p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>
                         <a href="#" class="btn btn-primary">@(course.StartDate < DateTime.UtcNow ? "Passive" : "Active")</a>
                     </div>
                     <div class="card-footer"></div>
@@ -35,19 +31,3 @@
         }
     </div>
 </div>
-
-<div class="text-center">
-    @Html.PagedListPager((IPagedList)@Model, page => Url.Action("Index", new { page = page }),
-        new PagedListRenderOptions
-        {
-            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-            DisplayLinkToLastPage = PagedListDisplayMode.Always,
-            DisplayLinkToNextPage = PagedListDisplayMode.Never,
-            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
-            UlElementClasses = new string[] { "pagination", "justify-content-center" },
-            LiElementClasses = new string[] { "page-item" },
-            PageClasses = new string[] { "page-link" },
-        })
-</div>
-
-<br />
