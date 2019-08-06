@@ -31,7 +31,7 @@
             {
                 ImageUploadParams imageUploadParams = new ImageUploadParams
                 {
-                    Folder = "NetFlow/CoursesPictures",
+                    Folder = "NetFlow/CourseImages",
                     File = new FileDescription(fileName, ms)
                 };
 

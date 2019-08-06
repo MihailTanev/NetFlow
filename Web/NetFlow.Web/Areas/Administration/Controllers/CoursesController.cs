@@ -48,9 +48,11 @@
 
                 CourseServiceModel courseServiceModel = Mapper.Map<CourseServiceModel>(model);
 
+                courseServiceModel.Picture = pictureUrl;
+
                 this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
             }
             else
             {

@@ -18,7 +18,6 @@
 
         Task<IEnumerable<CourseServiceModel>> GetPastCourses();
 
-
         Course CreateCourse(CourseServiceModel model, string id);
     }
 }

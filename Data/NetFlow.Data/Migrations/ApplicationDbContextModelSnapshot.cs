@@ -183,7 +183,7 @@ namespace NetFlow.Web.Data.Migrations
 
                     b.Property<int>("CourseId");
 
-                    b.Property<byte[]>("Assignment");
+                    b.Property<string>("Assignment");
 
                     b.Property<int?>("Grade");
 
