@@ -57,6 +57,9 @@ namespace NetFlow.Web
                 .AddEntityFrameworkStores<NetFlowDbContext>()
                 .AddDefaultTokenProviders();
 
+            // Configure Urls to lowercase
+            services.AddRouting(routing => routing.LowercaseUrls = true);
+
             //Configure Cloudinary
             Account cloudinaryCredential = new Account(
                this.Configuration["Cloudinary:CloudName"],
