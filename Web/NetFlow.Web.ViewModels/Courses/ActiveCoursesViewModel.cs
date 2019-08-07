@@ -4,7 +4,7 @@
     using NetFlow.Services.Mapping;
     using System.Collections.Generic;
 
-    public class CoursesActiveCoursesViewModel
+    public class ActiveCoursesViewModel
     {
         public IEnumerable<CourseServiceModel> Courses { get; set; }
 

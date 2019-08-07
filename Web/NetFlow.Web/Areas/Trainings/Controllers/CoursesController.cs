@@ -44,7 +44,7 @@
 
         public async Task<IActionResult> ActiveCourses()
         {
-            var courses = new CoursesActiveCoursesViewModel
+            var courses = new ActiveCoursesViewModel
             {
                 Courses = await this.courseService.GetActiveCourses()
             };

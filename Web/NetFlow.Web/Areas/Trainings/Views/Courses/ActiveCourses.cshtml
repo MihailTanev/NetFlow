@@ -1,4 +1,4 @@
-﻿@model NetFlow.Web.ViewModels.Courses.CoursesActiveCoursesViewModel
+﻿@model NetFlow.Web.ViewModels.Courses.ActiveCoursesViewModel
 @using NetFlow.Web.UrlStrings
 @{
     ViewData["Title"] = "Active Courses";
@@ -14,23 +14,38 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <a asp-action="Details"
-                           asp-route-courseId="@course.Id"
-                           asp-route-name="@course.Name.ToFriendlyUrl()">
-                            <h3 class="card-title text-info">
-                                @course.Name
-                            </h3>
-                        </a>
-                        <h6>Start date: @course.StartDate.ToString("dd MMM yyyy")</h6>
-                        <h6>End date: @course.EndDate.ToString("dd MMM yyyy") </h6>
-                        <p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>
-                        <a href="#" class="btn btn-primary">@(course.StartDate < DateTime.UtcNow ? "Passive" : "Active")</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a asp-action="Details"
+                                   asp-route-courseId="@course.Id"
+                                   asp-route-name="@course.Name.ToFriendlyUrl()">
+                                    <h3 class="card-title text-info">
+                                        @course.Name
+                                    </h3>
+                                </a>
+                                <h6>Start date: @course.StartDate.ToString("dd MMM yyyy")</h6>
+                                <h6>End date: @course.EndDate.ToString("dd MMM yyyy") </h6>
+
+                                <p class="card-text">Created By: @course.Teacher.FirstName @course.Teacher.LastName</p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="@course.Picture" alt="@course.Name" class="img-fluid card-img-top" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer"></div>
+                    <div class="card-footer">
+                        @if (course.StartDate < DateTime.UtcNow)
+                        {
+                            <h5 class="text-danger">Passive</h5>
+                        }
+                        else
+                        {
+                            <h5 class="text-info">Active</h5>
+                        }
+                    </div>
                 </div>
                 <br />
             </div>
-
         }
     </div>
 </div>
