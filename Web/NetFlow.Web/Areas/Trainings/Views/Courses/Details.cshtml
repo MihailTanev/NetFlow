@@ -38,6 +38,19 @@
                 {
                     if (Model.StartDate > DateTime.UtcNow)
                     {
+                        //7 days before the deadline student would be able to upload his assignment
+                        if (Model.StudentIsEnrolledInCourse && Model.EndDate.Date < DateTime.UtcNow.AddDays(7).Date)
+                        {
+                            <form class="form" asp-action="SubmitAssignment" asp-route-courseId="@Model.Id" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="All"></div>
+                                <br />
+                                <h4>Upload your assignment</h4>
+                                <br />
+                                <input type="file" name="assignment" />                                
+                                <input type="submit" class="btn btn-outline-danger" value="Upload" />
+                            </form>
+                            <br />
+                        }
 
                         if (Model.StudentIsEnrolledInCourse)
                         {

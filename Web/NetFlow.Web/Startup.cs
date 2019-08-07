@@ -26,6 +26,7 @@ namespace NetFlow.Web
     using NetFlow.Services.Users.Interface;
     using NetFlow.Services.Mapping;
     using NetFlow.Common.GlobalConstants;
+    using NetFlow.Services.Assignment;
 
     public class Startup
     {
@@ -83,6 +84,7 @@ namespace NetFlow.Web
             services.AddTransient<IStudentsEnrolledInCourseService, StudentsEnrolledInCourseService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IAssignmentService, AssignmentService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

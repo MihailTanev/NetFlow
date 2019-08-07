@@ -14,6 +14,6 @@
 
         public Grade? Grade { get; set; }
 
-        public string Assignment { get; set; }
+        public byte[] Assignment { get; set; }
     }
 }
