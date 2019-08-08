@@ -28,9 +28,9 @@
                                 Admin Panel
                             </a>
                             <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Index">Regestered Users</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="AddUser">Add User</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="AddUser">Create User</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Index">Regestered Users</a>
                             </div>
                         </div>
                     </li>
@@ -41,7 +41,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Courses" asp-action="Create">Create</a>
+                                <a class="dropdown-item" asp-area="Administration" asp-controller="Courses" asp-action="Create">Add Course</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
                                 <div class="dropdown-divider"></div>
@@ -65,7 +65,7 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
             </button>
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
@@ -77,18 +77,9 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
-                    <li class="nav-item active">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Courses" asp-action="Create">Create</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
-                        </div>
-                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-area="Pedagogics" asp-controller="Teacher" asp-action="Index">Courses</a>
+                    </li>                   
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

@@ -5,7 +5,7 @@
     ViewData["Title"] = Model.Name;
 }
 <div class="container">
-    <h2 class="text-center pt-3 mx-auto">@ViewData["Title"]</h2>
+    <h2 class="text-center pt-3">@ViewData["Title"]</h2>
     <div class="title-underline bg-dark"></div>
     <br />
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
@@ -32,7 +32,7 @@
                     <li><h4>Start Date:</h4><p class="text-info">@Model.StartDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>End Date:</h4><p class="text-info">@Model.EndDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>Credit:</h4><p class="text-info">@Model.Credit</p></li>
-                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>
+                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>                  
                 </ul>
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -46,7 +46,7 @@
                                 <br />
                                 <h4>Upload your assignment</h4>
                                 <br />
-                                <input type="file" name="assignment" />                                
+                                <input type="file" name="assignment" />
                                 <input type="submit" class="btn btn-outline-danger" value="Upload" />
                             </form>
                             <br />

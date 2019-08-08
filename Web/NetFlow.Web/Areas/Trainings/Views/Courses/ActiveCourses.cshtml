@@ -34,14 +34,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        @if (course.StartDate < DateTime.UtcNow)
-                        {
-                            <h5 class="text-danger">Passive</h5>
-                        }
-                        else
-                        {
-                            <h5 class="text-info">Active</h5>
-                        }
+                        @*<h6>starts in:</h6><p class="text-info">@((course.StartDate - DateTime.UtcNow).Days) days</p>*@
                     </div>
                 </div>
                 <br />

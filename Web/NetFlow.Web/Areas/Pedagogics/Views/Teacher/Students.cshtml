@@ -1,0 +1,58 @@
+﻿@model NetFlow.Web.ViewModels.Pedagogics.StudentsEnrolledInCourseViewModel
+@using NetFlow.Data.Models.Enums
+
+@{
+    ViewData["Title"] = "Students in " + Model.Course.Name;
+}   
+<h2 class="text-center pt-3">@ViewData["Title"]</h2>
+<div class="title-underline bg-dark"></div>
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>User Since</th>
+            <th>Grade</th>
+            <th></th>
+            <th>Add Grade</th>             
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.FirstName @student.LastName</td>
+                <td>@student.Email</td>
+                <td>@student.CreatedOn.ToString("dd MMM yyyy")</td>
+                <td>
+                    @if (student.Grade.Equals(null))
+                    {
+                        <p class="text-danger">No grade</p>
+                    }
+                    else
+                    {
+                        <h4 class="text-info">@student.Grade.ToString()</h4>
+                    }
+                </td>
+                <td>
+                    <a asp-action="DownloadAssignment" asp-route-courseId="@Model.Course.Id" asp-route-studentId="@student.Id">Download</a>
+                </td>
+                <td>
+                    <form asp-action="AddGrade" asp-route-courseId="@Model.Course.Id" method="post">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="hidden" name="studentId" value="@student.Id" />
+                                <select name="grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control" style="padding:0rem 2rem!important"></select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary" value="Add" />
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

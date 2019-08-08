@@ -1,0 +1,47 @@
+﻿@model NetFlow.Web.ViewModels.Pedagogics.CoursesViewModel
+@using NetFlow.Web.UrlStrings
+
+@{
+    ViewData["Title"] =  User.Identity.Name + "'s Courses";
+}
+
+<h1 class="text-center p-3">@ViewData["Title"]</h1>
+<div class="title-underline bg-dark"></div>
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Students</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Courses)
+        {
+            <tr>
+                <td>
+                    <a asp-area="Trainings" asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.Name.ToFriendlyUrl()">
+                        <h4 class="text-info">@course.Name</h4>
+                    </a>
+                </td>
+                <td>
+                    @if (course.StartDate < DateTime.UtcNow)
+                    {
+                    <h5 class="text-danger">Passive</h5>
+                    }
+                    else
+                    {
+                    <h5 class="text-info">Active</h5>
+                    }
+                </td>
+                <td>@course.StartDate.ToString("dd MMM yyyy HH:mm")</td>
+                <td>@course.EndDate.ToString("dd MMM yyyy HH:mm")</td>
+                <td><a class="btn btn-primary" asp-action="Students" asp-route-courseId="@course.Id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

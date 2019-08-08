@@ -5,5 +5,8 @@
     public interface IAssignmentService
     {
         Task<bool> SaveAssignmentAsync(int courseId, string studentId, byte[] assignment);
+
+        Task<byte[]> DownloadAssignmentAsync(string studentId, int courseId);
+
     }
 }

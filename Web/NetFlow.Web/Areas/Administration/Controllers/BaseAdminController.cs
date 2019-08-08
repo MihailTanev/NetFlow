@@ -6,7 +6,7 @@
 
     [Area(AreaConstants.ADMINISTRATION_AREA)]
     [Authorize(Roles = RoleConstants.ADMIN_ROLE)]
-    public abstract class AdminController : Controller
+    public abstract class BaseAdminController : Controller
     {        
     }
 }

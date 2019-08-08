@@ -1,6 +1,7 @@
 ﻿namespace NetFlow.Web.Areas.Administration.Controllers
 {
     using AutoMapper;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,7 +16,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class CoursesController : AdminController
+    public class CoursesController : BaseAdminController
     {
         private readonly ICourseService courseService;
         private readonly UserManager<User> userManager;
@@ -42,6 +43,8 @@
         [HttpPost]
         public async Task<IActionResult> Create(CreateCourseViewModel model)
         {
+            var teacher = await this.userManager.GetUsersInRoleAsync(RoleConstants.TEACHER_ROLE);
+
             if (ModelState.IsValid)
             {
                 string pictureUrl = await this.cloudinaryService.UploadCoursePictureAsync(model.Picture, model.Name);

@@ -27,6 +27,8 @@ namespace NetFlow.Web
     using NetFlow.Services.Mapping;
     using NetFlow.Common.GlobalConstants;
     using NetFlow.Services.Assignment;
+    using NetFlow.Services.Teachers;
+    using NetFlow.Services.Teachers.Interface;
 
     public class Startup
     {
@@ -41,7 +43,7 @@ namespace NetFlow.Web
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });         
 
@@ -88,6 +90,7 @@ namespace NetFlow.Web
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IAssignmentService, AssignmentService>();
+            services.AddTransient<ITeacherService,TeacherService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

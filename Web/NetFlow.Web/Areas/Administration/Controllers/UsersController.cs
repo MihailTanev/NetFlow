@@ -13,7 +13,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class UsersController : AdminController
+    public class UsersController : BaseAdminController
     {
         private readonly IUserService userService;
         private readonly RoleManager<IdentityRole> roleManager;

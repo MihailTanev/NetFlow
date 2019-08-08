@@ -28,5 +28,18 @@
 
             return true;
         }
+
+        public async Task<byte[]> DownloadAssignmentAsync(string studentId, int courseId)
+        {
+            var studentAssignment = await this.context.FindAsync<Enrollment>(studentId, courseId);
+
+            if (studentAssignment == null)
+            {
+                return null;
+            }
+
+            return studentAssignment.Assignment;
+        }
+
     }
 }
