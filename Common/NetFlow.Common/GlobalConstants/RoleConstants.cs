@@ -6,6 +6,8 @@
 
         public const string TEACHER_ROLE = "Teacher";
 
-        public const string USER_ROLE = "User";
+        public const string PUBLISHER_ROLE = "Publisher";
+
+        public const string STUDENT_ROLE = "Student";
     }
 }

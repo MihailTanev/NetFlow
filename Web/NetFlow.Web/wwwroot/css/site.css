@@ -101,3 +101,7 @@ select {
     height: 12vw;
     object-fit: contain;
 }
+
+.post-list li {
+    margin-bottom: 15px;
+}

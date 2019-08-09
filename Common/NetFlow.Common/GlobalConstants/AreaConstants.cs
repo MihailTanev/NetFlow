@@ -6,6 +6,9 @@
 
         public const string TRAININGS_AREA = "Trainings";
 
-        public const string PEDAGOGICS_AREA = "STUDIES";
+        public const string PEDAGOGICS_AREA = "Pedagogics";
+
+        public const string BLOG_AREA = "Blog";
+
     }
 }

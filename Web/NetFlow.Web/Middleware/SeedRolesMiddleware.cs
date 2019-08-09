@@ -36,7 +36,8 @@
         {
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.ADMIN_ROLE));
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.TEACHER_ROLE));
-            await roleManager.CreateAsync(new IdentityRole(RoleConstants.USER_ROLE));
+            await roleManager.CreateAsync(new IdentityRole(RoleConstants.PUBLISHER_ROLE));
+            await roleManager.CreateAsync(new IdentityRole(RoleConstants.STUDENT_ROLE));
 
             var adminEmail = "admin@admin.com";
             var adminRole = RoleConstants.ADMIN_ROLE;

@@ -29,6 +29,9 @@ namespace NetFlow.Web
     using NetFlow.Services.Assignment;
     using NetFlow.Services.Teachers;
     using NetFlow.Services.Teachers.Interface;
+    using NetFlow.Services.HtmlSanitizer;
+    using NetFlow.Services.Blog.Interface;
+    using NetFlow.Services.Blog;
 
     public class Startup
     {
@@ -91,7 +94,9 @@ namespace NetFlow.Web
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IAssignmentService, AssignmentService>();
             services.AddTransient<ITeacherService,TeacherService>();
-
+            services.AddTransient<IBlogPostService, BlogPostService>();
+            services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<IHtmlSanitizerService, HtmlSanitizerService>();           
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -128,19 +133,23 @@ namespace NetFlow.Web
 
             app.UseMvc(routes =>
             {
-               
+                routes.MapRoute(
+                  name: "trainings",
+                  template: "trainings/courses/{courseId}/{name}",
+                  defaults: new { area = AreaConstants.TRAININGS_AREA, controller = "Courses", action = "Details" });
+
+                routes.MapRoute(
+                    name: "blog",
+                    template: "blog/posts/{id}/{title}",
+                    defaults: new { area = AreaConstants.BLOG_AREA, controller = "Posts", action = "Details" });
+
                 routes.MapRoute(
                    name: "areas",
                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                   name: "trainings",
-                   template: "trainings/courses/{courseId}/{name}",
-                   defaults: new { area = AreaConstants.TRAININGS_AREA, controller = "Courses", action = "Details" });
+                    template: "{controller=Home}/{action=Index}/{id?}");               
             });
         }
     }

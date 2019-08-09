@@ -110,7 +110,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await this._userManager.AddToRoleAsync(user, RoleConstants.USER_ROLE);
+                        await this._userManager.AddToRoleAsync(user, RoleConstants.STUDENT_ROLE);
                     }
 
                     await this._signInManager.SignInAsync(user, false);

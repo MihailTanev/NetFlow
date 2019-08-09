@@ -43,8 +43,6 @@
         [HttpPost]
         public async Task<IActionResult> Create(CreateCourseViewModel model)
         {
-            var teacher = await this.userManager.GetUsersInRoleAsync(RoleConstants.TEACHER_ROLE);
-
             if (ModelState.IsValid)
             {
                 string pictureUrl = await this.cloudinaryService.UploadCoursePictureAsync(model.Picture, model.Name);

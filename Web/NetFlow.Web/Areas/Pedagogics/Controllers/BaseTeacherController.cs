@@ -6,7 +6,7 @@
 
     [Area(AreaConstants.PEDAGOGICS_AREA)]
     [Authorize(Roles = RoleConstants.TEACHER_ROLE)]
-    public class BaseTeacherController : Controller
+    public abstract class BaseTeacherController : Controller
     {       
     }
 }

@@ -1,0 +1,48 @@
+﻿@model NetFlow.Web.ViewModels.Post.CreatePostViewModel
+@using NetFlow.Common.Messages.Blog
+
+@{
+    ViewData["Title"] = "Create Post";
+}
+
+<div class="container">
+    <h2 class="text-center pt-3">@ViewData["Title"]</h2>
+    <div class="title-underline bg-dark"></div>
+    <br />
+    @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+        </div>
+    }
+    @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+        </div>
+    }
+    <div class="row">
+        <div class="offset-md-2 col-md-8 offset-md-2">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"></label>
+                    <textarea asp-for="Content" rows="10" class="form-control"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Publish</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="https://cdn.tiny.cloud/1/dhwodpwzvitaey35lyytoxfh85xi4anvexzudx5yo3j665p2/tinymce/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: '#Content' });</script>
+}
