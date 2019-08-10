@@ -108,6 +108,7 @@
         public async Task<IActionResult> SubmitAssignment(int courseId, IFormFile assignment)
         {
             var fileExtensions = new[] { ".zip", ".pdf" };
+
             var checkExtensions = Path.GetExtension(assignment.FileName);
 
             if (!fileExtensions.Contains(checkExtensions) || assignment.Length > AssignmentConstants.ASSIGNMENT_FILE_LENGTH)

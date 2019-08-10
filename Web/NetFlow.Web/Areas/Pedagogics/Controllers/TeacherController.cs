@@ -1,16 +1,15 @@
 ﻿namespace NetFlow.Web.Areas.Pedagogics.Controllers
 {
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Mvc;
-	using NetFlow.Data.Models;
-	using NetFlow.Data.Models.Enums;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using NetFlow.Data.Models;
+    using NetFlow.Data.Models.Enums;
     using NetFlow.Services.Assignment;
     using NetFlow.Services.Teachers.Interface;
-	using NetFlow.Web.ViewModels.Pedagogics;
-    using System;
+    using NetFlow.Web.ViewModels.Pedagogics;
     using System.Threading.Tasks;
 
-	public class TeacherController : BaseTeacherController
+    public class TeacherController : BaseTeacherController
 	{
 		private readonly UserManager<User> userManager;
 		private readonly ITeacherService teacherService;
@@ -82,7 +81,7 @@
 
             if (assignmentContent == null)
             {
-                return RedirectToAction("Students","Teacher", new { courseId });
+                return RedirectToAction("Students", "Teacher", new { courseId });
             }
 
             var studentInCourse = await this.teacherService.GetStudentInCourseNamesAsync(courseId,studentId);
@@ -91,10 +90,8 @@
             {
                 return BadRequest();
             }
-            //return File(assignmentContent, "application/octet-stream", $"{studentInCourse.CourseName}-{studentInCourse.FirstName}-{DateTime.UtcNow.ToString("MM-dd-yyyy")}");
 
-
-            return File(assignmentContent, "application/octet-stream", $"{studentInCourse.CourseName}-{studentInCourse.FirstName}");            
+            return File(assignmentContent, "application/octet-stream", $"{studentInCourse.CourseName}_{studentInCourse.FirstName}_{studentInCourse.LastName}.zip");            
         }
     }
 }

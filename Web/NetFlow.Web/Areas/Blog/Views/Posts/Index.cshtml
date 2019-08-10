@@ -16,6 +16,9 @@
                     <li class="list-group-item">
                         <h4 class="text-info">@post.Title</h4>
                         <hr />
+                        <div>
+                            @Html.Raw(post.Description)
+                        </div>
                         <i class="fas fa-pencil-alt"></i> created by @post.PublisherFirstName @post.PublisherLastName | <i class="fas fa-calendar-alt"></i> @post.CreatedDate.ToString("MMMM dd, yyyy")
                         <hr />
                         <a asp-action="Details" asp-route-id="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
@@ -29,3 +32,8 @@
     </div>
 </div>
 
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="https://cdn.tiny.cloud/1/dhwodpwzvitaey35lyytoxfh85xi4anvexzudx5yo3j665p2/tinymce/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: '#Description' });</script>
+}

@@ -22,11 +22,11 @@
             this.context = context;
         }
 
-        public async Task<IEnumerable<CourseServiceModel>> GetAllCourses()
-        {
+        public async Task<IEnumerable<CourseServiceModel>> GetAllCourses()        {
+
             var courses = await this.context
                 .Courses
-                .OrderBy(x => x.StartDate)                
+                .OrderBy(x => x.StartDate)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 
@@ -75,14 +75,12 @@
             return courses;
         }
 
-        public Course CreateCourse(CourseServiceModel model,string id)
+        public async Task CreateCourse(CourseServiceModel model,string id)
         {   
             Course course = Mapper.Map<Course>(model);
             course.TeacherId = id;
-            this.context.Courses.Add(course);
-            this.context.SaveChanges();
-
-            return course;
+            await this.context.Courses.AddAsync(course);
+            await this.context.SaveChangesAsync();
         }
     }
 }

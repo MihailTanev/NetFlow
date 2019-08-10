@@ -1,9 +1,8 @@
 ﻿namespace NetFlow.Services.Courses.Interface
 {
-    using NetFlow.Data.Models;
     using NetFlow.Services.Courses.Models;
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public interface ICourseService
@@ -18,6 +17,6 @@
 
         Task<IEnumerable<CourseServiceModel>> GetPastCourses();
 
-        Course CreateCourse(CourseServiceModel model, string id);
+        Task CreateCourse(CourseServiceModel model, string id);
     }
 }

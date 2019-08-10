@@ -1,7 +1,6 @@
 ﻿namespace NetFlow.Web.Areas.Administration.Controllers
 {
     using AutoMapper;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,7 +9,6 @@
     using NetFlow.Services.Cloudinary;
     using NetFlow.Services.Courses.Interface;
     using NetFlow.Services.Courses.Models;
-    using NetFlow.Services.Users.Interface;
     using NetFlow.Web.ViewModels.Courses;
     using System.Collections.Generic;
     using System.Linq;
@@ -51,7 +49,7 @@
 
                 courseServiceModel.Picture = pictureUrl;
 
-                this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
+                await this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
                 return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
             }
