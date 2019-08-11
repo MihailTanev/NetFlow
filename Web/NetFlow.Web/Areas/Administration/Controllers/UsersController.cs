@@ -69,7 +69,7 @@
 
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_CREATED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -126,7 +126,7 @@
 
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_UPDATED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -177,7 +177,7 @@
             {
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_DELETED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -228,7 +228,7 @@
 
             this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_ADDED;
 
-            return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+            return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
         }
 
         public async Task<IActionResult> ChangePassword(string id)
@@ -261,7 +261,7 @@
             {
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.PASSWORD_HAS_BEEN_CHANGED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Index) ,new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -302,7 +302,7 @@
             {
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_HAS_BEEN_DELETED;
 
-                return this.RedirectToAction("Index", "Users", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {

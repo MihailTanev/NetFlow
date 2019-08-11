@@ -18,6 +18,7 @@
                     <span class="input-group-text"><i class="far fa-user"></i></span>
                 </div>
                 <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-5 form-group">
@@ -27,6 +28,7 @@
                     <span class="input-group-text"><i class="far fa-user"></i></span>
                 </div>
                 <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -39,6 +41,7 @@
                     <span class="input-group-text"><i class="far fa-envelope"></i></span>
                 </div>
                 <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-5 form-group">
@@ -48,6 +51,7 @@
                     <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
                 </div>
                 <input asp-for="Username" class="form-control" placeholder="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -61,6 +65,7 @@
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input asp-for="Password" class="form-control" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-5 form-group">
@@ -70,6 +75,7 @@
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
         </div>
     </div>
