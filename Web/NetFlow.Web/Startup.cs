@@ -1,16 +1,10 @@
-﻿using NetFlow.Services.Users.Models;
-using System.Reflection;
-using NetFlow.Services.Courses;
-using NetFlow.Services.Courses.Interface;
-using CloudinaryDotNet;
-using NetFlow.Services.Cloudinary;
-using NetFlow.Services.Courses.Models;
-using NetFlow.Web.ViewModels.Courses;
-using NetFlow.Services.Search.Interface;
-using NetFlow.Services.Search;
-
-namespace NetFlow.Web
+﻿namespace NetFlow.Web
 {
+    using NetFlow.Services.Users.Models;
+    using System.Reflection;
+    using CloudinaryDotNet;
+    using NetFlow.Services.Courses.Models;
+    using NetFlow.Web.ViewModels.Courses;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Hosting;
@@ -22,16 +16,9 @@ namespace NetFlow.Web
     using Microsoft.Extensions.DependencyInjection;
     using NetFlow.Data.Models;
     using NetFlow.Web.Middleware.Extensions;
-    using NetFlow.Services.Users;
-    using NetFlow.Services.Users.Interface;
     using NetFlow.Services.Mapping;
     using NetFlow.Common.GlobalConstants;
-    using NetFlow.Services.Assignment;
-    using NetFlow.Services.Teachers;
-    using NetFlow.Services.Teachers.Interface;
-    using NetFlow.Services.HtmlSanitizer;
-    using NetFlow.Services.Blog.Interface;
-    using NetFlow.Services.Blog;
+    using NetFlow.Web.Extensions.ServiceCollections;
 
     public class Startup
     {
@@ -87,17 +74,9 @@ namespace NetFlow.Web
                 options.Password.RequiredLength = 5;
             });
 
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ICourseService, CourseService>();
-            services.AddTransient<IStudentsEnrolledInCourseService, StudentsEnrolledInCourseService>();
-            services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<ISearchService, SearchService>();
-            services.AddTransient<IAssignmentService, AssignmentService>();
-            services.AddTransient<ITeacherService,TeacherService>();
-            services.AddTransient<IBlogPostService, BlogPostService>();
-            services.AddTransient<ICommentService, CommentService>();
-            services.AddTransient<IHtmlSanitizerService, HtmlSanitizerService>();           
-
+            // Add Service extension
+            services.AddApplicationServices();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

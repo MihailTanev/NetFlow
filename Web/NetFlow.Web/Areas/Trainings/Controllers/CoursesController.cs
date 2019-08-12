@@ -82,7 +82,7 @@
 
             this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = CourseMessagesConstants.REGISTER_IN_COURSE;
 
-            return this.RedirectToAction("Details", "Courses", new { courseId});
+            return this.RedirectToAction(nameof(Details), new { courseId});
         }
 
         [Authorize]
@@ -100,7 +100,7 @@
 
             this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE] = CourseMessagesConstants.SIGN_OUT_FROM_COURSE;
 
-            return this.RedirectToAction("Details", "Courses", new { courseId });
+            return this.RedirectToAction(nameof(Details), new { courseId });
         }
         
         [Authorize]
@@ -115,7 +115,7 @@
             {
                 this.TempData[AssignmentMessagesConstants.TEMPDATA_ERROR_MESSAGE] = AssignmentMessagesConstants.ASSIGNMENT_FILE_EXTENSION_AND_SIZE_MESSAGE;
 
-                return RedirectToAction("Details", "Courses", new { courseId });
+                return RedirectToAction(nameof(Details), new { courseId });
 
             }
 
@@ -132,7 +132,7 @@
 
             this.TempData[AssignmentMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = AssignmentMessagesConstants.ASSIGNMENT_FILE_SUCCESSFULLY_UPLOADED_MESSAGE;
 
-            return RedirectToAction("Details", "Courses", new { courseId });
+            return RedirectToAction(nameof(Details), new { courseId });
 
         }
     }

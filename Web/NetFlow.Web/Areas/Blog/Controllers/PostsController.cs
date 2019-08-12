@@ -49,7 +49,7 @@
 
             this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = BlogMessagesConstants.POST_WAS_CREATED;
 
-            return RedirectToAction("Index","Posts");
+            return RedirectToAction(nameof(Add));
         }
 
         [AllowAnonymous]
@@ -91,7 +91,7 @@
 
             await this.commentService.CreateCommentAsync(userId, model.Id, model.Description);
 
-            return RedirectToAction("Details","Posts", new { model.Id, model.Title });
+            return RedirectToAction(nameof(Details), new { model.Id, model.Title });
         }
 
     }
