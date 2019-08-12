@@ -26,7 +26,7 @@
             this.courseService = courseService;
             this.cloudinaryService = cloudinaryService;
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Add()
         {
             var teachers = await this.GetAllTeachers();
 
@@ -39,7 +39,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCourseViewModel model)
+        public async Task<IActionResult> Add(CreateCourseViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@
 
                 await this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
-                return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
+                return this.RedirectToAction(nameof(Add), new { area = AreaConstants.TRAININGS_AREA });
             }
             else
             {

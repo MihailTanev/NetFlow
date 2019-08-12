@@ -36,7 +36,7 @@
             return this.View(users);
         }
 
-        public IActionResult AddUser()
+        public IActionResult Add()
         {
             ViewBag.Name = new SelectList(roleManager.Roles.Select(u => u.Name)
                                                         .ToList());
@@ -45,7 +45,7 @@
 
 
         [HttpPost]
-        public async Task<IActionResult> AddUser(CreateUserViewModel addUser)
+        public async Task<IActionResult> Add(CreateUserViewModel addUser)
         {
             if (!this.ModelState.IsValid)
             {
@@ -185,7 +185,7 @@
             }
         }
 
-        public async Task<IActionResult> UserRole(string id)
+        public async Task<IActionResult> Role(string id)
         {
             var user = await this.userService.GetUserById(id);
 
