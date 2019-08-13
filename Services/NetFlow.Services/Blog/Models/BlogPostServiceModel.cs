@@ -16,7 +16,10 @@
 
         public DateTime CreatedDate { get; set; }
 
+        public string Picture { get; set; }
+
         public string PublisherFirstName { get; set; }
+
         public string PublisherLastName { get; set; }
 
 

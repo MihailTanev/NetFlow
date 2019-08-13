@@ -6,6 +6,7 @@
     using NetFlow.Common.Messages.Blog;
     using NetFlow.Data.Models;
     using NetFlow.Services.Blog.Interface;
+    using NetFlow.Services.Cloudinary;
     using NetFlow.Services.HtmlSanitizer;
     using NetFlow.Web.ViewModels.Post;
     using System.Threading.Tasks;
@@ -16,9 +17,12 @@
         private readonly IHtmlSanitizerService htmlSanitizerService;
         private readonly UserManager<User> userManager;
         private readonly ICommentService commentService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public PostsController(ICommentService commentService, IBlogPostService blogPostService, IHtmlSanitizerService htmlSanitizerService, UserManager<User>userManager)
+
+        public PostsController(ICloudinaryService cloudinaryService, ICommentService commentService, IBlogPostService blogPostService, IHtmlSanitizerService htmlSanitizerService, UserManager<User>userManager)
         {
+            this.cloudinaryService = cloudinaryService;
             this.commentService = commentService;
             this.userManager = userManager;
             this.htmlSanitizerService = htmlSanitizerService;
@@ -41,11 +45,13 @@
         [HttpPost]
         public async Task<IActionResult> Add(CreatePostViewModel model)
         {
+            string pictureUrl = await this.cloudinaryService.UploadPostPictureAsync(model.Picture, model.Title);
+
             model.Content = this.htmlSanitizerService.Sanitize(model.Content);
 
             var authorId = this.userManager.GetUserId(User);
 
-            await this.blogPostService.CreatePostAsync(model.Title, model.Content, authorId);
+            await this.blogPostService.CreatePostAsync(model.Title, model.Content, authorId, pictureUrl);
 
             this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = BlogMessagesConstants.POST_WAS_CREATED;
 
@@ -61,6 +67,7 @@
             {
                 Id = id,
                 Title = post.Title,
+                Picture = post.Picture,
                 Content = post.Description,
                 CreatedDate = post.CreatedDate,
                 FirstName = post.PublisherFirstName,

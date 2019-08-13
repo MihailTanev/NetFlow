@@ -31,10 +31,11 @@
             return posts;
         }
 
-        public async Task CreatePostAsync(string title, string description, string publisherId)
+        public async Task CreatePostAsync(string title, string description, string publisherId, string picture)
         {
             var post = new Post
             {
+                Picture = picture,
                 Title = title,
                 Description = description,
                 PublisherId = publisherId,

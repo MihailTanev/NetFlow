@@ -6,5 +6,8 @@
     public interface ICloudinaryService
     {
         Task<string> UploadCoursePictureAsync(IFormFile pictureFile, string fileName);
+
+        Task<string> UploadPostPictureAsync(IFormFile postImage, string fileName);
+
     }
 }

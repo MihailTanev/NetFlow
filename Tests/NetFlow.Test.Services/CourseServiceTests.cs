@@ -56,7 +56,7 @@
         [Fact]
         public async Task Create_WithCorrectData_ShouldSuccessfullyCreate()
         {
-            string errorMessagePrefix = "ProductService Create() method does not work properly.";
+            //string errorMessagePrefix = "ProductService Create() method does not work properly.";
 
             var context = StopifyDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);

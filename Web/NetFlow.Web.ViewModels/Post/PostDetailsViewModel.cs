@@ -20,6 +20,9 @@
 
         public string Content { get; set; }
 
+        public string Picture { get; set; }
+
+
         public IEnumerable<CommentsPostDetailsServiceModel> Comments { get; set; }
 
     }

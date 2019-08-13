@@ -11,6 +11,8 @@
 
         public string Description { get; set; }
 
+        public string Picture { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public string PublisherId { get; set; }
