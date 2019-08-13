@@ -82,5 +82,18 @@
             await this.context.Courses.AddAsync(course);
             await this.context.SaveChangesAsync();
         }
+
+        public async Task UpdateCourse(CourseServiceModel model)
+        {
+            var course = this.context
+                .Courses
+                .FirstOrDefault(s => s.Id == model.Id);            
+
+            course.Name = model.Name;
+            course.Description = model.Description;
+            course.StartDate = model.StartDate;
+            course.EndDate = model.EndDate;
+            await this.context.SaveChangesAsync();            
+        }
     }
 }

@@ -1,0 +1,81 @@
+﻿@model NetFlow.Web.ViewModels.Courses.EditCourseViewModel
+@using NetFlow.Common.Messages.Course
+
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h2 class="text-center p-3 mx-auto">Edit @ViewData["Title"] course</h2>
+<div class="title-underline bg-primary"></div>
+
+<br />
+@if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+    </div>
+}
+@if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+{
+    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+    </div>
+}
+
+<form method="post" enctype="multipart/form-data" class="mx-auto p-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                </div>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" rows="10" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="StartDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                </div>
+                <input type="text" asp-for="StartDate" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="EndDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                </div>
+                <input type="text" asp-for="EndDate" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">save</button>
+    </div>
+</form>
+<hr class="mb-2" />
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

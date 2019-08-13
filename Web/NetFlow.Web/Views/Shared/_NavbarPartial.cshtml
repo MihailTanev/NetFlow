@@ -112,6 +112,7 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                             <div class="dropdown-menu" aria-labelledby="adminDropDown">
                                 <a class="dropdown-item" asp-area="Blog" asp-controller="Posts" asp-action="Add">Add Post</a>
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="Blog" asp-controller="Posts" asp-action="Index">All Posts</a>
                             </div>
                         </div>
                     </li>                   

@@ -5,10 +5,12 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using NetFlow.Common.GlobalConstants;
+    using NetFlow.Common.Messages.Course;
     using NetFlow.Data.Models;
     using NetFlow.Services.Cloudinary;
     using NetFlow.Services.Courses.Interface;
     using NetFlow.Services.Courses.Models;
+    using NetFlow.Services.Mapping;
     using NetFlow.Web.ViewModels.Courses;
     using System.Collections.Generic;
     using System.Linq;
@@ -71,6 +73,38 @@
                 .ToList();
 
             return teachers;
+        }
+
+        public IActionResult Edit(int id)
+        {
+            EditCourseViewModel model = this.courseService.GetCourseById(id)
+                .To<EditCourseViewModel>();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditCourseViewModel model, int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            CourseServiceModel course = this.courseService.GetCourseById(id)
+                       .To<CourseServiceModel>();
+
+            course.Name = model.Name;
+            course.Description = model.Description;
+            course.StartDate = model.StartDate;
+            course.EndDate = model.EndDate;
+            course.Credit = model.Credit;
+
+            await this.courseService.UpdateCourse(course);
+
+            this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = CourseMessagesConstants.COURSE_WAS_UPDATED;
+
+            return this.RedirectToAction(nameof(Edit), new { id });
         }
     }
 }
