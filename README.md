@@ -1,9 +1,9 @@
 <div>
-    <img src="https://mihailtanev.blob.core.windows.net/netflow/netflow.PNG?sp=r&st=2019-08-03T14:28:04Z&se=2019-08-03T22:28:04Z&spr=https&sv=2018-03-28&sig=zsSu99GKnbYhySzSOUAFzbTWeraeX6%2F8mPUSy4mJcE8%3D&sr=b" />
+    <img src="https://res.cloudinary.com/netflow/image/upload/v1565790934/NetFlow/Images/netflow_h4cich.png" />
 </div>	
 
 
-# [Netflow](https://netflow-core.azurewebsites.net/)  <img src="https://mihailtanev.blob.core.windows.net/netflow/2019-01-25_23-33-061.jpg?sp=r&st=2019-08-03T14:29:17Z&se=2019-08-03T22:29:17Z&spr=https&sv=2018-03-28&sig=AWGoBdxZJRvuG7eF%2FqhEdwkJm5TuyOomUVpQJpjtkj0%3D&sr=b" width="48px" height="48px" />
+# [Netflow](https://netflow-core.azurewebsites.net/)  <img src="https://res.cloudinary.com/netflow/image/upload/v1565790933/NetFlow/Images/2019-01-25_23-33-061_uccy3t.jpg" width="48px" height="48px" />
 
 ## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.
