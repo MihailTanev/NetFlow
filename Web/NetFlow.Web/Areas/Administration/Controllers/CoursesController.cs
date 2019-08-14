@@ -53,7 +53,7 @@
 
                 await this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
-                return this.RedirectToAction(nameof(Add), new { area = AreaConstants.TRAININGS_AREA });
+                return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
             }
             else
             {

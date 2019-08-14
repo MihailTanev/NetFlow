@@ -9,7 +9,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateCourseViewModel : IMapTo<CourseServiceModel>
+    public class CreateCourseViewModel : IMapTo<CourseServiceModel>, IValidatableObject
     {
         public int Id { get; set; }
 
@@ -28,16 +28,28 @@
         [Display(Name = CourseConstants.COURSE_START_DATE)]
         public DateTime StartDate { get; set; } = DateTime.UtcNow;
 
-        public IFormFile Picture { get; set; }
-
-
         [Display(Name = CourseConstants.COURSE_END_DATE)]
-        public DateTime EndDate { get; set; } = DateTime.UtcNow;
+        public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(30);
+
+        public IFormFile Picture { get; set; }
 
         [Required]
         [Display(Name = "Choose Teacher")]
         public string TeacherId { get; set; }
 
         public IEnumerable<SelectListItem> Teachers { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.StartDate < DateTime.UtcNow)
+            {
+                yield return new ValidationResult("Start date should be in the nearest future.");
+            }
+
+            if (this.StartDate > this.EndDate)
+            {
+                yield return new ValidationResult("Start date should be before End Date.");
+            }
+        }
     }
 }

@@ -22,7 +22,8 @@
             this.context = context;
         }
 
-        public async Task<IEnumerable<CourseServiceModel>> GetAllCourses()        {
+        public async Task<IEnumerable<CourseServiceModel>> GetAllCourses()
+        {
 
             var courses = await this.context
                 .Courses
@@ -57,7 +58,7 @@
             var courses = await this.context.Courses
                 .Where(x => x.StartDate >= DateTime.UtcNow && DateTime.UtcNow <= x.EndDate)
                 .OrderBy(x => x.StartDate)
-                .Take(3)
+                .Take(6)
                 .ProjectTo<CourseServiceModel>()
                 .ToListAsync();
 
