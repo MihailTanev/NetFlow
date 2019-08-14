@@ -15,7 +15,7 @@
 
         Task<IEnumerable<CourseServiceModel>> GetIndexCourses();
 
-        Task<IEnumerable<CourseServiceModel>> GetPastCourses();
+        Task<IEnumerable<CourseServiceModel>> GetUpcomingCourses();
 
         Task CreateCourse(CourseServiceModel model, string id);
 

@@ -46,6 +46,9 @@
                                 <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
+
                             </div>
                         </div>
                     </li>
@@ -155,10 +158,11 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
                             </div>
                         </div>
                     </li>

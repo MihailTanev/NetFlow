@@ -52,6 +52,16 @@
             return this.View(courses);
         }
 
+        public async Task<IActionResult> UpcomingCourses()
+        {
+            var courses = new UpcomingCoursesViewModel
+            {
+                Courses = await this.courseService.GetUpcomingCourses()
+            };
+
+            return this.View(courses);
+        }
+
         public IActionResult Details(int courseId)
         {     
             CourseDetailsViewModel model = this.courseService.GetCourseById(courseId)
