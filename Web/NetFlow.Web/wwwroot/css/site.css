@@ -42,8 +42,8 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;
@@ -61,8 +61,12 @@ body {
 .height-index {
     min-height: 85vh;
 }
-#picture,#login{
+#picture,
+#login {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../images/netflow.jpg) center/cover no-repeat fixed;
+}
+#product {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/product.jpg) center/cover no-repeat fixed;
 }
 
 .title-underline {
@@ -90,7 +94,7 @@ select {
     margin: 50px auto;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
-    border: 6px solid #305A72;
+    border: 1px solid #305A72;
 }
 .course-image {
     width: 286px;
@@ -104,4 +108,7 @@ select {
 
 .post-list li {
     margin-bottom: 15px;
+}
+.custom-text {
+    color: white;
 }

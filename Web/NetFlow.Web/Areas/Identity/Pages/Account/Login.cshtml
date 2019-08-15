@@ -10,7 +10,7 @@
 
 <div class="row text-center">
     <div class="col-md-4 offset-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto p-3">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Input.Username" class="control-label"></label>
@@ -18,7 +18,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input asp-for="Input.Username" class="form-control" placeholder="Username" />
+                    <input asp-for="Input.Username" class="form-control" />
                 </div>
                 <span asp-validation-for="Input.Username" class="text-danger"></span>
             </div>
@@ -28,7 +28,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                     </div>
-                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                    <input asp-for="Input.Password" class="form-control" />
                 </div>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>

@@ -4,17 +4,17 @@
 {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Netflow</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
@@ -72,7 +72,7 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
@@ -104,7 +104,7 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
                     </li>
                     <li class="nav-item active">
                         <div class="dropdown show" id="products-dropdown">
@@ -143,7 +143,7 @@ else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
@@ -187,7 +187,7 @@ else
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Product</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>

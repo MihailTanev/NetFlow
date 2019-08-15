@@ -14,7 +14,7 @@
         private readonly ISearchService searchService;
 
 
-        public HomeController(ICourseService courseService,ISearchService searchService)
+        public HomeController(ICourseService courseService, ISearchService searchService)
         {
             this.courseService = courseService;
             this.searchService = searchService;
@@ -27,8 +27,15 @@
                 Courses = await this.courseService.GetIndexCourses()
             };
             return this.View(model);
-        }   
+        }
+
+        [Route("Product")]
+        public IActionResult Product()
+        {
+            return View();
+        }
         
+        [Route("Search")]
         public async Task<IActionResult> Search(SearchInputModel model)
         {
             var searchViewModel = new SearchViewModel

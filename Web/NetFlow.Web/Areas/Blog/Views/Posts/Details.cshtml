@@ -10,8 +10,8 @@
     <div class="offset-md-2 col-md-8 offset-md-2">
         <img class="img-fluid card-img-top" src="@Model.Picture" alt="@Model.Title">
     </div>
-    <p>
-        @Html.Raw(Model.Content)
+    <p class="bg-danger">
+        @Html.Raw(Model.Content as string)
     </p>
     <div class="pull-right">
         <i class="fas fa-pencil-alt"></i> created by @Model.FirstName @Model.LastName |
@@ -37,7 +37,7 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Description">Leave a comment...</label>
-                    <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                    <textarea asp-for="Description" rows="2" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Comment</button>
