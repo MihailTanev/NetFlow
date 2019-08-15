@@ -7,7 +7,7 @@
 
 ## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.
-It has three main user roles: Administrator, Student, Teacher and Publisher. Administrator is authorized to create courses and perform a CRUD operations on the users. 
+It has four main user roles: Administrator, Student, Teacher and Publisher. Administrator is authorized to create courses and perform a CRUD operations on the users. 
 Student can register and login to their account. Student can sign up for desired educational courses. Student will be able
 to upload his assignment as a .pdf or .zip file up till 10MB. Teacher is authorized to conducting assessment of
 the student assignments. Publisher is authorized to create a blog posts.
