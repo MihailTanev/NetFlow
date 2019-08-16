@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using NetFlow.Common.GlobalConstants;
     using NetFlow.Common.Messages.Blog;
     using NetFlow.Data.Models;
     using NetFlow.Services.Blog.Interface;
@@ -53,9 +54,9 @@
 
             await this.blogPostService.CreatePostAsync(model.Title, model.Content, authorId, pictureUrl);
 
-            this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = BlogMessagesConstants.POST_WAS_CREATED;
+            this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Title}' {BlogMessagesConstants.POST_WAS_CREATED}";
 
-            return RedirectToAction(nameof(Add));
+            return RedirectToAction(nameof(Add), new { AreaConstants.BLOG_AREA});
         }
 
         [AllowAnonymous]

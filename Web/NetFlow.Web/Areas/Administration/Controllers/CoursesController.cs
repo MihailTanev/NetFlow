@@ -53,7 +53,9 @@
 
                 await this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
-                return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
+                this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Name}' {CourseMessagesConstants.COURSE_WAS_CREATED}";
+
+                return this.RedirectToAction("Add", "Courses", new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
@@ -102,7 +104,7 @@
 
             await this.courseService.UpdateCourse(course);
 
-            this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = CourseMessagesConstants.COURSE_WAS_UPDATED;
+            this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_UPDATED}"; 
 
             return this.RedirectToAction(nameof(Edit), new { id });
         }

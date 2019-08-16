@@ -67,13 +67,13 @@
             {
                 await this.userManager.AddToRoleAsync(user, addUser.UserRole);
 
-                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_CREATED;
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_CREATED} ";
 
                 return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {
-                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_WAS_NOT_CREATED;
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_NOT_CREATED} ";
 
                 return this.View(addUser);
             }
@@ -85,7 +85,7 @@
 
             if (user == null)
             {
-                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_DOES_NOT_EXIST;
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_DOES_NOT_EXIST} ";
 
                 return NotFound();
             }
@@ -110,7 +110,7 @@
 
             if (user == null)
             {
-                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = UserMessagesConstants.USER_WAS_NOT_UPDATED;
+                this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_NOT_UPDATED} ";
                 return this.View(model);
             }
 
@@ -124,7 +124,7 @@
             {
                 await this.userManager.UpdateAsync(user);
 
-                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_WAS_UPDATED;
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_UPDATED} ";
 
                 return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
@@ -175,7 +175,7 @@
 
             if (result.Succeeded)
             {
-                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_DELETED;
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Role}' {UserMessagesConstants.USER_ROLE_WAS_DELETED} ";
 
                 return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
@@ -226,7 +226,7 @@
            
             await this.userManager.AddToRoleAsync(user, model.Role);
 
-            this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_ROLE_WAS_ADDED;
+            this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Role}' {UserMessagesConstants.USER_ROLE_WAS_ADDED} ";
 
             return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
         }
@@ -300,7 +300,7 @@
 
             if (result.Succeeded)
             {
-                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = UserMessagesConstants.USER_HAS_BEEN_DELETED;
+                this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_HAS_BEEN_DELETED} ";
 
                 return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
             }

@@ -140,7 +140,7 @@
                 return BadRequest();
             }
 
-            this.TempData[AssignmentMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = AssignmentMessagesConstants.ASSIGNMENT_FILE_SUCCESSFULLY_UPLOADED_MESSAGE;
+            this.TempData[AssignmentMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $"'{assignment.FileName}' {AssignmentMessagesConstants.ASSIGNMENT_FILE_SUCCESSFULLY_UPLOADED_MESSAGE}";
 
             return RedirectToAction(nameof(Details), new { courseId });
 
