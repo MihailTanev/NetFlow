@@ -34,7 +34,13 @@
         {
             return View();
         }
-        
+
+        [Route("Contact")]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         [Route("Search")]
         public async Task<IActionResult> Search(SearchInputModel model)
         {

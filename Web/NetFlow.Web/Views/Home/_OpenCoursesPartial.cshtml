@@ -9,26 +9,28 @@
     <div class="row pt-5">
         @foreach (var course in Model)
         {
-            <div class="col-sm-4 col-md-4 col-md-4">
-                <div class="card text-center">
+        <div class="col-sm-4 col-md-4 col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
                     @if (!course.Picture.Equals(null))
                     {
-                        <img class="card-img-top mt-2 mb-2" src="@course.Picture" alt="@course.Name">
+                    <img class="card-img-top mt-2 mb-2" src="@course.Picture" alt="@course.Name">
                     }
-                    <div class="card-body bg-dark">
-                        <a asp-area="Trainings"
-                           asp-controller="Courses"
-                           asp-action="Details"
-                           asp-route-courseId="@course.Id"
-                           asp-route-name="@course.Name.ToFriendlyUrl()">
-                            <h5 class="card-title">@course.Name</h5>
-                        </a>
-                        <p class="text-center text-white">@course.StartDate.ToString("dd MMM yyyy") - @course.EndDate.ToString("dd MMM yyyy")</p>
-                        <i class="fas fa-clock text-white"></i> <span class="text-info">@((course.EndDate - course.StartDate).TotalDays / 7) weeks</span>
-                    </div>
                 </div>
-                <br />
+                <div class="card-body bg-dark">
+                    <a asp-area="Trainings"
+                       asp-controller="Courses"
+                       asp-action="Details"
+                       asp-route-courseId="@course.Id"
+                       asp-route-name="@course.Name.ToFriendlyUrl()">
+                        <h5 class="card-title">@course.Name</h5>
+                    </a>
+                    <p class="text-center text-white">@course.StartDate.ToString("dd MMM yyyy") - @course.EndDate.ToString("dd MMM yyyy")</p>
+                    <i class="fas fa-clock text-white"></i> <span class="text-info">@((course.EndDate - course.StartDate).TotalDays / 7) weeks</span>
+                </div>
             </div>
+            <br />
+        </div>
         }
     </div>
     <div class="text-center">
