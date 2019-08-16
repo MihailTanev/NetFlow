@@ -32,7 +32,9 @@
                     <li><h4>Start Date:</h4><p class="text-info">@Model.StartDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>End Date:</h4><p class="text-info">@Model.EndDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>Credits:</h4><p class="text-info">@Model.Credit</p></li>
-                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>                  
+                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>
+                    <li><h4>total weeks:</h4><p class="text-info">@((Model.EndDate-Model.StartDate).TotalDays/7)</p></li>
+
                 </ul>
                 @if (User.Identity.IsAuthenticated)
                 {

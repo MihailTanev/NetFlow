@@ -105,10 +105,12 @@ select {
     height: 12vw;
     object-fit: contain;
 }
-
 .post-list li {
     margin-bottom: 15px;
 }
-.custom-text {
-    color: white;
+h5.card-title{
+    color:dodgerblue;
+}
+h5.card-title:hover {
+    color: orange;
 }
