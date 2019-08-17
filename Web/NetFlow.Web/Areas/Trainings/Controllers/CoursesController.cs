@@ -42,6 +42,7 @@
             return this.View(courses);
         }
 
+        [Route("trainings/courses/active-courses")]
         public async Task<IActionResult> ActiveCourses()
         {
             var courses = new ActiveCoursesViewModel
@@ -52,6 +53,7 @@
             return this.View(courses);
         }
 
+        [Route("trainings/courses/upcoming-courses")]
         public async Task<IActionResult> UpcomingCourses()
         {
             var courses = new UpcomingCoursesViewModel
