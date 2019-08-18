@@ -21,7 +21,7 @@
             var profile = await this.context
                 .Users
                 .Where(u => u.Id == userId)
-                .ProjectTo<UserProfileServiceModel>(new { profileId = userId })
+                .ProjectTo<UserProfileServiceModel>(new { studentId = userId })
                 .FirstOrDefaultAsync();
 
             return profile;

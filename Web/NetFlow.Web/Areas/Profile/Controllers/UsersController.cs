@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using NetFlow.Common.GlobalConstants;
     using NetFlow.Data.Models;
+    using NetFlow.Services.PdfCreator;
     using NetFlow.Services.Profile.Interface;
     using NetFlow.Web.ViewModels.Users;
     using System.Threading.Tasks;
@@ -14,9 +15,11 @@
     {
         private readonly UserManager<User> userManager;
         private readonly IProfileService profileService;
+        private readonly IPdfCreatorService pdfCreatorService;
 
-        public UsersController(UserManager<User>userManager, IProfileService profileService)
+        public UsersController(UserManager<User>userManager, IProfileService profileService, IPdfCreatorService pdfCreatorService)
         {
+            this.pdfCreatorService = pdfCreatorService;
             this.profileService = profileService;
             this.userManager = userManager;
         }
@@ -38,6 +41,21 @@
             };
 
             return this.View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DownloadCertificate(int id)
+        {
+            var userId = this.userManager.GetUserId(User);
+
+            var certificate = await this.pdfCreatorService.GetPdfCertificateAsync(userId, id);
+
+            if (certificate == null)
+            {
+                return BadRequest();
+            }
+
+            return File(certificate, "application/pdf", "Certificate.pdf");
         }
     }
 }
