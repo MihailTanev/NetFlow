@@ -10,5 +10,6 @@
 
         public const string BLOG_AREA = "Blog";
 
+        public const string PROFILE_AREA = "Profile";
     }
 }

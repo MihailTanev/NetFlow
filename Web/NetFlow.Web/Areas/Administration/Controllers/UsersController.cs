@@ -7,7 +7,7 @@
     using NetFlow.Common.GlobalConstants;
     using NetFlow.Common.Messages.User;
     using NetFlow.Data.Models;
-    using NetFlow.Services.Users.Interface;
+    using NetFlow.Services.Administrator.Interface;
     using NetFlow.Web.ViewModels.Users;
     using System;
     using System.Linq;
@@ -15,13 +15,13 @@
 
     public class UsersController : BaseAdminController
     {
-        private readonly IUserService userService;
+        private readonly IAdministratorService adminService;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<User> userManager;
 
-        public UsersController(IUserService userService, RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        public UsersController(IAdministratorService adminService, RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
-            this.userService = userService;
+            this.adminService = adminService;
             this.roleManager = roleManager;
             this.userManager = userManager;
         }
@@ -30,7 +30,7 @@
         {
             var users = new UsersViewModel
             {
-                Users = await this.userService.GetAllUsers(),
+                Users = await this.adminService.GetAllUsers(),
             };
 
             return this.View(users);
@@ -134,9 +134,9 @@
             }
         }
 
-        public async Task<IActionResult> ManageRole(string id)
+        public async Task<IActionResult> ManageRole(string userId)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
           
             var currentUserRole = await this.userManager.GetRolesAsync(user);
 
@@ -187,7 +187,7 @@
 
         public async Task<IActionResult> Role(string id)
         {
-            var user = await this.userService.GetUserById(id);
+            var user = await this.adminService.GetUserById(id);
 
             if (user == null)
             {

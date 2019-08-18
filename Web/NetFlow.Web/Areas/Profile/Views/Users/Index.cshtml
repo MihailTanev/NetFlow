@@ -1,0 +1,53 @@
+﻿@model UserProfileViewModel
+
+@{
+    ViewData["Title"] = Model.Profile.Username;
+}
+
+<h2 class="text-center pt-3">@Model.Profile.FirstName @Model.Profile.LastName</h2>
+<div class="title-underline bg-dark"></div>
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Credits</th>
+            <th>Grade</th>
+            <th>Certificate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Profile.Courses)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.CourseName.ToFriendlyUrl()">@course.CourseName</a>
+                </td>
+                <td>
+                    @course.Credit
+                </td>
+                <td>
+                    @if (course.Grade.Equals(null))
+                    {
+                        <p>No Grade</p>
+                    }
+                    else
+                    {
+                        <p>@course.Grade.ToString()</p>
+                    }
+                </td>
+                <td>
+                    @if (course.Grade == Grade.A || course.Grade == Grade.B)
+                    {
+                        <a asp-action="DownloadCertificate" asp-route-id="@course.Id">Download</a>
+                    }
+                    else
+                    {
+                        <p>There are no issued certificates.</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

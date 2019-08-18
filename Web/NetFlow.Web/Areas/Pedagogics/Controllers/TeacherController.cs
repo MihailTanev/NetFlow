@@ -70,7 +70,7 @@
 			}
 			else
 			{
-				return RedirectToAction("Students", "Teacher", new { courseId });
+				return RedirectToAction(nameof(Students), new { courseId });
 			}
 		}
 
@@ -81,7 +81,7 @@
 
             if (assignmentContent == null)
             {
-                return RedirectToAction("Students", "Teacher", new { courseId });
+                return RedirectToAction(nameof(Students), new { courseId });
             }
 
             var studentInCourse = await this.teacherService.GetStudentInCourseNamesAsync(courseId,studentId);

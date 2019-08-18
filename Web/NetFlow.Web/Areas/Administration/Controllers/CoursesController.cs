@@ -55,7 +55,7 @@
 
                 this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Name}' {CourseMessagesConstants.COURSE_WAS_CREATED}";
 
-                return this.RedirectToAction("Add", "Courses", new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction(nameof(Add), new { area = AreaConstants.ADMINISTRATION_AREA });
             }
             else
             {

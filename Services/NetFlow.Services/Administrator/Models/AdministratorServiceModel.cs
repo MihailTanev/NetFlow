@@ -1,11 +1,10 @@
-﻿namespace NetFlow.Services.Users.Models
+﻿namespace NetFlow.Services.Administrator.Models
 {
     using NetFlow.Data.Models;
     using NetFlow.Services.Mapping;
     using System;
-    using System.ComponentModel.DataAnnotations;
 
-    public class UserServiceModel : IMapFrom<User>
+    public class AdministratorServiceModel : IMapFrom<User>
     {
         public string Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace NetFlow.Web
 {
-    using NetFlow.Services.Users.Models;
+    using NetFlow.Services.Administrator.Models;
     using System.Reflection;
     using CloudinaryDotNet;
     using NetFlow.Services.Courses.Models;
@@ -88,7 +88,7 @@
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             AutoMapperConfig.RegisterMappings(
-                 typeof(UserServiceModel).GetTypeInfo().Assembly,
+                 typeof(AdministratorServiceModel).GetTypeInfo().Assembly,
                  typeof(CourseServiceModel).GetTypeInfo().Assembly,
                  typeof(CreateCourseViewModel).GetTypeInfo().Assembly);
 
@@ -116,6 +116,11 @@
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "profile",
+                    template: "profile/users/{userId}",
+                    defaults: new { area = AreaConstants.PROFILE_AREA, controller = "Users", action = "Index" });
+
                 routes.MapRoute(
                   name: "trainings",
                   template: "trainings/courses/{courseId}/{name}",

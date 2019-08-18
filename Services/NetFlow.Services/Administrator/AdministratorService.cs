@@ -1,28 +1,28 @@
-﻿namespace NetFlow.Services.Users
+﻿namespace NetFlow.Services.Administrator
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using NetFlow.Data;
-    using NetFlow.Services.Users.Interface;
-    using NetFlow.Services.Users.Models;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using AutoMapper.QueryableExtensions;
+    using NetFlow.Services.Administrator.Interface;
+    using NetFlow.Services.Administrator.Models;
 
-    public class UserService : IUserService
+    public class AdministratorService : IAdministratorService
     {
         private readonly NetFlowDbContext context;
 
-        public UserService(NetFlowDbContext context)
+        public AdministratorService(NetFlowDbContext context)
         {
             this.context = context;
         }      
 
-        public async Task<IEnumerable<UserServiceModel>> GetAllUsers()
+        public async Task<IEnumerable<AdministratorServiceModel>> GetAllUsers()
         {
             var users = await this.context.Users
                 .OrderBy(x => x.UserName)
-                .ProjectTo<UserServiceModel>()
+                .ProjectTo<AdministratorServiceModel>()
                 .ToListAsync();
 
             return users;
@@ -36,11 +36,11 @@
             return totalUser;
         }
 
-        public async Task<UserServiceModel> GetUserById(string id)
+        public async Task<AdministratorServiceModel> GetUserById(string id)
         {
             var userId = await this.context.Users
                 .Where(u => u.Id == id)
-                .ProjectTo<UserServiceModel>()    
+                .ProjectTo<AdministratorServiceModel>()    
                 .FirstOrDefaultAsync();
 
             return userId;

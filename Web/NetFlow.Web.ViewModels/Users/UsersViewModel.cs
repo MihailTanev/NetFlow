@@ -1,11 +1,11 @@
 ﻿namespace NetFlow.Web.ViewModels.Users
 {
-    using NetFlow.Services.Users.Models;
+    using NetFlow.Services.Administrator.Models;
     using System.Collections.Generic;
 
     public class UsersViewModel
     {
-        public IEnumerable<UserServiceModel> Users { get; set; }
+        public IEnumerable<AdministratorServiceModel> Users { get; set; }
 
     }
 }
