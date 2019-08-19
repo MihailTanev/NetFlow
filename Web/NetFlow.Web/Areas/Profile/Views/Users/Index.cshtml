@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = Model.Profile.Username;
-    ViewData.AddActivePage(ManageNavPages.GetProfile);
 }
 
 <h2 class="text-center pt-3">@Model.Profile.FirstName @Model.Profile.LastName</h2>
@@ -52,6 +51,10 @@
                     //Student gets a certificate if grade is 5(B) or 6(A)
                     {
                         <a asp-controller="Users" asp-action="DownloadCertificate" asp-route-id="@course.Id">Yes</a>
+                    }
+                    @if(course.Grade == Grade.C || course.Grade == Grade.D || course.Grade == Grade.F)
+                    {
+                        <p>your grade is less then 5.00.<br /> you need to retake it with higher grade</p>
                     }
                     else
                     {
