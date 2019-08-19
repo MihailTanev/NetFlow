@@ -46,6 +46,9 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
             [Required, DataType(DataType.Text), Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            [DataType(DataType.Date)]
+            public DateTime BirthDate { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -74,7 +77,8 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
                 Email = email,
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                BirthDate = user.BirthDate
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -125,7 +129,11 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
             if (Input.LastName != user.LastName)
             {
                 user.LastName = Input.LastName;
-            } 
+            }
+            if (Input.BirthDate != user.BirthDate)
+            {
+                user.BirthDate = Input.BirthDate;
+            }
 
             await _userManager.UpdateAsync(user);
 

@@ -1,7 +1,9 @@
 ﻿@model UserProfileViewModel
+@using NetFlow.Web.Areas.Identity.Pages.Account.Manage
 
 @{
     ViewData["Title"] = Model.Profile.Username;
+    ViewData.AddActivePage(ManageNavPages.GetProfile);
 }
 
 <h2 class="text-center pt-3">@Model.Profile.FirstName @Model.Profile.LastName</h2>
