@@ -4,7 +4,12 @@
     ViewData["Title"] = "Access denied";
 }
 
-<header>
-    <h1 class="text-danger text-center pt-3">@ViewData["Title"]</h1>
-    <p class="text-danger text-center">You do not have access to this resource.</p>
-</header>
+<div class="text-center p-3">
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">You are not authorized to access this page</p>
+    <i class="fa fa-5x fa-lock fa-login"></i>
+</div>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">home</a>
+</div>

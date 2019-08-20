@@ -1,4 +1,4 @@
-﻿@model NetFlow.Web.ViewModels.Home.SearchViewModel
+﻿@model SearchViewModel
 
 @{
     ViewData["Title"] = "Search for " + Model.SearchString;
@@ -11,7 +11,7 @@
         <h4 class="text-center p-5">search results for <span class="text-danger">"@Model.SearchString"</span></h4>
         <div class="title-underline w-100 bg-info"></div>
         <div class="container">
-            <div class="row p-5">
+            <div class="row pt-5">
                 @await Html.PartialAsync("_SearchedCoursesPartial", Model.Courses)
             </div>
         </div>

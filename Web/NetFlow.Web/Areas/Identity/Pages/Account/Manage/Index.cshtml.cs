@@ -53,6 +53,10 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
             [EmailAddress]
             public string Email { get; set; }
 
+            [Required, DataType(DataType.Text), Display(Name = "Username")]
+            public string UserName { get; set; }
+
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -74,6 +78,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                UserName = userName,
                 Email = email,
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
@@ -99,6 +104,17 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var userName = await _userManager.GetUserNameAsync(user);
+            if (Input.UserName != userName)
+            {
+                var setEmailResult = await _userManager.SetUserNameAsync(user,Input.UserName);
+                if (!setEmailResult.Succeeded)
+                {
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                }
+            }
+
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)
             {
@@ -119,7 +135,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
-            }
+            }            
 
             if (Input.FirstName != user.FirstName)
             {

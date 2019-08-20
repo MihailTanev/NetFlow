@@ -52,9 +52,10 @@
                     {
                         <a asp-controller="Users" asp-action="DownloadCertificate" asp-route-id="@course.Id">Yes</a>
                     }
-                    @if(course.Grade == Grade.C || course.Grade == Grade.D || course.Grade == Grade.F)
+                    else if (course.Grade == Grade.C || course.Grade == Grade.D || course.Grade == Grade.F)
                     {
-                        <p>your grade is less then 5.00.<br /> you need to retake it with higher grade</p>
+                        <p>Your grade is less then @((int)Grade.B)<br />
+                           In order to get a certificate you have to take it with a higher grade</p>
                     }
                     else
                     {

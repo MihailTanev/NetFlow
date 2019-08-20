@@ -1,12 +1,10 @@
-﻿@model IEnumerable<NetFlow.Services.Search.Models.SearchCourseServiceModel>
-@using NetFlow.Web.UrlStrings
-
+﻿@model IEnumerable<SearchCourseServiceModel>
 
 <div class="row">
     @foreach (var course in Model)
     {
-        <div class="col-sm-4 col-md-4 col-md-4">
-            <div class="card text-center" style="width: 18rem;">
+        <div class="col-md-4">
+            <div class="card text-center">
                 @if (!course.Picture.Equals(null))
                 {
                     <img class="card-img-top course-image" src="@course.Picture" alt="@course.Name">
