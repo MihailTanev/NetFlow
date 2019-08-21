@@ -9,7 +9,7 @@
     <br />
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
     {
-        <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <div class="offset-md-3 col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
             <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
         </div>
     }
@@ -19,7 +19,41 @@
             <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
         </div>
     }
-
+    <div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (Model.StartDate > DateTime.UtcNow)
+            {
+                if (Model.StudentIsEnrolledInCourse)
+                {
+                    <form asp-action="SignOut" asp-route-courseId="@Model.Id" method="post">
+                        <input type="submit" class="btn btn-danger" value="Sign Out" />
+                    </form>
+                }
+                else
+                {
+                    <form asp-action="Participate" asp-route-courseId="@Model.Id" method="post">
+                        <input type="submit" class="btn btn-primary" value="participate" />
+                    </form>
+                }
+            }
+            else
+            {
+                if (Model.EndDate < DateTime.UtcNow)
+                {
+                    <h4 class="text-center bg-danger text-capitalize text-white p-2">This course has already finished</h4>
+                }
+                else
+                {
+                    <h4 class="text-center bg-danger text-capitalize text-white p-2">The registration period has expired</h4>
+                }
+            }
+        }
+        else
+        {
+            <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
+        }
+    </div>
     <div class="row">
         <div class="col-md-6">
             <img src="@Model.Picture" class="img-fluid" />
@@ -32,57 +66,27 @@
                     <li><h4>End Date:</h4><p class="text-info">@Model.EndDate.ToString("dd MMMM yyyy")</p></li>
                     <li><h4>Credits:</h4><p class="text-info">@Model.Credit</p></li>
                     <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>
-                    <li><h4>total weeks:</h4><p class="text-info">@((Model.EndDate-Model.StartDate).TotalDays/7)</p></li>
-
+                    <li><h4>total weeks:</h4><p class="text-info">@((Model.EndDate - Model.StartDate).TotalDays / 7)</p></li>
                 </ul>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (Model.StartDate > DateTime.UtcNow)
-                    {
-                        //7 days before the deadline student would be able to upload his assignment
-                        if (Model.StudentIsEnrolledInCourse && Model.EndDate.Date < DateTime.UtcNow.AddDays(7).Date)
-                        {
-                            <form class="form" asp-action="SubmitAssignment" asp-route-courseId="@Model.Id" method="post" enctype="multipart/form-data">
-                                <div asp-validation-summary="All"></div>
-                                <br />
-                                <h4>Upload your assignment</h4>
-                                <br />
-                                <input type="file" name="assignment" />
-                                <input type="submit" class="btn btn-outline-danger" value="Upload" />
-                            </form>
-                            <br />
-                        }
-
-                        if (Model.StudentIsEnrolledInCourse)
-                        {
-                            <form asp-action="SignOut" asp-route-courseId="@Model.Id" method="post">
-                                <input type="submit" class="btn btn-danger" value="Sign Out" />
-                            </form>
-                        }
-                        else
-                        {
-                            <form asp-action="Participate" asp-route-courseId="@Model.Id" method="post">
-                                <input type="submit" class="btn btn-primary" value="participate" />
-                            </form>
-                        }
-                    }
-                    else
-                    {
-                        if (Model.EndDate < DateTime.UtcNow)
-                        {
-                            <h4 class="text-center bg-danger text-capitalize text-white p-2">This course has already finished</h4>
-                        }
-                        else
-                        {
-                            <h4 class="text-center bg-danger text-capitalize text-white p-2">The registration period has expired</h4>
-                        }
-                    }
-                }
-                else
-                {
-                    <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
-                }
             </div>
         </div>
+    </div>
+
+    <div class="offset-md-3 col-md-6 offset-md-3">
+        @if (User.Identity.IsAuthenticated && Model.StudentIsEnrolledInCourse)
+        {
+            if (Model.EndDate.Date == DateTime.UtcNow.Date.AddDays(1))
+            {
+                <form class="form" asp-action="SubmitAssignment" asp-route-courseId="@Model.Id" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All"></div>
+                    <br />
+                    <h4>Upload your assignment</h4>
+                    <br />
+                    <input type="file" name="assignment" />
+                    <input type="submit" class="btn btn-outline-danger" value="Upload" />
+                </form>
+                <br />
+            }
+        }
     </div>
 </div>

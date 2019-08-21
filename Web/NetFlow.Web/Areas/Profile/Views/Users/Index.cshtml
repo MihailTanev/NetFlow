@@ -5,9 +5,12 @@
     ViewData["Title"] = Model.Profile.Username;
 }
 
-<h2 class="text-center pt-3">@Model.Profile.FirstName @Model.Profile.LastName</h2>
-<div class="title-underline bg-dark"></div>
-<br />
+<div class="text-center p-2">
+    <h2>@Model.Profile.FirstName @Model.Profile.LastName</h2>
+    <h3 class="text-lowercase">@@@Model.Profile.Username</h3>
+    <h5 class="text-lowercase">@Model.Profile.Email</h5>
+    <br />
+</div>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -54,8 +57,10 @@
                     }
                     else if (course.Grade == Grade.C || course.Grade == Grade.D || course.Grade == Grade.F)
                     {
-                        <p>Your grade is less then @((int)Grade.B)<br />
-                           In order to get a certificate you have to take it with a higher grade</p>
+                        <p>
+                            Your grade is less then @((int)Grade.B)<br />
+                            In order to get a certificate you have to take it with a higher grade
+                        </p>
                     }
                     else
                     {
