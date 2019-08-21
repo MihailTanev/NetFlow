@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = Model.Name;
+    TimeSpan span = (Model.StartDate - DateTime.UtcNow);
+
 }
 <div class="container">
     <h2 class="text-center pt-3">@ViewData["Title"]</h2>
@@ -19,19 +21,22 @@
             <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
         </div>
     }
+
     <div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
         @if (User.Identity.IsAuthenticated)
         {
             if (Model.StartDate > DateTime.UtcNow)
             {
                 if (Model.StudentIsEnrolledInCourse)
-                {
+                {                    
                     <form asp-action="SignOut" asp-route-courseId="@Model.Id" method="post">
                         <input type="submit" class="btn btn-danger" value="Sign Out" />
                     </form>
                 }
                 else
                 {
+                    <p class="underline-info">@String.Format("{0} days, {1} hours, {2} minutes, {3} seconds",
+                      span.Days, span.Hours, span.Minutes, span.Seconds)<br /> remainig to sign up for this course</p>
                     <form asp-action="Participate" asp-route-courseId="@Model.Id" method="post">
                         <input type="submit" class="btn btn-primary" value="participate" />
                     </form>
@@ -41,11 +46,11 @@
             {
                 if (Model.EndDate < DateTime.UtcNow)
                 {
-                    <h4 class="text-center bg-danger text-capitalize text-white p-2">This course has already finished</h4>
+                    <h4 class="underline-info">This course has already finished</h4>
                 }
                 else
                 {
-                    <h4 class="text-center bg-danger text-capitalize text-white p-2">The registration period has expired</h4>
+                    <h4 class="underline-info">The registration period has expired</h4>
                 }
             }
         }
@@ -55,9 +60,10 @@
         }
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
             <img src="@Model.Picture" class="img-fluid" />
         </div>
+
         <div class="col-md-6 pt-3">
             <div>
                 <ul class="list-unstyled">
