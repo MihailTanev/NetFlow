@@ -23,14 +23,18 @@
         public string Description { get; set; }
 
         [Required]
+        [Range(0,30)]
         public int Credit { get; set; }
 
+        [Required]
         [Display(Name = CourseConstants.COURSE_START_DATE)]
-        public DateTime StartDate { get; set; } = DateTime.UtcNow;
+        public DateTime StartDate { get; set; } = DateTime.UtcNow.Date.Add(new TimeSpan(23,59,0));
 
+        [Required]
         [Display(Name = CourseConstants.COURSE_END_DATE)]
-        public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(30);
+        public DateTime EndDate { get; set; } = DateTime.UtcNow.Date.AddDays(30).Add(new TimeSpan(23,59,0));
 
+        [Required]
         public IFormFile Picture { get; set; }
 
         [Required]
@@ -43,12 +47,12 @@
         {
             if (this.StartDate < DateTime.UtcNow)
             {
-                yield return new ValidationResult("Start date should be in the nearest future.");
+                yield return new ValidationResult($" '{Name}' should be created in the future");
             }
 
             if (this.StartDate > this.EndDate)
             {
-                yield return new ValidationResult("Start date should be before End Date.");
+                yield return new ValidationResult($" '{StartDate.ToShortDateString()}' have to be greater then '{EndDate.ToShortDateString()}' ");
             }
         }
     }

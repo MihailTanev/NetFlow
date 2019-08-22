@@ -6,7 +6,6 @@
 
 <h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
 <div class="title-underline bg-primary"></div>
-
 <br />
 @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
 {
@@ -60,7 +59,7 @@
         </div>
     </div>
     <div class="row text-center">
-        <div class="col-md-4 offset-md-2 form-group">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
             <label asp-for="StartDate" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -70,7 +69,9 @@
             </div>
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
-        <div class="col-md-4 form-group">
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
             <label asp-for="EndDate" class="control-label"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -92,7 +93,6 @@
             </div>
             <span asp-validation-for="Credit" class="text-danger"></span>
         </div>
-
     </div>
     <div class="row text-center">
         <div class="offset-md-2 col-md-8 offset-md-2 form-group">
