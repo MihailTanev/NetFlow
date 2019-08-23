@@ -1,5 +1,7 @@
-﻿@model NetFlow.Web.ViewModels.Courses.UpcomingCoursesViewModel
-@using NetFlow.Web.UrlStrings
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Core
+@model UpcomingCoursesViewModel
 @{
     ViewData["Title"] = "Upcoming Courses";
 }
@@ -40,4 +42,17 @@
             </div>
         }
     </div>
+</div>
+<div class="text-center p-3">
+    @Html.PagedListPager((IPagedList)@Model.Courses.AsEnumerable(), page => Url.Action("UpcomingCourses", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
 </div>

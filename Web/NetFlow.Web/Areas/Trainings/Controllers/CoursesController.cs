@@ -15,6 +15,8 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using X.PagedList;
+
 
     public class CoursesController : BaseTrainingsController
     {
@@ -31,36 +33,48 @@
             this.studentsEnrolledInCourseService = studentsEnrolledInCourseService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var courses = new CoursesIndexViewModel
+            var courses = await this.courseService.GetAllCourses();
+
+            var pageNumber = page ?? 1;
+
+            var model = new CoursesIndexViewModel
             {
-                Courses = await this.courseService.GetAllCourses()
+                Courses = await courses.ToPagedListAsync(pageNumber, 10)
             };
 
-            return this.View(courses);
+            return this.View(model);
         }
 
         [Route("trainings/courses/active-courses")]
-        public async Task<IActionResult> ActiveCourses()
+        public async Task<IActionResult> ActiveCourses(int? page)
         {
-            var courses = new ActiveCoursesViewModel
+            var courses = await this.courseService.GetActiveCourses();
+
+            var pageNumber = page ?? 1;
+
+            var model = new ActiveCoursesViewModel
             {
-                Courses = await this.courseService.GetActiveCourses()
+                Courses = await courses.ToPagedListAsync(pageNumber, 10)
             };
 
-            return this.View(courses);
+            return this.View(model);
         }
 
         [Route("trainings/courses/upcoming-courses")]
-        public async Task<IActionResult> UpcomingCourses()
+        public async Task<IActionResult> UpcomingCourses(int? page)
         {
-            var courses = new UpcomingCoursesViewModel
+            var courses = await this.courseService.GetUpcomingCourses();
+
+            var pageNumber = page ?? 1;
+
+            var model = new UpcomingCoursesViewModel
             {
-                Courses = await this.courseService.GetUpcomingCourses()
+                Courses = await courses.ToPagedListAsync(pageNumber, 10)
             };
 
-            return this.View(courses);
+            return this.View(model);
         }
 
         public async Task<IActionResult> Details(int courseId)

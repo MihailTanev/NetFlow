@@ -12,6 +12,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using X.PagedList;
 
     public class UsersController : BaseAdminController
     {
@@ -26,14 +27,18 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var users = new UsersViewModel
+            var users = await this.adminService.GetAllUsers();
+
+            var pageNumber = page ?? 1;
+
+            var model = new UsersViewModel
             {
-                Users = await this.adminService.GetAllUsers(),
+                Users = await users.ToPagedListAsync(pageNumber, 10)
             };
 
-            return this.View(users);
+            return this.View(model);
         }
 
         public IActionResult Add()
