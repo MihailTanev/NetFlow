@@ -34,14 +34,17 @@
             return courses;
         }
 
-        public CourseServiceModel GetCourseById(int id)
+        public async Task<CourseServiceModel> GetCourseById(int id)
         {
-            return this.context
+            var course = await this.context
                 .Courses
-                .To<CourseServiceModel>()
-                .SingleOrDefault(course => course.Id == id);
+                .OrderByDescending(c => c.StartDate)
+                .Where(c => c.Id == id)
+                .ProjectTo<CourseServiceModel>()
+                .FirstOrDefaultAsync();
+
+            return course;
         }
-       
         public async Task<IEnumerable<CourseServiceModel>> GetActiveCourses()
         {
             var courses = await this.context
@@ -77,10 +80,10 @@
                 .ToListAsync();
 
             return courses;
-        }        
+        }
 
-        public async Task CreateCourse(CourseServiceModel model,string id)
-        {   
+        public async Task CreateCourse(CourseServiceModel model, string id)
+        {
             Course course = Mapper.Map<Course>(model);
             course.TeacherId = id;
             await this.context.Courses.AddAsync(course);
@@ -91,13 +94,26 @@
         {
             var course = this.context
                 .Courses
-                .FirstOrDefault(s => s.Id == model.Id);            
+                .FirstOrDefault(s => s.Id == model.Id);
 
             course.Name = model.Name;
             course.Description = model.Description;
             course.StartDate = model.StartDate;
             course.EndDate = model.EndDate;
-            await this.context.SaveChangesAsync();            
+            await this.context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCourse(CourseServiceModel model)
+        {
+            var course = await this.context
+                .Courses
+                .FirstOrDefaultAsync(c => c.Id == model.Id);
+
+            if (course != null)
+            {
+                this.context.Courses.Remove(course);
+                await this.context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -10,7 +10,6 @@
     using NetFlow.Data.Models;
     using NetFlow.Services.Assignment;
     using NetFlow.Services.Courses.Interface;
-    using NetFlow.Services.Mapping;
     using NetFlow.Web.AssignmentForm;
     using NetFlow.Web.ViewModels.Courses;
     using System.IO;
@@ -24,7 +23,7 @@
         private readonly IStudentsEnrolledInCourseService studentsEnrolledInCourseService;
         private readonly IAssignmentService assignmentService;
 
-        public CoursesController(IAssignmentService assignmentService, ICourseService courseService, UserManager<User>userManager, IStudentsEnrolledInCourseService studentsEnrolledInCourseService)
+        public CoursesController(IAssignmentService assignmentService, ICourseService courseService, UserManager<User> userManager, IStudentsEnrolledInCourseService studentsEnrolledInCourseService)
         {
             this.assignmentService = assignmentService;
             this.courseService = courseService;
@@ -64,16 +63,20 @@
             return this.View(courses);
         }
 
-        public IActionResult Details(int courseId)
-        {     
-            CourseDetailsViewModel model = this.courseService.GetCourseById(courseId)
-                .To<CourseDetailsViewModel>();
+        public async Task<IActionResult> Details(int courseId)
+        {
+            var course = await this.courseService.GetCourseById(courseId);
+
+            var model = new CourseDetailsViewModel
+            {
+               Course = course
+            };
 
             if (User.Identity.IsAuthenticated)
             {
                 var userId = this.userManager.GetUserId(User);
 
-                model.StudentIsEnrolledInCourse =  this.studentsEnrolledInCourseService.IsStudentEnrolledInCourse(userId,courseId);
+                model.StudentIsEnrolledInCourse = await this.studentsEnrolledInCourseService.IsStudentEnrolledInCourse(userId, courseId);
             }
 
             return this.View(model);
@@ -81,11 +84,11 @@
 
         [Authorize]
         [HttpPost]
-        public IActionResult Participate(int courseId)
+        public async Task <IActionResult> Participate(int courseId)
         {
             var userId = this.userManager.GetUserId(User);
 
-            var signUpUser = this.studentsEnrolledInCourseService.RegisterInCourse(userId, courseId);
+            var signUpUser = await this.studentsEnrolledInCourseService.RegisterInCourse(userId, courseId);
 
             if (!signUpUser)
             {
@@ -94,16 +97,16 @@
 
             this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = CourseMessagesConstants.REGISTER_IN_COURSE;
 
-            return this.RedirectToAction(nameof(Details), new { courseId});
+            return this.RedirectToAction(nameof(Details), new { courseId });
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult SignOut(int courseId)
+        public async Task<IActionResult> SignOut(int courseId)
         {
             var userId = this.userManager.GetUserId(User);
 
-            var signUpUser = this.studentsEnrolledInCourseService.SignOutFromCourse(userId, courseId);
+            var signUpUser = await this.studentsEnrolledInCourseService.SignOutFromCourse(userId, courseId);
 
             if (!signUpUser)
             {
@@ -114,7 +117,7 @@
 
             return this.RedirectToAction(nameof(Details), new { courseId });
         }
-        
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> SubmitAssignment(int courseId, IFormFile assignment)

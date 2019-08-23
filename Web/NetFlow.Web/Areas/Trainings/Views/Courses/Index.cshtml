@@ -48,13 +48,23 @@
                             @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.ADMIN_ROLE))
                             {
                                 <div class="col-md-4">
-                                    <a asp-action="Edit" asp-area="Administration"
-                                       asp-route-id="@course.Id"
-                                       asp-route-name="@course.Name.ToFriendlyUrl()">
-                                        <h6 class="btn btn-sm btn-outline-danger">
-                                            Edit
-                                        </h6>
-                                    </a>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a asp-action="Edit" asp-area="Administration"
+                                               asp-route-courseId="@course.Id"
+                                               asp-route-name="@course.Name.ToFriendlyUrl()">
+                                                Edit
+                                            </a>
+                                        </li> |
+                                        <li class="list-inline-item">
+                                            <a asp-action="Delete" asp-area="Administration"
+                                               asp-route-courseId="@course.Id"
+                                               asp-controller="Courses"
+                                               asp-route-name="@course.Name.ToFriendlyUrl()">
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             }
                         </div>

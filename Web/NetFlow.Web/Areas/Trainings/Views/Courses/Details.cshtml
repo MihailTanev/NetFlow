@@ -1,8 +1,8 @@
 ﻿@model CourseDetailsViewModel
 
 @{
-    ViewData["Title"] = Model.Name;
-    TimeSpan span = (Model.StartDate - DateTime.UtcNow);
+    ViewData["Title"] = Model.Course.Name;
+    TimeSpan span = (Model.Course.StartDate - DateTime.UtcNow);
 
 }
 <div class="container">
@@ -25,11 +25,11 @@
     <div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
         @if (User.Identity.IsAuthenticated)
         {
-            if (Model.StartDate > DateTime.UtcNow)
+            if (Model.Course.StartDate > DateTime.UtcNow)
             {
                 if (Model.StudentIsEnrolledInCourse)
                 {                    
-                    <form asp-action="SignOut" asp-route-courseId="@Model.Id" method="post">
+                    <form asp-action="SignOut" asp-route-courseId="@Model.Course.Id" method="post">
                         <input type="submit" class="btn btn-danger" value="Sign Out" />
                     </form>
                 }
@@ -37,14 +37,14 @@
                 {
                     <p class="underline-info">@String.Format("{0} days, {1} hours, {2} minutes, {3} seconds",
                       span.Days, span.Hours, span.Minutes, span.Seconds)<br /> remainig to sign up for this course</p>
-                    <form asp-action="Participate" asp-route-courseId="@Model.Id" method="post">
+                    <form asp-action="Participate" asp-route-courseId="@Model.Course.Id" method="post">
                         <input type="submit" class="btn btn-primary" value="participate" />
                     </form>
                 }
             }
             else
             {
-                if (Model.EndDate < DateTime.UtcNow)
+                if (Model.Course.EndDate < DateTime.UtcNow)
                 {
                     <h4 class="underline-info">This course has already finished</h4>
                 }
@@ -61,18 +61,18 @@
     </div>
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src="@Model.Picture" class="img-fluid" />
+            <img src="@Model.Course.Picture" class="img-fluid" />
         </div>
 
         <div class="col-md-6 pt-3">
             <div>
                 <ul class="list-unstyled">
-                    <li><h4>Description:</h4> <p class="text-info">@Model.Description</p></li>
-                    <li><h4>Start Date:</h4><p class="text-info">@Model.StartDate.ToString("dd MMMM yyyy")</p></li>
-                    <li><h4>End Date:</h4><p class="text-info">@Model.EndDate.ToString("dd MMMM yyyy")</p></li>
-                    <li><h4>Credits:</h4><p class="text-info">@Model.Credit</p></li>
-                    <li><h4>Teacher:</h4><p class="text-info">@Model.Teacher.FirstName @Model.Teacher.LastName</p></li>
-                    <li><h4>total weeks:</h4><p class="text-info">@((Model.EndDate - Model.StartDate).TotalDays / 7)</p></li>
+                    <li><h4>Description:</h4> <p class="text-info">@Model.Course.Description</p></li>
+                    <li><h4>Start Date:</h4><p class="text-info">@Model.Course.StartDate.ToString("dd MMMM yyyy")</p></li>
+                    <li><h4>End Date:</h4><p class="text-info">@Model.Course.EndDate.ToString("dd MMMM yyyy")</p></li>
+                    <li><h4>Credits:</h4><p class="text-info">@Model.Course.Credit</p></li>
+                    <li><h4>Teacher:</h4><p class="text-info">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</p></li>
+                    <li><h4>total weeks:</h4><p class="text-info">@((Model.Course.EndDate - Model.Course.StartDate).TotalDays / 7)</p></li>
                 </ul>
             </div>
         </div>
@@ -81,9 +81,9 @@
     <div class="offset-md-3 col-md-6 offset-md-3">
         @if (User.Identity.IsAuthenticated && Model.StudentIsEnrolledInCourse)
         {
-            if (Model.EndDate.Date == DateTime.UtcNow.Date.AddDays(1))
+            if (Model.Course.EndDate.Date == DateTime.UtcNow.Date.AddDays(1))
             {
-                <form class="form" asp-action="SubmitAssignment" asp-route-courseId="@Model.Id" method="post" enctype="multipart/form-data">
+                <form class="form" asp-action="SubmitAssignment" asp-route-courseId="@Model.Course.Id" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="All"></div>
                     <br />
                     <h4>Upload your assignment</h4>

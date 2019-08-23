@@ -10,7 +10,6 @@
     using NetFlow.Services.Cloudinary;
     using NetFlow.Services.Courses.Interface;
     using NetFlow.Services.Courses.Models;
-    using NetFlow.Services.Mapping;
     using NetFlow.Web.ViewModels.Courses;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,7 +26,8 @@
             this.userManager = userManager;
             this.courseService = courseService;
             this.cloudinaryService = cloudinaryService;
-        }
+        }       
+
         public async Task<IActionResult> Add()
         {
             var teachers = await this.GetAllTeachers();
@@ -65,9 +65,9 @@
 
         private async Task<IEnumerable<SelectListItem>> GetAllTeachers()
         {
-            var teacherRole = await this.userManager.GetUsersInRoleAsync(RoleConstants.TEACHER_ROLE);
+            var usersInTeacherRole = await this.userManager.GetUsersInRoleAsync(RoleConstants.TEACHER_ROLE);
 
-            var teachers = teacherRole.Select(teacher => new SelectListItem
+            var teachers = usersInTeacherRole.Select(teacher => new SelectListItem
             {
                 Text = teacher.FirstName + " " + teacher.LastName,
                 Value = teacher.Id
@@ -77,24 +77,41 @@
             return teachers;
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int courseId)
         {
-            EditCourseViewModel model = this.courseService.GetCourseById(id)
-                .To<EditCourseViewModel>();
+            var course = await this.courseService.GetCourseById(courseId);
+
+            if (course == null)
+            {
+                this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_NOT_CREATED} ";
+
+                return NotFound();
+            }
+
+            EditCourseViewModel model = new EditCourseViewModel
+            {
+                Id = course.Id,
+                Name = course.Name,
+                Description = course.Description,
+                Credit = course.Credit,
+                EndDate = course.EndDate,
+                StartDate = course.StartDate
+            };
 
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditCourseViewModel model, int id)
+        public async Task<IActionResult> Edit(EditCourseViewModel model, int courseId)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(model);
-            }
+            var course = await this.courseService.GetCourseById(courseId);
 
-            CourseServiceModel course = this.courseService.GetCourseById(id)
-                       .To<CourseServiceModel>();
+            if (course == null)
+            {
+                this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_NOT_CREATED} ";
+
+                return NotFound();
+            }
 
             course.Name = model.Name;
             course.Description = model.Description;
@@ -102,11 +119,58 @@
             course.EndDate = model.EndDate;
             course.Credit = model.Credit;
 
-            await this.courseService.UpdateCourse(course);
+            if (ModelState.IsValid)
+            {
+                await this.courseService.UpdateCourse(course);
 
-            this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_UPDATED}"; 
+                this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_UPDATED}";
 
-            return this.RedirectToAction(nameof(Edit), new { id });
+                return this.RedirectToAction(nameof(Edit), new { courseId });
+            }
+            else
+            {
+                return this.View(model);
+            }
+        }
+
+        public async Task<IActionResult> Delete(int courseId)
+        {
+            var course = await this.courseService.GetCourseById(courseId);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var model = new DeleteCourseViewModel
+            {
+                CourseId = course.Id,
+                CourseName = course.Name
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirm(DeleteCourseViewModel model, int courseId)
+        {
+            var course = await this.courseService.GetCourseById(courseId);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                await this.courseService.DeleteCourse(course);
+
+                return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
