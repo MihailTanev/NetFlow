@@ -34,12 +34,12 @@
             return courses;
         }
 
-        public async Task<CourseServiceModel> GetCourseById(int id)
+        public async Task<CourseServiceModel> GetCourseById(int courseId)
         {
             var course = await this.context
                 .Courses
                 .OrderByDescending(c => c.StartDate)
-                .Where(c => c.Id == id)
+                .Where(c => c.Id == courseId)
                 .ProjectTo<CourseServiceModel>()
                 .FirstOrDefaultAsync();
 

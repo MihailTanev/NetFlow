@@ -1,7 +1,4 @@
-﻿@using X.PagedList
-@using X.PagedList.Mvc.Common
-@using X.PagedList.Mvc.Core
-@model CoursesIndexViewModel
+﻿@model CoursesIndexViewModel
 
 @{
     ViewData["Title"] = "All Courses";
@@ -19,7 +16,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <a asp-action="Details"
+                                <a asp-area="Trainings" asp-action="Details"
                                    asp-route-courseId="@course.Id"
                                    asp-route-name="@course.Name.ToFriendlyUrl()">
                                     <h3 class="card-title text-info">
@@ -55,10 +52,11 @@
                                         <li class="list-inline-item">
                                             <a asp-action="Edit" asp-area="Administration"
                                                asp-route-courseId="@course.Id"
+                                               asp-controller="Courses"
                                                asp-route-name="@course.Name.ToFriendlyUrl()">
                                                 Edit
                                             </a>
-                                        </li> |
+                                        </li>|
                                         <li class="list-inline-item">
                                             <a asp-action="Delete" asp-area="Administration"
                                                asp-route-courseId="@course.Id"

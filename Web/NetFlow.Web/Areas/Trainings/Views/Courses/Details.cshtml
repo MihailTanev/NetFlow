@@ -22,43 +22,46 @@
         </div>
     }
 
-    <div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
-        @if (User.Identity.IsAuthenticated)
+<div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (Model.Course.StartDate > DateTime.UtcNow)
         {
-            if (Model.Course.StartDate > DateTime.UtcNow)
+            if (Model.StudentIsEnrolledInCourse)
             {
-                if (Model.StudentIsEnrolledInCourse)
-                {                    
-                    <form asp-action="SignOut" asp-route-courseId="@Model.Course.Id" method="post">
-                        <input type="submit" class="btn btn-danger" value="Sign Out" />
-                    </form>
-                }
-                else
-                {
-                    <p class="underline-info">@String.Format("{0} days, {1} hours, {2} minutes, {3} seconds",
-                      span.Days, span.Hours, span.Minutes, span.Seconds)<br /> remainig to sign up for this course</p>
-                    <form asp-action="Participate" asp-route-courseId="@Model.Course.Id" method="post">
-                        <input type="submit" class="btn btn-primary" value="participate" />
-                    </form>
-                }
+                <form asp-action="SignOut" asp-route-courseId="@Model.Course.Id" method="post">
+                    <input type="submit" class="btn btn-danger" value="Sign Out" />
+                </form>
             }
             else
             {
-                if (Model.Course.EndDate < DateTime.UtcNow)
-                {
-                    <h4 class="underline-info">This course has already finished</h4>
-                }
-                else
-                {
-                    <h4 class="underline-info">The registration period has expired</h4>
-                }
+                <p class="underline-info">
+                    @String.Format("{0} days, {1} hours, {2} minutes, {3} seconds", span.Days, span.Hours, span.Minutes, span.Seconds)<br />
+                </p>
+                <img class="img-fluid" src="https://www.animatedimages.org/data/media/137/animated-clock-image-0120.gif" />
+
+                <form asp-action="Participate" asp-route-courseId="@Model.Course.Id" method="post">
+                    <input type="submit" class="btn btn-primary" value="participate" />
+                </form>
             }
         }
         else
         {
-            <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
+            if (Model.Course.EndDate < DateTime.UtcNow)
+            {
+                <h4 class="underline-info">This course has already finished</h4>
+            }
+            else
+            {
+                <h4 class="underline-info">The registration period has expired</h4>
+            }
         }
-    </div>
+    }
+    else
+    {
+        <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
+    }
+</div>
     <div class="row">
         <div class="col-md-6 text-center">
             <img src="@Model.Course.Picture" class="img-fluid" />
