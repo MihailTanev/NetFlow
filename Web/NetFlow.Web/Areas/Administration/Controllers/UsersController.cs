@@ -27,11 +27,16 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string searchString)
         {
             var users = await this.adminService.GetAllUsers();
 
             var pageNumber = page ?? 1;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.Username.Contains(searchString));
+            }
 
             var model = new UsersViewModel
             {

@@ -5,8 +5,8 @@
 }
 
 <div class="col text-center">
-   <h1 class="pt-3">@ViewData["Title"]</h1>
-   <div class="title-underline"></div>
+    <h1 class="pt-3">@ViewData["Title"]</h1>
+    <div class="title-underline"></div>
 </div>
 
 @if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_ERROR_MESSAGE))
@@ -21,8 +21,24 @@
         <strong>@this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
     </div>
 }
-<div>
-    <a asp-area="Administration" asp-controller="Users" asp-action="Add" class="btn btn-primary">Add User</a>
+<div class="container">
+    <div class="row pt-3">
+        <div class="col-md-6">
+            <a asp-area="Administration" asp-controller="Users" asp-action="Add" class="btn btn-primary">Add User</a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="Index">
+                <div class="col">
+                    <div class="input-group">
+                        <input asp-for="SearchString" class="form-control" placeholder="Search Username..." />
+                        <div class="input-group-prepend">
+                            <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <br />
 <div class="row">

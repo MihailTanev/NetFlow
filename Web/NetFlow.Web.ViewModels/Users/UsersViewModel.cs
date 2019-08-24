@@ -7,5 +7,7 @@
     {
         public IEnumerable<AdministratorServiceModel> Users { get; set; }
 
+        public string SearchString { get; set; }
+
     }
 }
