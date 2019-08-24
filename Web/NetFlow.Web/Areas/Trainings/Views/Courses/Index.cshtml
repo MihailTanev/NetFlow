@@ -3,12 +3,28 @@
 @{
     ViewData["Title"] = "All Courses";
 }
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
-<h2 class="text-center pt-3">@ViewData["Title"]</h2>
-<div class="title-underline bg-dark"></div>
+<div class="text-center p-3">
+    @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+        </div>
+    }
+    @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+    {
+        <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+        </div>
+    }
+</div>
 
 <div class="container">
-    <div class="row pt-5">
+    <div class="row pt-2">
         @foreach (var course in Model.Courses)
         {
             <div class="col-md-6">

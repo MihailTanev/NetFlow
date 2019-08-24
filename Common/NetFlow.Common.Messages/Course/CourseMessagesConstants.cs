@@ -10,6 +10,9 @@
 
         public const string COURSE_WAS_UPDATED = "was successfully updated!";
 
+        public const string COURSE_WAS_DELETED = "was successfully deleted!";
+
+
         public const string TEMPDATA_SUCCESS_MESSAGE = "Message";
         public const string TEMPDATA_ERROR_MESSAGE = "Error";
     }

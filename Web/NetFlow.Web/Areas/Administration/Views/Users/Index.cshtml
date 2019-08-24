@@ -4,12 +4,10 @@
     ViewData["Title"] = "Regestered Users";
 }
 
-<h1 class="text-center p-3 mx-auto">@ViewData["Title"]</h1>
-<div class="title-underline bg-dark"></div>
-<br />
-
-<br />
-
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
 @if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_ERROR_MESSAGE))
 {

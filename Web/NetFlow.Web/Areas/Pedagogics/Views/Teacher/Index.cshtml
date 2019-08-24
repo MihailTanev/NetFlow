@@ -1,11 +1,12 @@
 ﻿@model CoursesViewModel
-
 @{
     ViewData["Title"] =  User.Identity.Name + "'s Courses";
 }
 
-<h1 class="text-center p-3">@ViewData["Title"]</h1>
-<div class="title-underline bg-dark"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 <br />
 
 <table class="table table-bordered table-hover">

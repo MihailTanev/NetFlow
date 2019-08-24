@@ -1,11 +1,12 @@
 ﻿@model StudentsEnrolledInCourseViewModel
-
 @{
     ViewData["Title"] = Model.Course.Name;
 }   
 
-<h2 class="text-center pt-3">@ViewData["Title"]</h2>
-<div class="title-underline bg-dark"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 <p class="text-center pt-2">Total Users in '@Model.Course.Name' course: @Model.Students.Count()</p>
 
 <table class="table table-bordered table-hover">

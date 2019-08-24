@@ -53,9 +53,9 @@
 
                 await this.courseService.CreateCourse(courseServiceModel, model.TeacherId);
 
-                this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Name}' {CourseMessagesConstants.COURSE_WAS_CREATED}";
+                this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $"Course '{model.Name}' {CourseMessagesConstants.COURSE_WAS_CREATED}";
 
-                return this.RedirectToAction(nameof(Add), new { area = AreaConstants.ADMINISTRATION_AREA });
+                return this.RedirectToAction("Index","Courses", new { area = AreaConstants.TRAININGS_AREA });
             }
             else
             {
@@ -164,6 +164,8 @@
             if (ModelState.IsValid)
             {
                 await this.courseService.DeleteCourse(course);
+
+                this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $"Course '{course.Name}' {CourseMessagesConstants.COURSE_WAS_DELETED}";
 
                 return this.RedirectToAction("Index", "Courses", new { area = AreaConstants.TRAININGS_AREA });
             }

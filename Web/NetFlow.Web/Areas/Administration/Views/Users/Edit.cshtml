@@ -4,8 +4,10 @@
     ViewData["Title"] = Model.Username;
 }
 
-<h2 class="text-center p-3 mx-auto">Edit @ViewData["Title"] account</h2>
-<div class="title-underline bg-primary"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
 @if (this.TempData.ContainsKey(UserMessagesConstants.TEMPDATA_ERROR_MESSAGE))
 {

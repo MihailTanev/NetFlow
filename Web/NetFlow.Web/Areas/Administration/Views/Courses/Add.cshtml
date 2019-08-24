@@ -1,25 +1,12 @@
 @model CreateCourseViewModel
-
 @{
     ViewData["Title"] = "Create new course";
 }
 
-<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
-<div class="title-underline bg-primary"></div>
-<br />
-@if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
-{
-    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
-        <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
-    </div>
-}
-@if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
-{
-    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
-        <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
-    </div>
-}
-
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
 <form method="post" asp-area="Administration" asp-controller="Courses" asp-action="Add" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

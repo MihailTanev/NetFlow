@@ -4,8 +4,10 @@
     ViewData["Title"] = "Add User";
 }
 
-<h2 class="text-center pt-5 mx-auto">@ViewData["Title"]</h2>
-<div class="title-underline bg-primary"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
 <form method="post" asp-area="Administration" asp-controller="Users" asp-action="Add" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

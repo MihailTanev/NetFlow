@@ -74,6 +74,7 @@ body {
     width: 8rem;
     height: 2px;
     margin: 0 auto;
+    background-color: #1a1a1a;
 }
 .table td {
     padding: 1.0rem !important;

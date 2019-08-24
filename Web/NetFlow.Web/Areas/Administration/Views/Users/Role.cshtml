@@ -1,12 +1,11 @@
 ﻿@model ChangeUserRoleViewModel
-
 @{
     ViewData["Title"] = Model.User.FirstName + " " + Model.User.LastName;
 }
 
-<div class="mx-auto p-3 w-75">
-    <h2 class="text-center font-weight-bold p-3 mx-auto">Add Role to @ViewData["Title"] account</h2>
-    <div class="title-underline bg-primary"></div>
+<div class="col text-center">
+    <h1 class="pt-3">Add Role to @ViewData["Title"] account</h1>
+    <div class="title-underline"></div>
 </div>
 
 <table class="table table-striped table-bordered table-hover">

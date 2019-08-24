@@ -4,8 +4,10 @@
     ViewData["Title"] = Model.Name;
 }
 
-<h2 class="text-center p-3 mx-auto">Edit @ViewData["Title"] course</h2>
-<div class="title-underline bg-primary"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
 <br />
 @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))

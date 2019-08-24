@@ -4,10 +4,12 @@
     ViewData["Title"] = Model.CourseName;
 }
 
-<h2 class="text-center p-3 mx-auto">@ViewData["Title"]</h2>
-<div class="title-underline bg-primary"></div>
+<div class="col text-center">
+   <h1 class="pt-3">@ViewData["Title"]</h1>
+   <div class="title-underline"></div>
+</div>
 
-<form method="post" asp-area="Administration" asp-action="DeleteConfirm" asp-controller="Courses" asp-route-id="@Model.CourseId">
+<form method="post" asp-area="Administration" asp-action="DeleteConfirm" asp-controller="Courses" asp-route-courseId="@Model.CourseId">
 
     <div class="form-group text-center m-3">
         <h4>Are you sure you want to delete @Model.CourseName?</h4>
@@ -16,4 +18,4 @@
     <div class="form-group text-center m-3">
         <button type="submit" class="btn btn-danger">confirm</button>
     </div>
-</form>
+</form> 
