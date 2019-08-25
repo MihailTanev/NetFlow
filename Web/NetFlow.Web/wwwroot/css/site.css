@@ -181,3 +181,6 @@ dt {
     text-transform:capitalize;
     padding: 0.5rem;
 }
+.bg-grey {
+    background-color: #f2f2f2;
+}

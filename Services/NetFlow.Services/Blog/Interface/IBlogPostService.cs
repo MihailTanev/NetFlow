@@ -8,6 +8,8 @@
     {
         Task<IEnumerable<BlogPostServiceModel>> GetAllPostsAsync();
 
+        Task<IEnumerable<BlogPostServiceModel>> GetIndexBlogPosts();
+
         Task CreatePostAsync(string title, string content, string publisherId, string picture);
 
         Task<BlogPostDetailsServiceModel> GetPostByIdAsync(int id);

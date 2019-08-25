@@ -3,19 +3,22 @@
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    using NetFlow.Services.Blog.Interface;
     using NetFlow.Services.Courses.Interface;
     using NetFlow.Services.Search.Interface;
     using NetFlow.Web.Models;
     using NetFlow.Web.ViewModels.Home;
+    using NetFlow.Web.ViewModels.Post;
 
     public class HomeController : Controller
     {
         private readonly ICourseService courseService;
         private readonly ISearchService searchService;
+        private readonly IBlogPostService blogPostService;
 
-
-        public HomeController(ICourseService courseService, ISearchService searchService)
+        public HomeController(ICourseService courseService, ISearchService searchService, IBlogPostService blogPostService)
         {
+            this.blogPostService = blogPostService;
             this.courseService = courseService;
             this.searchService = searchService;
         }
@@ -24,10 +27,11 @@
         {
             var model = new HomeViewModel()
             {
-                Courses = await this.courseService.GetIndexCourses()
+                Courses = await this.courseService.GetIndexCourses(),
+                Posts = await this.blogPostService.GetIndexBlogPosts()
             };
             return this.View(model);
-        }
+        }       
 
         [Route("Product")]
         public IActionResult Product()

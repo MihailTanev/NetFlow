@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NetFlow.Services.Blog.Models.BlogPostServiceModel>
+
+<div class="col text-center">
+    <h1 class="pt-3">recent posts</h1>
+    <div class="title-underline"></div>
+</div>
+
+<section id="courses">
+    <div class="row pt-5">
+        @foreach (var blog in Model)
+        {
+            <div class="col-sm-4 col-md-4 col-md-4">
+                <div class="card text-center">
+                    <div class="card-header">                        
+                        <img class="card-img-top mt-2 mb-2" src="@blog.Picture" alt="@blog.Title">                        
+                    </div>
+                    <div class="card-body bg-dark">
+                        <a asp-area="Blog"
+                           asp-controller="Posts"
+                           asp-action="Details"
+                           asp-route-Id="@blog.Id"
+                           asp-route-title="@blog.Title.ToFriendlyUrl()">
+                            <h5 class="card-title">@blog.Title</h5>
+                        </a>
+                        <i class="fas fa-calendar-alt text-white"></i> <span class="text-info">@blog.CreatedDate.ToString("dd MMMM yyyy")</span>
+                    </div>
+                </div>
+                <br />
+            </div>
+        }
+    </div>
+    <div class="text-center">
+        <a asp-area="Blog" asp-action="Index" asp-controller="Posts" class="btn btn-outline-warning text-dark">see all</a>
+    </div>
+</section>

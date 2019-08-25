@@ -38,3 +38,7 @@
         <a href="/Identity/Account/register" class="btn btn-danger m-2">sign up for free</a>
     </div>
 </div>
+
+<div class="container p-5">
+    @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+</div>

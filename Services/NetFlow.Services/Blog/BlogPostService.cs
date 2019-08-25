@@ -57,5 +57,16 @@
 
             return post;
         }
+
+        public async Task<IEnumerable<BlogPostServiceModel>> GetIndexBlogPosts()
+        {
+            var posts = await this.context
+                           .Posts
+                           .OrderByDescending(x => x.CreatedDate)
+                           .Take(3)
+                           .ProjectTo<BlogPostServiceModel>()
+                           .ToListAsync();
+            return posts;
+        }
     }
 }
