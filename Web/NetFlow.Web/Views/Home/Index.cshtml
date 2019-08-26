@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Home";
 }
+
 @if (!User.Identity.IsAuthenticated)
 {
     <div class="row d-flex height-index align-items-center" id="picture">
@@ -45,9 +46,20 @@
         @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
     </div>
 }
-else if (User.Identity.IsAuthenticated)
+else if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.STUDENT_ROLE))
 {
     <div class="container p-5">
         @await Html.PartialAsync("_ProfileCoursesPartial", Model.Profile)
+    </div>
+}
+else
+{
+
+    <div class="jumbotron bg-dark w-75 mt-5 mx-auto">
+        <h1 class="text-success text-center text-uppercase display-4">
+            Wellcome,<small class="text-danger text-lowercase display-4"> @this.User.Identity.Name </small>
+        </h1>
+        <hr class="bg-secondary w-100" />
+        <h4 class="text-muted text-center">Enjoy your work</h4>
     </div>
 }

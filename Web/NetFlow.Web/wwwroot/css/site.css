@@ -62,6 +62,9 @@ body {
 .height-index {
     min-height: 85vh;
 }
+.height-home {
+    min-height: 25vh;
+}
 #picture,
 #login {
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../images/netflow.jpg) center/cover no-repeat fixed;
