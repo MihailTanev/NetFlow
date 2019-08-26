@@ -16,6 +16,8 @@
 
         public string Email { get; set; }
 
+        public string Picture { get; set; }
+
         public IEnumerable<ProfileCourseServiceModel> Courses { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

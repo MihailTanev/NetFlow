@@ -52,7 +52,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input asp-for="Input.Username" class="form-control"/>
+                <input asp-for="Input.Username" class="form-control" />
                 <span asp-validation-for="Input.Username" class="text-danger"></span>
             </div>
         </div>
@@ -90,6 +90,18 @@
                 <input asp-for="Input.Birthdate" class="form-control" placeholder="Birth Date" />
             </div>
             <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-1 col-md-10 offset-md-1 form-group">
+            <label asp-for="Input.Picture" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                </div>
+                <input asp-for="Input.Picture" class="form-control" placeholder="Birth Date" />
+            </div>
+            <span asp-validation-for="Input.Picture" class="text-danger"></span>
         </div>
     </div>
 

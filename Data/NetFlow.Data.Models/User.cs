@@ -14,6 +14,8 @@
         
         public DateTime CreatedOn { get; set; }
 
+        public string Picture { get; set; }
+
         public ICollection<Enrollment> Enrollments { get; set; } = new HashSet<Enrollment>();
 
         public ICollection<Post> Posts { get; set; } = new HashSet<Post>();

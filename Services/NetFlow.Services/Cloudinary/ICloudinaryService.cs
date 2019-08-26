@@ -9,5 +9,7 @@
 
         Task<string> UploadPostPictureAsync(IFormFile postImage, string fileName);
 
+        Task<string> UploadProfilePictureAsync(IFormFile profileImage, string fileName);
+
     }
 }

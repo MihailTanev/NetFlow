@@ -27,7 +27,7 @@
 
             configuration.CreateMap<Course, ProfileCourseServiceModel>()
             .ForMember(u => u.CourseName, map => map.MapFrom(c => c.Name))
-            .ForMember(u=>u.StartDate,map=>map.MapFrom(c=>c.StartDate))
+            .ForMember(u => u.StartDate, map => map.MapFrom(c => c.StartDate))
             .ForMember(u => u.EndDate, map => map.MapFrom(c => c.EndDate))
             .ForMember(u => u.Grade, map => map.MapFrom(c => c.Enrollments
                                                               .Where(s => s.StudentId == studentId)

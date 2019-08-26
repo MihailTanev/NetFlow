@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NetFlow.Common.GlobalConstants;
 using NetFlow.Data.Models;
+using NetFlow.Services.Cloudinary;
 
 namespace NetFlow.Web.Areas.Identity.Pages.Account
 {
@@ -21,13 +23,16 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ICloudinaryService cloudinaryService;
 
         public RegisterModel(
+            ICloudinaryService cloudinaryService,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
+            this.cloudinaryService = cloudinaryService;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
@@ -62,6 +67,9 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
             [Display(Name = UserConstants.REGISTER_USER_BIRTHDAY)]
             [DataType(DataType.Date)]
             public DateTime Birthdate { get; set; }
+
+            public IFormFile Picture { get; set; }
+
 
             [Required]
             [EmailAddress]
@@ -100,6 +108,10 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
                     Email = this.Input.Email,
                     CreatedOn = DateTime.UtcNow,
                 };
+                string pictureUrl = await this.cloudinaryService.UploadProfilePictureAsync(Input.Picture, Input.Username);
+
+                user.Picture = pictureUrl;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

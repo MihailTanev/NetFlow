@@ -16,7 +16,7 @@ namespace NetFlow.Services.Blog.Models
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Comment, CommentsPostServiceModel>()
-                .ForMember(a => a.User, map=>map.MapFrom(p=>p.User.UserName));
+                .ForMember(a => a.User, map => map.MapFrom(p => p.User.UserName));
         }
     }
 }

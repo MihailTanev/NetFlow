@@ -184,3 +184,8 @@ dt {
 .bg-grey {
     background-color: #f2f2f2;
 }
+.profilepic {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
