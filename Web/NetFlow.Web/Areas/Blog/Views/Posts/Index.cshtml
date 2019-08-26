@@ -4,8 +4,8 @@
 }
 
 <div class="col text-center">
-   <h1 class="pt-3">@ViewData["Title"]</h1>
-   <div class="title-underline"></div>
+    <h1 class="pt-3">@ViewData["Title"]</h1>
+    <div class="title-underline"></div>
 </div>
 
 <div class="container">
@@ -38,3 +38,17 @@
     <script src="https://cdn.tiny.cloud/1/dhwodpwzvitaey35lyytoxfh85xi4anvexzudx5yo3j665p2/tinymce/5/tinymce.min.js"></script>
     <script>tinymce.init({ selector: '#Description' });</script>
 }
+
+<div class="text-center p-3">
+    @Html.PagedListPager((IPagedList)@Model.Posts.AsEnumerable(), page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

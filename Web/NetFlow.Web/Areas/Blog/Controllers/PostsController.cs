@@ -11,6 +11,7 @@
     using NetFlow.Services.HtmlSanitizer;
     using NetFlow.Web.ViewModels.Post;
     using System.Threading.Tasks;
+    using X.PagedList;
 
     public class PostsController : BasePostsController
     {
@@ -31,11 +32,15 @@
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
+            var users = await this.blogPostService.GetAllPostsAsync();
+
+            var pageNumber = page ?? 1;
+
             var model = new PostViewModel
             {
-                Posts = await this.blogPostService.GetAllPostsAsync()
+                Posts = await users.ToPagedListAsync(pageNumber, 10)
             };
 
             return this.View(model);

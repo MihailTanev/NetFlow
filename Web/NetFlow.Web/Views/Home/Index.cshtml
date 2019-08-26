@@ -55,11 +55,16 @@ else if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.STUDENT_RO
 else
 {
 
-    <div class="jumbotron bg-dark w-75 mt-5 mx-auto">
-        <h1 class="text-success text-center text-uppercase display-4">
-            Wellcome,<small class="text-danger text-lowercase display-4"> @this.User.Identity.Name </small>
+    <div class="jumbotron bg-dark w-50 mt-5 mx-auto text-center">
+        <h1 class="text-success text-uppercase">
+            Welcome,<small class="text-danger text-lowercase"> @this.User.Identity.Name </small>
         </h1>
-        <hr class="bg-secondary w-100" />
-        <h4 class="text-muted text-center">Enjoy your work</h4>
+        <hr class="bg-secondary w-75" />
+        <h4 class="text-muted">Enjoy your work</h4>
+
+        @if (Model.Profile.Picture != null)
+        {
+            <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="img-fluid"width="80"height="80" />
+        }
     </div>
 }
