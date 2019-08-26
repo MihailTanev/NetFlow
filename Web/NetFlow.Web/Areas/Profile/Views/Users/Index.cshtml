@@ -9,7 +9,10 @@
     <h2>@Model.Profile.FirstName @Model.Profile.LastName</h2>
     <h3 class="text-lowercase">@@@Model.Profile.Username</h3>
     <h5 class="text-lowercase">@Model.Profile.Email</h5>
-    <img src="@Model.Profile.Picture" class="profilepic" />
+        @if (Model.Profile.Picture != null)
+        {
+            <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="profilepic" />
+        }       
     <br />
 </div>
 
