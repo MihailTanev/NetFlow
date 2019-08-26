@@ -1,32 +1,29 @@
-﻿@model UserProfileViewModel
+﻿@model UserProfileServiceModel
 
-@{
-    ViewData["Title"] = Model.Profile.Username;
-}
-
-<div class="text-center p-2">
-    <h2>@Model.Profile.FirstName @Model.Profile.LastName</h2>
-    <h3 class="text-lowercase">@@@Model.Profile.Username</h3>
-    <h5 class="text-lowercase">@Model.Profile.Email</h5>
-        @if (Model.Profile.Picture != null)
+<div class="container bg-white p-3">
+    <div class="text-center p-2">
+        <h2>@Model.Username</h2>
+        <h3 class="text-lowercase">@@@Model.Username</h3>
+        <h5 class="text-lowercase">@Model.Email</h5>
+        @if (Model.Picture != null)
         {
-            <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="profilepic" />
-        }       
-    <br />
-</div>
+            <img src="@Model.Picture" alt="@Model.Username" class="profilepic" />
+        }
+        <br />
+    </div>
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Course</th>
-            <th>Credits</th>
-            <th>Grade</th>
-            <th>Certificate</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var course in Model.Profile.Courses)
-        {
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Grade</th>
+                <th>Certificate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model.Courses)
+            {
             <tr>
                 <td>
                     <a asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.CourseName.ToFriendlyUrl()">@course.CourseName</a><br />
@@ -71,6 +68,7 @@
                     }
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+</div>

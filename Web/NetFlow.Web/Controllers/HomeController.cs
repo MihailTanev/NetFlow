@@ -2,22 +2,28 @@
 {
     using System.Diagnostics;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using NetFlow.Data.Models;
     using NetFlow.Services.Blog.Interface;
     using NetFlow.Services.Courses.Interface;
+    using NetFlow.Services.Profile.Interface;
     using NetFlow.Services.Search.Interface;
     using NetFlow.Web.Models;
     using NetFlow.Web.ViewModels.Home;
-    using NetFlow.Web.ViewModels.Post;
 
     public class HomeController : Controller
     {
         private readonly ICourseService courseService;
         private readonly ISearchService searchService;
         private readonly IBlogPostService blogPostService;
+        private readonly IProfileService profileService;
+        private readonly UserManager<User> userManager;
 
-        public HomeController(ICourseService courseService, ISearchService searchService, IBlogPostService blogPostService)
+        public HomeController(UserManager<User> userManager, ICourseService courseService, ISearchService searchService, IBlogPostService blogPostService, IProfileService profileService)
         {
+            this.userManager = userManager;
+            this.profileService = profileService;
             this.blogPostService = blogPostService;
             this.courseService = courseService;
             this.searchService = searchService;
@@ -28,8 +34,15 @@
             var model = new HomeViewModel()
             {
                 Courses = await this.courseService.GetIndexCourses(),
-                Posts = await this.blogPostService.GetIndexBlogPosts()
+                Posts = await this.blogPostService.GetIndexBlogPosts(),
             };
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = this.userManager.GetUserId(User);
+
+                model.Profile = await this.profileService.GetProfileByIdAsync(userId);
+
+            }
             return this.View(model);
         }       
 

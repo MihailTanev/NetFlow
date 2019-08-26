@@ -2,43 +2,52 @@
 @{
     ViewData["Title"] = "Home";
 }
-<div class="row d-flex height-index align-items-center" id="picture">
-    <div class="offset-1 col">
-        <h1 class="text-success display-4 text-uppercase font-weight-bold">
-            Net<small class="text-danger text-lowercase display-4">Flow</small>
-        </h1>
-        <p class="text-white lead py-2 w-75">
-            NetFlow - more than paperless. A digital exam and assessment platform
-            that is easy to use and provides great functionality
-        </p>
-        <form class="row" asp-action="Search">
-            <div class="col-md-5">
-                <div class="input-group">
-                    <input asp-for="SearchString" class="form-control" placeholder="Search..." />
-                    <div class="input-group-prepend">
-                        <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="row d-flex height-index align-items-center" id="picture">
+        <div class="offset-1 col">
+            <h1 class="text-success display-4 text-uppercase font-weight-bold">
+                Net<small class="text-danger text-lowercase display-4">Flow</small>
+            </h1>
+            <p class="text-white lead py-2 w-75">
+                NetFlow - more than paperless. A digital exam and assessment platform
+                that is easy to use and provides great functionality
+            </p>
+            <form class="row" asp-action="Search">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input asp-for="SearchString" class="form-control" placeholder="Search..." />
+                        <div class="input-group-prepend">
+                            <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<div class="container p-5">
-    @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
-</div>
-
-<div class="row d-flex align-items-center p-5" id="login">
-    <div class="col-md-8 mx-auto text-center">
-        <h1 class="text-success">Still managing assignments & projects in-house?</h1>
-        <p class="lead text-white">
-            Join NetFlow - The digital exam and assessment platform that eases the creation of exams, 
-            simplifies administration, and makes assessment much more efficient.
-        </p>
-        <a href="/Identity/Account/register" class="btn btn-danger m-2">sign up for free</a>
+    <div class="container p-5">
+        @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
     </div>
-</div>
 
-<div class="container p-5">
-    @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
-</div>
+    <div class="row d-flex align-items-center p-5" id="login">
+        <div class="col-md-8 mx-auto text-center">
+            <h1 class="text-success">Still managing assignments & projects in-house?</h1>
+            <p class="lead text-white">
+                Join NetFlow - The digital exam and assessment platform that eases the creation of exams,
+                simplifies administration, and makes assessment much more efficient.
+            </p>
+            <a href="/Identity/Account/register" class="btn btn-danger m-2">sign up for free</a>
+        </div>
+    </div>
+
+    <div class="container p-5">
+        @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+    </div>
+}
+else if (User.Identity.IsAuthenticated)
+{
+    <div class="container p-5">
+        @await Html.PartialAsync("_ProfileCoursesPartial", Model.Profile)
+    </div>
+}
