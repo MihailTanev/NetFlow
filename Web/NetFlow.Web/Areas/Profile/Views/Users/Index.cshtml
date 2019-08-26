@@ -8,10 +8,10 @@
     <h2>@Model.Profile.FirstName @Model.Profile.LastName</h2>
     <h3 class="text-lowercase">@@@Model.Profile.Username</h3>
     <h5 class="text-lowercase">@Model.Profile.Email</h5>
-        @if (Model.Profile.Picture != null)
-        {
-            <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="profilepic" />
-        }       
+    @if (Model.Profile.Picture != null)
+    {
+        <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="profilepic" />
+    }
     <br />
 </div>
 
@@ -21,6 +21,7 @@
             <th>Course</th>
             <th>Credits</th>
             <th>Grade</th>
+            <th>Comment</th>
             <th>Certificate</th>
         </tr>
     </thead>
@@ -50,6 +51,16 @@
                     else
                     {
                         <p>@((int)course.Grade)</p>
+                    }
+                </td>
+                <td>
+                    @if (course.Çomment == null)
+                    {
+                        <p class="text-danger">No comment</p>
+                    }
+                    else
+                    {
+                        <p class="text-info">@course.Çomment</p>
                     }
                 </td>
                 <td>

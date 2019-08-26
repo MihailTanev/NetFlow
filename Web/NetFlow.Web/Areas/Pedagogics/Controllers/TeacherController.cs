@@ -55,14 +55,14 @@
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> AddGrade(Grade grade, string studentId, int courseId)
+		public async Task<IActionResult> AddGrade(Grade grade, string studentId, int courseId, string comment)
 		{
 			if (string.IsNullOrEmpty(studentId))
 			{
 				return BadRequest();
 			}
 			
-			var success = await this.teacherService.AddGradeAsync(grade, courseId, studentId);
+			var success = await this.teacherService.AddGradeAsync(grade, courseId, studentId, comment);
 
 			if (!success)
 			{

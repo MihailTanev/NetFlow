@@ -21,6 +21,8 @@
 
         public int Credit { get; set; }
 
+        public string Çomment { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             string studentId = null;
@@ -32,6 +34,10 @@
             .ForMember(u => u.Grade, map => map.MapFrom(c => c.Enrollments
                                                               .Where(s => s.StudentId == studentId)
                                                               .Select(s => s.Grade)
+                                                              .FirstOrDefault()))
+            .ForMember(u => u.Çomment, map => map.MapFrom(c => c.Enrollments
+                                                              .Where(s => s.StudentId == studentId)
+                                                              .Select(s => s.Comment)
                                                               .FirstOrDefault()));
         }
     }

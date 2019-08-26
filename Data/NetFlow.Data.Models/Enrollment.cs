@@ -14,6 +14,8 @@
 
         public Grade? Grade { get; set; }
 
+        public string Comment { get; set; }
+
         public byte[] Assignment { get; set; }
     }
 }

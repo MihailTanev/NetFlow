@@ -15,7 +15,7 @@
 
         Task<bool> IsTeacherAsync(int courseId, string trainerId);
 
-        Task<bool> AddGradeAsync(Grade grade, int courseId, string studentId);
+        Task<bool> AddGradeAsync(Grade grade, int courseId, string studentId, string comment);
 
         Task<StudentNamesInCourseServiceModel> GetStudentInCourseNamesAsync(int courseId, string studentId);
 

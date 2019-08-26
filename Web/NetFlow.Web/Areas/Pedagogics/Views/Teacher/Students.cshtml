@@ -16,8 +16,9 @@
             <th>Email</th>
             <th>User Since</th>
             <th>Grade</th>
+            <th>Comment</th>
             <th>Assignments</th>
-            <th>Add Grade</th>             
+            <th>Add Grade & comment</th>
         </tr>
     </thead>
     <tbody>
@@ -38,6 +39,16 @@
                     }
                 </td>
                 <td>
+                    @if (student.Comment == null)
+                    {
+                        <p class="text-danger">No comment</p>
+                    }
+                    else
+                    {
+                        <p class="text-info">@student.Comment</p>
+                    }
+                </td>
+                <td>
                     <a asp-action="DownloadAssignment" asp-route-courseId="@Model.Course.Id" asp-route-studentId="@student.Id">Download</a>
                 </td>
                 <td>
@@ -45,10 +56,11 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <input type="hidden" name="studentId" value="@student.Id" />
-                                <select name="grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control" style="padding:0rem 2rem!important"></select>
+                                <select name="grade" asp-items="@Html.GetEnumSelectList<Grade>()" class="form-control" style="padding:0rem 2rem!important; background-color:white"></select>
+                                <textarea name="comment" asp-for="@student.Comment" rows="2" class="form-control bg-dark text-white" placeholder="Leave a comment..."></textarea>
                             </div>
                             <div class="col-md-2">
-                                <input type="submit" class="btn btn-primary" value="Add" />
+                                <input type="submit" class="btn btn-warning" value="Add" />
                             </div>
                         </div>
                     </form>

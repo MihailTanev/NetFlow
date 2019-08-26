@@ -19,6 +19,7 @@
 
         public DateTime CreatedOn { get; set; }
 
+        public string Comment { get; set; }
 
         public Grade? Grade { get; set; }
 
@@ -33,7 +34,11 @@
                 .ForMember(s => s.Grade, map => map.MapFrom(u => u.Enrollments
                                                                 .Where(c => c.CourseId == courseId)
                                                                 .Select(c => c.Grade)
-                                                                .FirstOrDefault()));
+                                                                .FirstOrDefault()))
+                .ForMember(s => s.Comment, map => map.MapFrom(u => u.Enrollments
+                                                                     .Where(c => c.CourseId == courseId)
+                                                                     .Select(c => c.Comment)
+                                                                     .FirstOrDefault()));
         }
     }
 }

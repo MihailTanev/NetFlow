@@ -64,7 +64,7 @@
             return isTeacher;
         }
 
-        public async Task<bool> AddGradeAsync(Grade grade, int courseId, string studentId)
+        public async Task<bool> AddGradeAsync(Grade grade, int courseId, string studentId, string comment)
         {
             var studentInCourse = await this.context.FindAsync<Enrollment>(studentId, courseId);
 
@@ -74,6 +74,7 @@
             }
 
             studentInCourse.Grade = grade;
+            studentInCourse.Comment = comment;
 
             await this.context.SaveChangesAsync();
 
