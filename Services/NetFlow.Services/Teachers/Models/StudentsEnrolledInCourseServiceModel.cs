@@ -21,6 +21,8 @@
 
         public string Comment { get; set; }
 
+        public byte[] Assignment { get; set; }
+
         public Grade? Grade { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
@@ -28,6 +30,10 @@
             int courseId = default(int);
 
             configuration.CreateMap<User, StudentsEnrolledInCourseServiceModel>()
+                .ForMember(s=>s.Assignment,map=>map.MapFrom(u=> u.Enrollments
+                                                                .Where(c => c.CourseId == courseId)
+                                                                .Select(c => c.Assignment)
+                                                                .FirstOrDefault()))
                 .ForMember(s => s.FirstName, map => map.MapFrom(u => u.FirstName))
                 .ForMember(s => s.CreatedOn, map => map.MapFrom(u => u.CreatedOn))
                 .ForMember(s => s.LastName, map => map.MapFrom(u => u.LastName))

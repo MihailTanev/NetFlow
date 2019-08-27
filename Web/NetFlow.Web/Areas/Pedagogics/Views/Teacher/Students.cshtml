@@ -49,7 +49,14 @@
                     }
                 </td>
                 <td>
-                    <a asp-action="DownloadAssignment" asp-route-courseId="@Model.Course.Id" asp-route-studentId="@student.Id">Download</a>
+                    @if (student.Assignment != null)
+                    {
+                        <a asp-action="DownloadAssignment" asp-route-courseId="@Model.Course.Id" asp-route-studentId="@student.Id">Download</a>
+                    }
+                    else
+                    {
+                        <p class="text-danger">No assignment uploaded</p>
+                    }
                 </td>
                 <td>
                     <form asp-action="AddGrade" asp-route-courseId="@Model.Course.Id" method="post">
@@ -69,3 +76,17 @@
         }
     </tbody>
 </table>
+
+<div class="text-center p-3">
+    @Html.PagedListPager((IPagedList)@Model.Students.AsEnumerable(), page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

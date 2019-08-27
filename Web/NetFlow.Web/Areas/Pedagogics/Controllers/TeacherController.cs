@@ -8,6 +8,7 @@
     using NetFlow.Services.Teachers.Interface;
     using NetFlow.Web.ViewModels.Pedagogics;
     using System.Threading.Tasks;
+    using X.PagedList;
 
     public class TeacherController : BaseTeacherController
 	{
@@ -34,11 +35,13 @@
 			return this.View(model);
 		}
 
-		public async Task<IActionResult> Students(int courseId)
+		public async Task<IActionResult> Students(int? page,int courseId)
 		{
 			var students = await this.teacherService.GetStudentEnrolledInCourseAsync(courseId);
 
-			var course = await this.teacherService.GetCourseByIdAsync(courseId);
+            var pageNumber = page ?? 1;
+
+            var course = await this.teacherService.GetCourseByIdAsync(courseId);
 
 			if (course == null)
 			{
@@ -47,8 +50,9 @@
 
 			var model = new StudentsEnrolledInCourseViewModel
 			{
-				Students = students,
-				Course = course
+				Students = await students.ToPagedListAsync(pageNumber, 10),
+
+                Course = course
 			};
 
 			return View(model);

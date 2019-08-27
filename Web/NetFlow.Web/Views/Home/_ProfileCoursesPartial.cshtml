@@ -4,7 +4,9 @@
     <div class="text-center p-2">
         <h2>@Model.Username</h2>
         <h3 class="text-lowercase">@@@Model.Username</h3>
-        <h5 class="text-lowercase">@Model.Email</h5>
+        <h5 class="text-lowercase"><a href="mailto:@Model.Email" class="text-info">@Model.Email</a></h5>
+        <p>Total Credits: @Model.Courses.Where(i => i.EndDate < DateTime.UtcNow && i.Grade >= Grade.B).Sum(i => i.Credit)</p>
+
         @if (Model.Picture != null)
         {
             <img src="@Model.Picture" alt="@Model.Username" class="profilepic" />
@@ -19,22 +21,27 @@
                 <th>Credits</th>
                 <th>Grade</th>
                 <th>Comment</th>
-                <th>Certificate</th>
+                <th class="col-cer">Certificate</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var course in Model.Courses)
             {
                 <tr>
-                    <td>
+                    <td><i class="fas fa-graduation-cap"></i>
                         <a asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.CourseName.ToFriendlyUrl()">@course.CourseName</a><br />
-                        @if (course.StartDate <= DateTime.UtcNow || course.EndDate <= DateTime.UtcNow)
+                        @if (course.StartDate <= DateTime.UtcNow && course.EndDate >= DateTime.UtcNow)
                         {
                             <i class="fas fa-circle text-success"></i> <span class="text-success">The course is active</span>
                         }
-                        else
+                        else if(course.StartDate >= DateTime.UtcNow && DateTime.UtcNow <= course.EndDate)
                         {
-                            <i class="fas fa-circle text-danger"></i> <span class="text-danger">The course is inactive</span>
+                            <i class="fas fa-circle text-warning"></i> <span class="text-warning">The course is not started yet</span>
+                        }
+                        else if(course.StartDate < DateTime.UtcNow && course.EndDate < DateTime.UtcNow)
+                        {
+                          <i class="fas fa-circle text-danger"></i> <span class="text-danger">The course is inactive</span>
+
                         }
                     </td>
                     <td>
@@ -51,14 +58,7 @@
                         }
                     </td>
                     <td>
-                        @if (course.Çomment == null)
-                        {
-                            <p class="text-danger">No comment</p>
-                        }
-                        else
-                        {
-                            <p class="text-info">@course.Çomment</p>
-                        }
+                        @(course.Çomment == null ? "No comment" : course.Çomment.ToString())                       
                     </td>
                     <td>
                         @if (course.Grade == Grade.A || course.Grade == Grade.B)
