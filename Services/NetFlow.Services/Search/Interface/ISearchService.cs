@@ -6,6 +6,9 @@
 
     public interface ISearchService
     {
-        Task<IEnumerable<SearchCourseServiceModel>> SearchCoursesAsync(string searchString);
+        Task<IEnumerable<SearchCourseServiceModel>> SearchCoursesAsync(string searchCourse);
+
+        Task<IEnumerable<SearchUsersServiceModel>> SearchUsersAsync(string searchUser);
+
     }
 }

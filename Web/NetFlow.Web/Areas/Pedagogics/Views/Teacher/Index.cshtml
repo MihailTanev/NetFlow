@@ -1,11 +1,11 @@
 ﻿@model CoursesViewModel
 @{
-    ViewData["Title"] =  User.Identity.Name + "'s Courses";
+    ViewData["Title"] = User.Identity.Name + "'s Courses";
 }
 
 <div class="col text-center">
-   <h1 class="pt-3">@ViewData["Title"]</h1>
-   <div class="title-underline"></div>
+    <h1 class="pt-3">@ViewData["Title"]</h1>
+    <div class="title-underline"></div>
 </div>
 <br />
 
@@ -29,13 +29,17 @@
                     </a>
                 </td>
                 <td>
-                    @if (course.StartDate < DateTime.UtcNow)
+                    @if (course.StartDate <= DateTime.UtcNow && course.EndDate >= DateTime.UtcNow)
                     {
-                    <h5 class="text-danger">Inactive</h5>
+                        <h5 class="text-info">active</h5>
                     }
-                    else
+                    else if (course.StartDate >= DateTime.UtcNow && DateTime.UtcNow <= course.EndDate)
                     {
-                    <h5 class="text-info">Active</h5>
+                        <h5 class="text-warning">not started yet</h5>
+                    }
+                    else if (course.StartDate < DateTime.UtcNow && course.EndDate < DateTime.UtcNow)
+                    {
+                        <h5 class="text-danger">finished</h5>
                     }
                 </td>
                 <td>@course.StartDate.ToString("dd MMM yyyy HH:mm")</td>
@@ -45,3 +49,17 @@
         }
     </tbody>
 </table>
+
+<div class="text-center p-3">
+    @Html.PagedListPager((IPagedList)@Model.Courses.AsEnumerable(), page => Url.Action("Index", new { page = page }),
+        new PagedListRenderOptions
+        {
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+            UlElementClasses = new string[] { "pagination", "justify-content-center" },
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" },
+        })
+</div>

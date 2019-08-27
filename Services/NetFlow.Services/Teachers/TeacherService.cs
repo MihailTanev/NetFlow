@@ -1,5 +1,6 @@
 ﻿namespace NetFlow.Services.Teachers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -24,7 +25,7 @@
         {
             var courses = await this.context
                 .Courses
-                .OrderByDescending(c => c.StartDate)
+                .OrderByDescending(c => c.StartDate <= DateTime.UtcNow && c.EndDate >= DateTime.UtcNow)
                 .Where(c => c.TeacherId == teacherId)
                 .ProjectTo<CoursesServiceModel>()
                 .ToListAsync();

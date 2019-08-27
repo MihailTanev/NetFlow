@@ -18,7 +18,7 @@
                         <h4 class="text-info">@post.Title</h4>
                         <hr />
                         <div>
-                            @Html.Raw(post.Description)
+                            <p>@Html.Raw(post.Description.Truncate(200))</p>
                         </div>
                         <i class="fas fa-pencil-alt"></i> created by @post.PublisherFirstName @post.PublisherLastName | <i class="fas fa-calendar-alt"></i> @post.CreatedDate.ToString("MMMM dd, yyyy")
                         <hr />

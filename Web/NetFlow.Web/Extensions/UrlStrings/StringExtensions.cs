@@ -1,4 +1,4 @@
-﻿namespace NetFlow.Web.UrlStrings
+﻿namespace NetFlow.Web.Extensions.UrlStrings
 {
     using System.Text.RegularExpressions;
 

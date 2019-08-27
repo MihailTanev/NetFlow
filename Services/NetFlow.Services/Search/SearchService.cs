@@ -23,12 +23,24 @@
             var searchString = await this.context
                 .Courses
                 .OrderBy(c => c.Id)
-                .Where(c => c.Name.Contains(searchCourse))
+                .Where(c => c.Name.ToLower().Contains(searchCourse.ToLower()))
                 .ProjectTo<SearchCourseServiceModel>()
                 .ToListAsync();
 
             return searchString;
 
+        }
+
+        public async Task<IEnumerable<SearchUsersServiceModel>> SearchUsersAsync(string searchUser)
+        {
+            var searchString = await this.context
+                .Users
+                .OrderBy(u => u.UserName)
+                .Where(u => u.UserName.ToLower().Contains(searchUser.ToLower()))
+                .ProjectTo<SearchUsersServiceModel>()
+                .ToListAsync();
+
+            return searchString;
         }
     }
 }

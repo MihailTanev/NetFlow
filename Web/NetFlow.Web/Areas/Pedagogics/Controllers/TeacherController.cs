@@ -23,14 +23,18 @@
 			this.teacherService = teacherService;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(int? page)
 		{
 			var userId = this.userManager.GetUserId(User);
 
-			var model = new CoursesViewModel
+            var courses = await this.teacherService.GetCoursesByTeacherIdAsync(userId);
+
+            var pageNumber = page ?? 1;
+
+            var model = new CoursesViewModel
 			{
-				Courses = await this.teacherService.GetCoursesByTeacherIdAsync(userId)
-			};
+				Courses = await courses.ToPagedListAsync(pageNumber, 10)
+            };
 
 			return this.View(model);
 		}
@@ -78,7 +82,7 @@
 			}
 		}
 
-        public async Task<IActionResult> DownloadAssignment(int courseId, string studentId)
+        public async Task<IActionResult> DownloadAssignment(int courseId, string studentId, byte[] studentAssignment)
         {         
 
             var assignmentContent = await this.assignmentService.DownloadAssignmentAsync(studentId, courseId);
