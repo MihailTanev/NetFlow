@@ -61,7 +61,7 @@
 
             this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Title}' {BlogMessagesConstants.POST_WAS_CREATED}";
 
-            return RedirectToAction(nameof(Add), new { AreaConstants.BLOG_AREA});
+            return RedirectToAction(nameof(Index), new { AreaConstants.BLOG_AREA});
         }
 
         [AllowAnonymous]
@@ -107,5 +107,46 @@
             return RedirectToAction(nameof(Details), new { model.Id, model.Title });
         }
 
+        public async Task<IActionResult> Delete(int postId)
+        {
+            var post = await this.blogPostService.GetPostByIdAsync(postId);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            var model = new DeletePostViewModel
+            {
+                PostId = post.Id,
+                PostTitle = post.Title
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirm(DeletePostViewModel model, int postId)
+        {
+            var post = await this.blogPostService.GetPostByIdAsync(postId);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                await this.blogPostService.DeletePost(post);
+
+                this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $"Post '{post.Title}' {BlogMessagesConstants.POST_WAS_DELETED}";
+
+                return this.RedirectToAction(nameof(Index), new { area = AreaConstants.BLOG_AREA });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
     }
 }

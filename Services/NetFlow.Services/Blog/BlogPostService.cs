@@ -47,12 +47,12 @@
             await this.context.SaveChangesAsync();
         }
 
-        public async Task<BlogPostDetailsServiceModel> GetPostByIdAsync(int id)
+        public async Task<BlogPostServiceModel> GetPostByIdAsync(int id)
         {
             var post = await this.context
                 .Posts
                 .Where(a => a.Id == id)
-                .ProjectTo<BlogPostDetailsServiceModel>()
+                .ProjectTo<BlogPostServiceModel>()
                 .FirstOrDefaultAsync();
 
             return post;
@@ -67,6 +67,19 @@
                            .ProjectTo<BlogPostServiceModel>()
                            .ToListAsync();
             return posts;
+        }
+
+        public async Task DeletePost(BlogPostServiceModel model)
+        {
+            var post = await this.context
+                .Posts
+                .FirstOrDefaultAsync(p => p.Id == model.Id);
+
+            if (post != null)
+            {
+                context.Posts.Remove(post);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

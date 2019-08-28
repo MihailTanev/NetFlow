@@ -8,6 +8,20 @@
     <div class="title-underline"></div>
 </div>
 
+<br />
+@if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+{
+    <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
+        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+    </div>
+}
+@if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+{
+    <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
+        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+    </div>
+}
+
 <div class="container">
     <div class="row pt-3">
         <div class="offset-md-1 col-md-10 offset-md-1">
@@ -26,6 +40,17 @@
                            class="btn btn-primary">
                             Read more
                         </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.PUBLISHER_ROLE))
+                        {
+                            <a asp-action="Delete" asp-route-postId="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
+                               class="btn btn-danger">
+                                Delete
+                            </a>
+                             <a asp-action="Edit" asp-route-postId="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
+                               class="btn btn-warning">
+                                Edit
+                            </a>
+                        }
                     </li>
                 }
             </ul>

@@ -12,7 +12,9 @@
 
         Task CreatePostAsync(string title, string content, string publisherId, string picture);
 
-        Task<BlogPostDetailsServiceModel> GetPostByIdAsync(int id);
+        Task<BlogPostServiceModel> GetPostByIdAsync(int id);
+
+        Task DeletePost(BlogPostServiceModel model);
 
     }
 }

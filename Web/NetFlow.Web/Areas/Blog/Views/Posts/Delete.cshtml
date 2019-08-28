@@ -1,0 +1,20 @@
+﻿@model DeletePostViewModel
+@{
+    ViewData["Title"] = Model.PostTitle;
+}
+
+<div class="col text-center">
+    <h1 class="pt-3">@ViewData["Title"]</h1>
+    <div class="title-underline"></div>
+</div>
+
+<form method="post" asp-area="Blog" asp-action="DeleteConfirm" asp-controller="Posts" asp-route-postId="@Model.PostId">
+
+    <div class="form-group text-center m-3">
+        <h4>Are you sure you want to delete @Model.PostTitle?</h4>
+    </div>
+
+    <div class="form-group text-center m-3">
+        <button type="submit" class="btn btn-danger">confirm</button>
+    </div>
+</form> 
