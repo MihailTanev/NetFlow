@@ -22,7 +22,7 @@
         private readonly ICloudinaryService cloudinaryService;
 
 
-        public PostsController(ICloudinaryService cloudinaryService, ICommentService commentService, IBlogPostService blogPostService, IHtmlSanitizerService htmlSanitizerService, UserManager<User>userManager)
+        public PostsController(ICloudinaryService cloudinaryService, ICommentService commentService, IBlogPostService blogPostService, IHtmlSanitizerService htmlSanitizerService, UserManager<User> userManager)
         {
             this.cloudinaryService = cloudinaryService;
             this.commentService = commentService;
@@ -61,7 +61,7 @@
 
             this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{model.Title}' {BlogMessagesConstants.POST_WAS_CREATED}";
 
-            return RedirectToAction(nameof(Index), new { AreaConstants.BLOG_AREA});
+            return RedirectToAction(nameof(Index), new { AreaConstants.BLOG_AREA });
         }
 
         [AllowAnonymous]
@@ -146,6 +146,52 @@
             else
             {
                 return View(model);
+            }
+        }
+
+        public async Task<IActionResult> Edit(int postId)
+        {
+            var post = await this.blogPostService.GetPostByIdAsync(postId);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            EditPostViewModel model = new EditPostViewModel
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Description = this.htmlSanitizerService.Sanitize(post.Description),
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPostViewModel model, int postId)
+        {
+            var post = await this.blogPostService.GetPostByIdAsync(postId);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            post.Title = model.Title;
+            post.Description = model.Description;
+
+            if (ModelState.IsValid)
+            {
+                await this.blogPostService.UpdatePost(post);
+
+                this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{post.Title}' {BlogMessagesConstants.POST_WAS_UPDATED}";
+
+                return this.RedirectToAction(nameof(Edit), new { postId });
+            }
+            else
+            {
+                return this.View(model);
             }
         }
     }

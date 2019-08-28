@@ -83,8 +83,6 @@
 
             if (course == null)
             {
-                this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_NOT_CREATED} ";
-
                 return NotFound();
             }
 
@@ -108,8 +106,6 @@
 
             if (course == null)
             {
-                this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_NOT_CREATED} ";
-
                 return NotFound();
             }
 

@@ -16,5 +16,7 @@
 
         Task DeletePost(BlogPostServiceModel model);
 
+        Task UpdatePost(BlogPostServiceModel model);
+
     }
 }

@@ -81,5 +81,17 @@
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task UpdatePost(BlogPostServiceModel model)
+        {
+            var post = await this.context
+                .Posts
+                .FirstOrDefaultAsync(p => p.Id == model.Id);
+
+            post.Title = model.Title;
+            post.Description = model.Description;
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }
