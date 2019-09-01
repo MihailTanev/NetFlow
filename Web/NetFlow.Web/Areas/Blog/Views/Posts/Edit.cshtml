@@ -9,20 +9,6 @@
     <div class="title-underline"></div>
 </div>
 
-<br />
-@if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
-{
-    <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
-        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
-    </div>
-}
-@if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
-{
-    <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
-        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
-    </div>
-}
-
 <form method="post" enctype="multipart/form-data" class="mx-auto p-3 form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row text-center">

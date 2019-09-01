@@ -18,6 +18,18 @@
             this.context = context;
         }
 
+        public async Task<IEnumerable<SearchBlogPostServiceModel>> SearchBlogPostsAsync(string searchPost)
+        {
+            var searchString = await this.context
+                .Posts
+                .OrderBy(p => p.CreatedDate)
+                .Where(p => p.Title.ToLower().Contains(searchPost.ToLower()))
+                .ProjectTo<SearchBlogPostServiceModel>()
+                .ToListAsync();
+
+            return searchString;
+        }
+
         public async Task<IEnumerable<SearchCourseServiceModel>> SearchCoursesAsync(string searchCourse)
         {
             var searchString = await this.context

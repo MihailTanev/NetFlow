@@ -9,7 +9,7 @@
    <div class="title-underline"></div>
 </div>
 
-<form method="post" asp-area="Administration" asp-action="DeleteUser" asp-controller="Users" asp-route-id="@Model.UserId">
+<form method="post" asp-area="Administration" asp-action="DeleteUser" asp-controller="Users" asp-route-userId="@Model.UserId">
 
     <div class="form-group text-center m-3">
         <h4>Are you sure you want to @ViewData["Title"] @Model.Username?</h4>

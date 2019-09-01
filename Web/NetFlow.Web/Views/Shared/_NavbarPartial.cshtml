@@ -1,198 +1,61 @@
-﻿@if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.ADMIN_ROLE))
-{
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">                   
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item active">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Users
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Add">Add User</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Index">Regestered Users</a>
-                            </div>
+﻿<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" asp-area="" asp-action="Index" asp-controller="Home"><h3 class="text-success text-uppercase">
+            Net<small class="text-danger text-lowercase">Flow</small></h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown">Courses <span class="caret"></span></a>
+                    <div class="dropdown-menu" aria-labelledby="adminDropDown">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.ADMIN_ROLE))
+                        {
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Courses" asp-action="Add">Add Course</a>
+                            <div class="dropdown-divider"></div>
+                        }
+                        <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
+                    </div>
+                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.ADMIN_ROLE))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown">Users <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="adminDropDown">
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Add">Add User </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Users" asp-action="Index">Regestered Users</a>
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Administration" asp-controller="Courses" asp-action="Add">Add Course</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
-
+                }
+                @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.TEACHER_ROLE))
+                {
+                    <li class="nav-item"><a class="nav-link active" asp-area="Pedagogics" asp-controller="Teacher" asp-action="Index">My Courses</a></li>
+                }
+                @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.PUBLISHER_ROLE))
+                {
+                    <li class="nav-item"><a class="nav-link active" asp-area="Blog" asp-controller="Posts" asp-action="Add">Add Post</a></li>
+                }
+                @*<li class="nav-item">
+                    <form class="row" asp-action="Search" asp-controller="">
+                        <div class="input-group">
+                            <input asp-for="SearchString" class="form-control" placeholder="Search..." />
+                            <div class="input-group-prepend">
+                                <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
                             </div>
                         </div>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-    </header>
-}
-else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.TEACHER_ROLE))
-{
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">                   
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="Pedagogics" asp-controller="Teacher" asp-action="Index">Courses</a>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-    </header>
-
-}
-else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.PUBLISHER_ROLE))
-{
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">                    
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
-                    </li>
-                    <li class="nav-item active">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Blog
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Blog" asp-controller="Posts" asp-action="Add">Add Post</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Blog" asp-controller="Posts" asp-action="Index">All Posts</a>
-                            </div>
-                        </div>
-                    </li>                   
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-    </header>
-
-}
-else if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.STUDENT_ROLE))
-{
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">                    
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="Index">All Courses</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-    </header>
-
-}
-else
-{
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Netflow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Product">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Blog" asp-controller="Posts" asp-action="Index">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown show" id="products-dropdown">
-                            <a class="nav-link active font-weight-bold dropdown-toggle" href="#" id="adminDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="ActiveCourses">Active Courses</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Trainings" asp-controller="Courses" asp-action="UpcomingCourses">Upcoming Courses</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-    </header>
-}
+                    </form>
+                </li>*@
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </nav>
+</header>

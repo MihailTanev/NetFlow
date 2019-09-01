@@ -58,12 +58,15 @@ body {
 .w-45 {
     width: 45%; 
 }
+.w-80 {
+    width: 80%;
+}
 
 .height-index {
     min-height: 85vh;
 }
 .height-home {
-    min-height: 25vh;
+    min-height: 45vh;
 }
 #picture,
 #login {

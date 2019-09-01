@@ -11,13 +11,13 @@
 <div class="text-center p-3">
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
     {
-        <div class="col-md-6 offset-3 alert alert-dismissible alert-danger text-center">
+        <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
             <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
         </div>
     }
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
     {
-        <div class="col-md-6 offset-3 alert alert-dismissible alert-success text-center">
+        <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
             <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
         </div>
     }
@@ -61,7 +61,7 @@
                                     <h5 class="text-info">active</h5>
                                 }
                             </div>
-                            @if (this.User.Identity.IsAuthenticated && this.User.IsInRole(RoleConstants.ADMIN_ROLE))
+                            @if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.ADMIN_ROLE))
                             {
                                 <div class="col-md-4">
                                     <ul class="list-inline">

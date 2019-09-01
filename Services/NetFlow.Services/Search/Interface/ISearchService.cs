@@ -10,5 +10,8 @@
 
         Task<IEnumerable<SearchUsersServiceModel>> SearchUsersAsync(string searchUser);
 
+        Task<IEnumerable<SearchBlogPostServiceModel>> SearchBlogPostsAsync(string searchPost);
+
+
     }
 }

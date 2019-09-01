@@ -8,5 +8,6 @@
         public IEnumerable<SearchCourseServiceModel> Courses { get; set; } = new List<SearchCourseServiceModel>();
 
         public string SearchString { get; set; }
+      
     }
 }

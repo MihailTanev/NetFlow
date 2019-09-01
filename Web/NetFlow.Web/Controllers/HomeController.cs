@@ -36,27 +36,16 @@
                 Courses = await this.courseService.GetIndexCourses(),
                 Posts = await this.blogPostService.GetIndexBlogPosts(),
             };
+
             if (User.Identity.IsAuthenticated)
             {
                 var userId = this.userManager.GetUserId(User);
 
                 model.Profile = await this.profileService.GetProfileByIdAsync(userId);
-
             }
+
             return this.View(model);
-        }       
-
-        [Route("Product")]
-        public IActionResult Product()
-        {
-            return View();
-        }
-
-        [Route("Contact")]
-        public IActionResult Contact()
-        {
-            return View();
-        }
+        }               
 
         [Route("Search")]
         public async Task<IActionResult> Search(SearchInputModel model)
@@ -75,6 +64,18 @@
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("About")]
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        [Route("Contact")]
+        public IActionResult Contact()
+        {
+            return View();
         }
     }
 }

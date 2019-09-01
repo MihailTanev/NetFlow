@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NetFlow.Services.Blog.Models.BlogPostServiceModel>
+﻿@model IEnumerable<BlogPostServiceModel>
 
 <div class="col text-center">
     <h1 class="pt-3">recent posts</h1>
@@ -18,7 +18,7 @@
                         <a asp-area="Blog"
                            asp-controller="Posts"
                            asp-action="Details"
-                           asp-route-Id="@blog.Id"
+                           asp-route-postId="@blog.Id"
                            asp-route-title="@blog.Title.ToFriendlyUrl()">
                             <h5 class="card-title">@blog.Title</h5>
                         </a>

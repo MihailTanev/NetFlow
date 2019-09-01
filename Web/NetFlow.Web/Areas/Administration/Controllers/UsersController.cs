@@ -35,7 +35,7 @@
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                users = users.Where(s => s.Username.Contains(searchString));
+                users = users.Where(s => s.Username.ToLower().Contains(searchString.ToLower()));
             }
 
             var model = new UsersViewModel
@@ -55,27 +55,27 @@
 
 
         [HttpPost]
-        public async Task<IActionResult> Add(CreateUserViewModel addUser)
+        public async Task<IActionResult> Add(CreateUserViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(addUser);
+                return this.View(model);
             }
 
             var user = new User
             {
-                FirstName = addUser.FirstName,
-                LastName = addUser.LastName,
-                UserName = addUser.Username,
-                Email = addUser.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Username,
+                Email = model.Email,
                 CreatedOn = DateTime.UtcNow,
             };
 
-            var result = await this.userManager.CreateAsync(user, addUser.Password);
+            var result = await this.userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                await this.userManager.AddToRoleAsync(user, addUser.UserRole);
+                await this.userManager.AddToRoleAsync(user, model.UserRole);
 
                 this.TempData[UserMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_CREATED} ";
 
@@ -85,13 +85,13 @@
             {
                 this.TempData[UserMessagesConstants.TEMPDATA_ERROR_MESSAGE] = $" '{user.UserName}' {UserMessagesConstants.USER_WAS_NOT_CREATED} ";
 
-                return this.View(addUser);
+                return this.View(model);
             }
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string userId)
         {
-            var user = await this.userManager.FindByIdAsync(id);
+            var user = await this.userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
@@ -114,9 +114,9 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(string id, EditUserViewModel model)
+        public async Task<IActionResult> Edit(string userId, EditUserViewModel model)
         {
-            var user = await this.userManager.FindByIdAsync(id);
+            var user = await this.userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
@@ -195,9 +195,9 @@
             }
         }
 
-        public async Task<IActionResult> Role(string id)
+        public async Task<IActionResult> Role(string userId)
         {
-            var user = await this.adminService.GetUserById(id);
+            var user = await this.adminService.GetUserById(userId);
 
             if (user == null)
             {
@@ -241,9 +241,9 @@
             return this.RedirectToAction(nameof(Index), new { area = AreaConstants.ADMINISTRATION_AREA });
         }
 
-        public async Task<IActionResult> ChangePassword(string id)
+        public async Task<IActionResult> ChangePassword(string userId)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {
@@ -259,9 +259,9 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(string id, ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(string userId, ChangePasswordViewModel model)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             var code = await this.userManager.GeneratePasswordResetTokenAsync(user);
 
@@ -279,9 +279,9 @@
             }
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string userId)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {
@@ -297,9 +297,9 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> DeleteUser(DeleteUserViewModel model, string id)
+        public async Task<IActionResult> DeleteUser(DeleteUserViewModel model, string userId)
         {
-            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await this.userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {

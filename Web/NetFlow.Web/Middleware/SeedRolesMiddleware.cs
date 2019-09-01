@@ -14,7 +14,6 @@
     {
         private readonly RequestDelegate next;
 
-
         public SeedRolesMiddleware(RequestDelegate next)
         {
             this.next = next;
@@ -55,7 +54,7 @@
                 await userManager.CreateAsync(adminUser, "admin123");
 
                 await userManager.AddToRoleAsync(adminUser, adminRole);
-            }
+            }           
         }
     }
 }

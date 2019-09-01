@@ -28,7 +28,8 @@
             @foreach (var course in Model.Courses)
             {
                 <tr>
-                    <td><i class="fas fa-graduation-cap"></i>
+                    <td>
+                        <i class="fas fa-graduation-cap"></i>
                         <a asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.CourseName.ToFriendlyUrl()">@course.CourseName</a><br />
                         @if (course.StartDate <= DateTime.UtcNow && course.EndDate >= DateTime.UtcNow)
                         {
@@ -41,7 +42,6 @@
                         else if(course.StartDate < DateTime.UtcNow && course.EndDate < DateTime.UtcNow)
                         {
                           <i class="fas fa-circle text-danger"></i> <span class="text-danger">The course is inactive</span>
-
                         }
                     </td>
                     <td>

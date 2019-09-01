@@ -10,6 +10,7 @@
     using NetFlow.Services.Cloudinary;
     using NetFlow.Services.Courses.Interface;
     using NetFlow.Services.Courses.Models;
+    using NetFlow.Services.HtmlSanitizer;
     using NetFlow.Web.ViewModels.Courses;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,9 +21,11 @@
         private readonly ICourseService courseService;
         private readonly UserManager<User> userManager;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IHtmlSanitizerService htmlSanitizerService;
 
-        public CoursesController(ICourseService courseService, UserManager<User> userManager, ICloudinaryService cloudinaryService)
+        public CoursesController(IHtmlSanitizerService htmlSanitizerService, ICourseService courseService, UserManager<User> userManager, ICloudinaryService cloudinaryService)
         {
+            this.htmlSanitizerService = htmlSanitizerService;
             this.userManager = userManager;
             this.courseService = courseService;
             this.cloudinaryService = cloudinaryService;
@@ -83,14 +86,14 @@
 
             if (course == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             EditCourseViewModel model = new EditCourseViewModel
             {
                 Id = course.Id,
                 Name = course.Name,
-                Description = course.Description,
+                Description = this.htmlSanitizerService.Sanitize(course.Description),
                 Credit = course.Credit,
                 EndDate = course.EndDate,
                 StartDate = course.StartDate
@@ -106,7 +109,7 @@
 
             if (course == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             course.Name = model.Name;
@@ -121,7 +124,7 @@
 
                 this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{course.Name}' {CourseMessagesConstants.COURSE_WAS_UPDATED}";
 
-                return this.RedirectToAction(nameof(Edit), new { courseId });
+                return this.RedirectToAction("Details", "Courses", new { courseId, area = AreaConstants.TRAININGS_AREA });
             }
             else
             {
@@ -135,7 +138,7 @@
 
             if (course == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             var model = new DeleteCourseViewModel
@@ -154,7 +157,7 @@
 
             if (course == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             if (ModelState.IsValid)
@@ -167,7 +170,7 @@
             }
             else
             {
-                return View(model);
+                return this.View(model);
             }
         }
     }

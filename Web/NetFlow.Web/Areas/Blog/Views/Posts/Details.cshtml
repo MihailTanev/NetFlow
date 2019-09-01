@@ -1,12 +1,25 @@
 ﻿@model PostDetailsViewModel
 
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model.Title.TitleToUpper();
 }
 
 <div class="container">
     <h1 class="text-center pt-3">@ViewData["Title"]</h1>
     <hr />
+    <br />
+    @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
+    {
+        <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
+            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+        </div>
+    }
+    @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
+    {
+        <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
+            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+        </div>
+    }
     <div class="offset-md-2 col-md-8 offset-md-2">
         <img class="img-fluid card-img-top" src="@Model.Picture" alt="@Model.Title">
     </div>

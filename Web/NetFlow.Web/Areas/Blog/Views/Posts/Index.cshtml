@@ -36,7 +36,7 @@
                         </div>
                         <i class="fas fa-pencil-alt"></i> created by @post.PublisherFirstName @post.PublisherLastName | <i class="fas fa-calendar-alt"></i> @post.CreatedDate.ToString("MMMM dd, yyyy")
                         <hr />
-                        <a asp-action="Details" asp-route-id="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
+                        <a asp-action="Details" asp-route-postId="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
                            class="btn btn-primary">
                             Read more
                         </a>

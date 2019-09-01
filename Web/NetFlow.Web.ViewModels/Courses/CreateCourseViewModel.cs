@@ -38,7 +38,7 @@
         public IFormFile Picture { get; set; }
 
         [Required]
-        [Display(Name = "Choose Teacher")]
+        [Display(Name = "Teacher")]
         public string TeacherId { get; set; }
 
         public IEnumerable<SelectListItem> Teachers { get; set; }
