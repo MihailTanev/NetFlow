@@ -65,20 +65,20 @@
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int postId)
+        public async Task<IActionResult> Details(int id)
         {
-            var post = await this.blogPostService.GetPostByIdAsync(postId);
+            var post = await this.blogPostService.GetPostByIdAsync(id);
 
             var model = new PostDetailsViewModel
             {
-                Id = postId,
+                Id = id,
                 Title = post.Title,
                 Picture = post.Picture,
                 Content = post.Description,
                 CreatedDate = post.CreatedDate,
                 FirstName = post.PublisherFirstName,
                 LastName = post.PublisherLastName,
-                Comments = await this.commentService.GetAllCommentsAsync(postId),
+                Comments = await this.commentService.GetAllCommentsAsync(id),
             };
 
             return this.View(model);
@@ -187,7 +187,7 @@
 
                 this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE] = $" '{post.Title}' {BlogMessagesConstants.POST_WAS_UPDATED}";
 
-                return this.RedirectToAction(nameof(Details), new { postId });
+                return this.RedirectToAction(nameof(Index), new { postId });
             }
             else
             {
@@ -195,4 +195,5 @@
             }
         }
     }
+    
 }

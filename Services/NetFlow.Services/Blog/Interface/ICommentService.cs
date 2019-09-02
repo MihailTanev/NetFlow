@@ -6,7 +6,7 @@
 
     public interface ICommentService
     {
-        Task<IEnumerable<CommentsPostDetailsServiceModel>> GetAllCommentsAsync(int postId);
+        Task<IEnumerable<CommentsPostDetailsServiceModel>> GetAllCommentsAsync(int id);
 
         Task CreateCommentAsync(string userId, int postId, string description);
 

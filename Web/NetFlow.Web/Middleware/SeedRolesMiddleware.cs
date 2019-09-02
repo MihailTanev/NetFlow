@@ -38,23 +38,70 @@
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.PUBLISHER_ROLE));
             await roleManager.CreateAsync(new IdentityRole(RoleConstants.STUDENT_ROLE));
 
-            var adminEmail = "admin@admin.com";
-            var adminRole = RoleConstants.ADMIN_ROLE;
+            var adminUserName = RoleConstants.ADMIN_ROLE;
+            var publisherUserName = RoleConstants.PUBLISHER_ROLE;
+            var studentUserName = RoleConstants.STUDENT_ROLE;
+            var teacherUserName = RoleConstants.TEACHER_ROLE;
 
-            var adminUser = await userManager.FindByNameAsync(adminRole);
+            var admin = await userManager.FindByNameAsync(adminUserName);
 
-            if (adminUser == null)
+            if (admin == null)
             {
-                adminUser = new User
+                admin = new User
                 {
-                    Email = adminEmail,
-                    UserName = adminRole,
+                    Email = "admin@user.com",
+                    UserName = adminUserName,
                 };
 
-                await userManager.CreateAsync(adminUser, "admin123");
+                await userManager.CreateAsync(admin, "admin123");
 
-                await userManager.AddToRoleAsync(adminUser, adminRole);
-            }           
+                await userManager.AddToRoleAsync(admin, adminUserName);
+            }
+
+            var publisher = await userManager.FindByNameAsync(publisherUserName);
+
+            if (publisher == null)
+            {
+                publisher = new User
+                {
+                    Email = "publisher@user.com",
+                    UserName = publisherUserName,
+                };
+
+                await userManager.CreateAsync(publisher, "publisher123");
+
+                await userManager.AddToRoleAsync(publisher, publisherUserName);
+            }
+
+            var student = await userManager.FindByNameAsync(studentUserName);
+
+            if (student == null)
+            {
+                student = new User
+                {
+                    Email = "student@user.com",
+                    UserName = studentUserName,
+                };
+
+                await userManager.CreateAsync(student, "student123");
+
+                await userManager.AddToRoleAsync(student, studentUserName);
+            }
+
+            var teacher = await userManager.FindByNameAsync(teacherUserName);
+
+            if (teacher == null)
+            {
+                teacher = new User
+                {
+                    Email = "teacher@user.com",
+                    UserName = teacherUserName,
+                };
+
+                await userManager.CreateAsync(teacher, "teacher123");
+
+                await userManager.AddToRoleAsync(teacher, teacherUserName);
+            }
         }
     }
 }

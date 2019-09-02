@@ -33,11 +33,11 @@
             await this.context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CommentsPostDetailsServiceModel>> GetAllCommentsAsync(int postId)
+        public async Task<IEnumerable<CommentsPostDetailsServiceModel>> GetAllCommentsAsync(int id)
         {
             var comments = await this.context
                            .Comments
-                           .Where(a => a.PostId == postId)
+                           .Where(a => a.PostId == id)
                            .ProjectTo<CommentsPostDetailsServiceModel>()
                            .ToListAsync();
 
