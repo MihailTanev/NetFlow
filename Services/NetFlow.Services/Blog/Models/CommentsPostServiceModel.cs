@@ -11,6 +11,8 @@
 
         public string Content { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public int PostId { get; set; }
 
         public Post Post { get; set; }

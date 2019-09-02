@@ -11,6 +11,8 @@ namespace NetFlow.Services.Blog.Models
 
         public string Content { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public string User { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)

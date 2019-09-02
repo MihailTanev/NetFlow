@@ -1,5 +1,6 @@
 ﻿namespace NetFlow.Services.Blog
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -25,7 +26,8 @@
             {
                 Content = description,
                 UserId = userId,
-                PostId = postId
+                PostId = postId,
+                CreatedOn = DateTime.UtcNow
             };
 
             await this.context.Comments.AddAsync(comment);

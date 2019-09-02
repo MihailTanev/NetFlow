@@ -37,7 +37,8 @@
                 @foreach (var comment in Model.Comments)
                 {
                     <li class="list-group-item">
-                        <p>@comment.Content</p><small>comment by <b class="text-capitalize">@comment.User</b></small>
+                        <p>@comment.Content</p>comment by <small class="text-capitalize">@comment.User</small>
+                        <span>on @comment.CreatedOn.ToString("dd.MM.yyy  hh:mm")</span>
                     </li>
                 }
             </ul>
