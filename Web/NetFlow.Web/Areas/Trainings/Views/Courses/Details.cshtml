@@ -14,13 +14,14 @@
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE))
     {
         <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
-            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+            <p>@this.TempData[CourseMessagesConstants.TEMPDATA_ERROR_MESSAGE]</p>
         </div>
     }
     @if (this.TempData.ContainsKey(CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
     {
         <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
-            <strong>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+            <i class="far fa-check-circle text-success fa-3x"></i>
+            <p>@this.TempData[CourseMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</p>
         </div>
     }
 
@@ -64,27 +65,31 @@
             <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
         }
     </div>
-    <div class="p-3 text-dark bg-grey text-muted">
-        <div class="col text-center pb-3">
-            <h3>About the course</h3>
-            <div class="title-underline"></div>
+    <div class="card">
+        <div class="p-3 text-dark bg-grey text-muted">
+            <div class="col text-center pb-3">
+                <h3>About the course</h3>
+                <div class="title-underline"></div>
+            </div>
+            <p>@Html.Raw(Model.Course.Description)</p>
         </div>
-        <p>@Html.Raw(Model.Course.Description)</p>
-    </div>
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <img src="@Model.Course.Picture" class="img-fluid" />
-        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <img src="@Model.Course.Picture" class="img-fluid" />
+                </div>
 
-        <div class="col-md-6 pt-3">
-            <div>
-                <ul class="list-unstyled">
-                    <li><h4>Start Date:</h4><p class="text-info">@Model.Course.StartDate.ToString("dd MMMM yyyy")</p></li>
-                    <li><h4>End Date:</h4><p class="text-info">@Model.Course.EndDate.ToString("dd MMMM yyyy")</p></li>
-                    <li><h4>Credits:</h4><p class="text-info">@Model.Course.Credit</p></li>
-                    <li><h4>Teacher:</h4><p class="text-info">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</p></li>
-                    <li><h4>total weeks:</h4><p class="text-info">@((Model.Course.EndDate - Model.Course.StartDate).TotalDays / 7)</p></li>
-                </ul>
+                <div class="col-md-6 pt-3">
+                    <div>
+                        <ul class="list-unstyled">
+                            <li><h4>Start Date:</h4><p class="text-info">@Model.Course.StartDate.ToString("dd MMMM yyyy")</p></li>
+                            <li><h4>End Date:</h4><p class="text-info">@Model.Course.EndDate.ToString("dd MMMM yyyy")</p></li>
+                            <li><h4>Credits:</h4><p class="text-info">@Model.Course.Credit</p></li>
+                            <li><h4>Teacher:</h4><p class="text-info">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</p></li>
+                            <li><h4>total weeks:</h4><p class="text-info">@((Model.Course.EndDate - Model.Course.StartDate).TotalDays / 7)</p></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

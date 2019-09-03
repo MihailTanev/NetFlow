@@ -11,13 +11,13 @@
     @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
     {
         <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
-            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+            <p>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</p>
         </div>
     }
     @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
     {
         <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
-            <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+            <p>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</p>
         </div>
     }
     <div class="offset-md-2 col-md-8 offset-md-2">
@@ -27,8 +27,12 @@
         @Html.Raw(Model.Content as string)
     </p>
     <div class="pull-right">
-        <i class="fas fa-pencil-alt"></i> created by @Model.FirstName @Model.LastName |
-        <i class="fas fa-calendar-alt"></i> @Model.CreatedDate.ToString("MMMM dd, yyyy HH:mm")
+        <i class="fas fa-pencil-alt"></i> published by @Model.FirstName @Model.LastName |
+        <i class="fas fa-calendar-alt"></i> @Model.CreatedDate.ToString("MMMM dd, yyyy HH:mm") 
+        @if (DateTime.UtcNow.Date != Model.CreatedDate.Date)
+        {
+            <span>| <i class="far fa-calendar-minus"></i> @((DateTime.UtcNow.Date - Model.CreatedDate.Date).TotalDays) days ago</span>
+        }       
     </div>
     <hr />
     <div class="row">
@@ -36,9 +40,9 @@
             <ul class="list-group post-list">
                 @foreach (var comment in Model.Comments)
                 {
-                    <li class="list-group-item">
+                    <li class="list-group-item card">
                         <p>@comment.Content</p>comment by <small class="text-capitalize">@comment.User</small>
-                        <span>on @comment.CreatedOn.ToString("dd.MM.yyy  hh:mm")</span>
+                        <span>on @comment.CreatedOn.ToString("dd-MMM-yyy HH:mm")</span>
                     </li>
                 }
             </ul>

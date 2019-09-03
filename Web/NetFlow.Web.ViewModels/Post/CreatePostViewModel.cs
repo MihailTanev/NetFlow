@@ -13,6 +13,7 @@
         [MaxLength(PostsConstants.POST_TITLE_MAX_LENGTH)]
         public string Title { get; set; }
 
+        [Required]
         public IFormFile Picture { get; set; }
 
 

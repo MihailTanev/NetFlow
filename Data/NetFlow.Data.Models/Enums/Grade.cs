@@ -10,9 +10,9 @@ namespace NetFlow.Data.Models.Enums
         B = 5,
         [Display(Name = "Good")]
         C = 4,
-        [Display(Name = "Worst")]
+        [Display(Name = "Average")]
         D = 3,
-        [Display(Name = "Very Worst ")]
+        [Display(Name = "Weak")]
         F = 2,
     }
 }

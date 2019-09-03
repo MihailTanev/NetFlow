@@ -42,8 +42,8 @@
                         <h5 class="text-danger">finished</h5>
                     }
                 </td>
-                <td>@course.StartDate.ToString("dd MMM yyyy HH:mm")</td>
-                <td>@course.EndDate.ToString("dd MMM yyyy HH:mm")</td>
+                <td>@course.StartDate.ToString("dd/MM/yyyy")</td>
+                <td>@course.EndDate.ToString("dd/MM/yyyy")</td>
                 <td><a class="btn btn-primary" asp-action="Students" asp-route-courseId="@course.Id">View</a></td>
             </tr>
         }

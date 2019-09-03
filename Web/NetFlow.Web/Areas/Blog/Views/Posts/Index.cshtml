@@ -12,13 +12,13 @@
 @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE))
 {
     <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-danger text-center">
-        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</strong>
+        <p>@this.TempData[BlogMessagesConstants.TEMPDATA_ERROR_MESSAGE]</p>
     </div>
 }
 @if (this.TempData.ContainsKey(BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE))
 {
     <div class="offset-md-3 col-md-6 offset-md-3 alert alert-dismissible alert-success text-center">
-        <strong>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</strong>
+        <p>@this.TempData[BlogMessagesConstants.TEMPDATA_SUCCESS_MESSAGE]</p>
     </div>
 }
 

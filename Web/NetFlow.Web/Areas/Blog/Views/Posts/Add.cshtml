@@ -38,6 +38,7 @@
                     <span class="input-group-text"><i class="fas fa-file"></i></span>
                 </div>
                 <input type="file" asp-for="Picture" class="form-control" />
+                <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
     <br />
     <div class="form-group text-center">
         <button type="submit" class="btn btn-primary">create</button>
-        <a class="btn btn-dark" asp-area="Administration" asp-controller="Users" asp-action="Index">cancel</a>
+        <a class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Index">cancel</a>
     </div>
 </form>
 
