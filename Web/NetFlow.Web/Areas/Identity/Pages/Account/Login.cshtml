@@ -15,26 +15,31 @@
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.Username" class="control-label"></label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input asp-for="Input.Username" class="form-control" />
+                    <input asp-for="Input.Username" class="form-control" placeholder="Username" />
                 </div>
                 <span asp-validation-for="Input.Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Password" class="control-label"></label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-lock fa-login"></i></span>
                     </div>
-                    <input asp-for="Input.Password" class="form-control" />
+                    <input asp-for="Input.Password" class="form-control" placeholder="Password"/>
                 </div>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <br />
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="Input.RememberMe">
+                        <input asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+            </div>
             <div class="form-group text-center">
                 <input type="submit" value="Sign In" class="btn btn-primary" />
             </div>

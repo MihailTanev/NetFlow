@@ -1,14 +1,12 @@
-﻿using AutoMapper;
-using NetFlow.Data.Models;
-using NetFlow.Services.Mapping;
-using System;
-
-namespace NetFlow.Services.Blog.Models
+﻿namespace NetFlow.Services.Blog.Models
 {
+    using AutoMapper;
+    using NetFlow.Data.Models;
+    using NetFlow.Services.Mapping;
+    using System;
+
     public class CommentsPostDetailsServiceModel : IMapFrom<Comment>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
         public string Content { get; set; }
 
         public DateTime CreatedOn { get; set; }

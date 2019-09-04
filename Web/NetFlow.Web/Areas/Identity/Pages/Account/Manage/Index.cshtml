@@ -1,37 +1,75 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Edit " + Model.Username;
 }
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <h4>@ViewData["Title"]</h4>
 
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.UserName"></label>
+<div class="col text-center">
+    <h1 class="pt-3">@ViewData["Title"]</h1>
+    <div class="title-underline"></div>
+</div>
+<br />
+<div class="offset-md-3 col-md-6 offset-md-3 text-center">
+    <partial name="_StatusMessage" for="StatusMessage" />
+</div>
+
+<form method="post" id="profile-form" class="mx-auto p-3 form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.UserName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                </div>
                 <input asp-for="Input.UserName" class="form-control" />
-                <span asp-validation-for="Input.UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.FirstName"></label>
+            <span asp-validation-for="Input.UserName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.FirstName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
                 <input asp-for="Input.FirstName" class="form-control" />
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.LastName"></label>
+            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.LastName" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
                 <input asp-for="Input.LastName" class="form-control" />
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.BirthDate"></label>
+            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.BirthDate" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </div>
                 <input asp-for="Input.BirthDate" class="form-control" />
-                <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
+            <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.Email" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
                 @if (Model.IsEmailConfirmed)
                 {
                     <div class="input-group">
@@ -44,24 +82,28 @@
                     <input asp-for="Input.Email" class="form-control" />
                     <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
                 }
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Input.PhoneNumber" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                </div>
                 <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
-        </form>
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+        </div>
     </div>
-    <div>
-        <a class="btn btn-primary" asp-area="Profile" asp-controller="Users" asp-action="Index" asp-route-username="@Model.Username">My Courses</a>
 
+    <br />
+    <div class="form-group text-center">
+        <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
     </div>
-</div>
-
-<br />
-<br />
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

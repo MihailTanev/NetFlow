@@ -7,6 +7,7 @@
     using NetFlow.Data.Models;
     using NetFlow.Services.PdfCreator;
     using NetFlow.Services.Profile.Interface;
+    using NetFlow.Web.ViewModels.Profile;
     using NetFlow.Web.ViewModels.Users;
     using System.Threading.Tasks;
 
@@ -35,6 +36,24 @@
             }
 
             var model = new UserProfileViewModel
+            {
+                UserId = user.Id,
+                Profile = await this.profileService.GetProfileByIdAsync(user.Id)
+            };
+
+            return this.View(model);
+        }
+        [Authorize]
+        public async Task<IActionResult> Show(string id)
+        {
+            var user = await this.userManager.FindByNameAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ShowUserProfileViewModel
             {
                 UserId = user.Id,
                 Profile = await this.profileService.GetProfileByIdAsync(user.Id)

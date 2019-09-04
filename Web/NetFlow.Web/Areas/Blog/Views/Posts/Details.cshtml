@@ -32,7 +32,8 @@
         @if (DateTime.UtcNow.Date != Model.CreatedDate.Date)
         {
             <span>| <i class="far fa-calendar-minus"></i> @((DateTime.UtcNow.Date - Model.CreatedDate.Date).TotalDays) days ago</span>
-        }       
+        }  
+        | <i class="far fa-comments"></i> @Model.Comments.Count()     
     </div>
     <hr />
     <div class="row">

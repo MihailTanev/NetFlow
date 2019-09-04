@@ -98,7 +98,7 @@ select {
 .form {
     max-width: 1000px;
     background: #FAFAFA;
-    padding: 30px;
+    padding: 50px 20px 40px 20px    ;
     margin: 50px auto;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
@@ -197,4 +197,9 @@ dt {
 }
 .col-cer {
     width: 30%;
+}
+#profilepic-show {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
 }
