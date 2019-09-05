@@ -65,20 +65,20 @@
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int postId)
         {
-            var post = await this.blogPostService.GetPostByIdAsync(id);
+            var post = await this.blogPostService.GetPostByIdAsync(postId);
 
             var model = new PostDetailsViewModel
             {
-                Id = id,
+                Id = postId,
                 Title = post.Title,
                 Picture = post.Picture,
                 Content = post.Description,
                 CreatedDate = post.CreatedDate,
                 FirstName = post.PublisherFirstName,
                 LastName = post.PublisherLastName,
-                Comments = await this.commentService.GetAllCommentsAsync(id),
+                Comments = await this.commentService.GetAllCommentsAsync(postId),
             };
 
             return this.View(model);

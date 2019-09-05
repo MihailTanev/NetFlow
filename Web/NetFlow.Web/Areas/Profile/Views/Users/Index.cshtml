@@ -31,7 +31,13 @@
         {
             <tr>
                 <td>
-                    <a asp-controller="Courses" asp-action="Details" asp-route-courseId="@course.Id" asp-route-name="@course.CourseName.ToFriendlyUrl()">@course.CourseName</a><br />
+                    <a asp-area="Trainings"
+                       asp-controller="Courses"
+                       asp-action="Details"
+                       asp-route-courseId="@course.Id"
+                       asp-route-name="@course.CourseName.ToFriendlyUrl()">
+                       @course.CourseName
+                    </a><br />
                     @if (course.StartDate <= DateTime.UtcNow && course.EndDate >= DateTime.UtcNow)
                     {
                         <i class="fas fa-circle text-success"></i> <span class="text-success">The course is active</span>

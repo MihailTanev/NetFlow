@@ -123,7 +123,7 @@
 
                 routes.MapRoute(
                   name: "trainings",
-                  template: "trainings/courses/{courseId}/{name}",
+                  template: "trainings/courses/{id}/{name}",
                   defaults: new { area = AreaConstants.TRAININGS_AREA, controller = "Courses", action = "Details" });
 
                 routes.MapRoute(
