@@ -5,7 +5,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="adminDropDown"><i class="fas fa-user-edit"></i> @UserManager.GetUserName(User)</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="adminDropDown">@UserManager.GetUserName(User)</a>
             <div class="dropdown-menu" aria-labelledby="adminDropDown">
                 <a class="dropdown-item" asp-area="Profile" asp-controller="Users" asp-action="Show" asp-route-Id="@UserManager.GetUserName(User)">Profile</a>
                 <div class="dropdown-divider"></div>

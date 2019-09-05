@@ -20,6 +20,7 @@
         <tr>
             <th>Course</th>
             <th>Credits</th>
+            <th>Assignment</th>
             <th>Grade</th>
             <th>Comment</th>
             <th class="col-cer">Certificate</th>
@@ -46,6 +47,9 @@
                 </td>
                 <td>
                     @course.Credit
+                </td>
+                <td>
+                    @(course.Assignment == null ? "No Assignment" : course.Assignment.ToString())
                 </td>
                 <td>
                     @if (course.Grade.Equals(null))

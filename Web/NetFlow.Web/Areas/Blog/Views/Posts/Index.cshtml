@@ -31,10 +31,15 @@
                     <li class="list-group-item">
                         <h4 class="text-info">@post.Title</h4>
                         <hr />
-                        <div>
-                            <p>@Html.Raw(post.Description.Truncate(200))</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>@Html.Raw(post.Description.Truncate(200))</p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="@post.Picture" alt="@post.Title" class="card-img-top" />
+                            </div>
                         </div>
-                        <i class="fas fa-pencil-alt"></i> created by @post.PublisherFirstName @post.PublisherLastName | <i class="fas fa-calendar-alt"></i> @post.CreatedDate.ToString("MMMM dd, yyyy")
+                        <i class="fas fa-pencil-alt"></i> published  by @post.PublisherFirstName @post.PublisherLastName | <i class="fas fa-calendar-alt"></i> @post.CreatedDate.ToString("MMMM dd, yyyy")
                         <hr />
                         <a asp-action="Details" asp-route-id="@post.Id" asp-route-title="@post.Title.ToFriendlyUrl()"
                            class="btn btn-primary">

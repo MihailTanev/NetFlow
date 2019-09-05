@@ -3,7 +3,7 @@
 </div>	
 
 
-# [Netflow](https://netflow-core.azurewebsites.net/)  <img src="https://res.cloudinary.com/netflow/image/upload/v1565790933/NetFlow/Images/2019-01-25_23-33-061_uccy3t.jpg" width="48px" height="48px" />
+# [Netflow](https://netflow-aspcore.azurewebsites.net/)  <img src="https://res.cloudinary.com/netflow/image/upload/v1565790933/NetFlow/Images/2019-01-25_23-33-061_uccy3t.jpg" width="48px" height="48px" />
 
 ## User Friendly Platform for Digital Exams and Assessments
 NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process.
@@ -29,7 +29,7 @@ A search dialog at the Layout page allows the user to search for specific course
 
 ## Online Demo (Azure Website)
 
-[www.netflow-core.azurewebsites.net](http://netflow-core.azurewebsites.net)
+[www.netflow-aspcore.azurewebsites.net/](https://netflow-aspcore.azurewebsites.net/)
 
 ## Configuration
 

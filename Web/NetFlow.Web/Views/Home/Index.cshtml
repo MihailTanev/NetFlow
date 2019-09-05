@@ -55,17 +55,21 @@ else if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.STUDENT_RO
 else
 {
     <div class="row d-flex height-home align-items-center m-5">
-        <div class="offset-md-3 col-md-6 offset-md-3 bg-dark p-5 text-center">
-            <h2 class="text-success text-uppercase">
-                Welcome,<span class="text-danger text-capitalize"> @this.User.Identity.Name </span>
-            </h2>
-            <hr class="bg-secondary w-50" />
-            <h4 class="text-muted text-lowercase">Enjoy your work</h4>
+        <div class="offset-md-3 col-md-6 offset-md-3 text-center">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <h3 class="text-success text-uppercase">
+                        Welcome,<span class="text-danger text-capitalize"> @this.User.Identity.Name </span>
+                    </h3>
+                    <hr class="bg-secondary w-50" />
+                    <h6 class="text-muted text-lowercase">Enjoy your work</h6>
 
-            @if (Model.Profile.Picture != null)
-            {
-                <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="img-fluid" width="80" height="80" />
-            }
+                    @if (Model.Profile.Picture != null)
+                    {
+                        <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="card-img-top" width="80" height="80" />
+                    }
+                </div>
+            </div>          
         </div>        
     </div>
 }

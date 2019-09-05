@@ -23,6 +23,8 @@
 
         public string Çomment { get; set; }
 
+        public byte[] Assignment { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             string studentId = null;
@@ -38,6 +40,10 @@
             .ForMember(u => u.Çomment, map => map.MapFrom(c => c.Enrollments
                                                               .Where(s => s.StudentId == studentId)
                                                               .Select(s => s.Comment)
+                                                              .FirstOrDefault()))
+            .ForMember(u => u.Assignment, map => map.MapFrom(c => c.Enrollments
+                                                              .Where(s => s.StudentId == studentId)
+                                                              .Select(s => s.Assignment)
                                                               .FirstOrDefault()));
         }
     }
