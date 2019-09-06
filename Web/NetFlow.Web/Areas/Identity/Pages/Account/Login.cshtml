@@ -12,7 +12,7 @@
 
 <div class="row text-center">
     <div class="col-md-4 offset-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="mx-auto form">
+        <form id="account" method="post" class="mx-auto form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="input-group">
@@ -45,7 +45,8 @@
             </div>
         </form>
         <div class="text-center">
-            <h6>Haven't yet an account? <a href="/Identity/Account/Register" class="text-info">Sign Up here</a></h6>
+            <h6>Haven't yet an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-info">Sign Up here</a></h6>
+            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
         </div>
     </div>
 </div>

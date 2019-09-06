@@ -2,7 +2,7 @@
 
 <div class="container bg-white p-3">
     <div class="text-center p-2">
-        <h2>@Model.Username</h2>
+        <h2>@Model.FirstName @Model.LastName</h2>
         <h3 class="text-lowercase">@@@Model.Username</h3>
         <h5 class="text-lowercase"><a href="mailto:@Model.Email" class="text-info">@Model.Email</a></h5>
         <p>Total Credits: @Model.Courses.Where(i => i.EndDate < DateTime.UtcNow && i.Grade >= Grade.B).Sum(i => i.Credit)</p>
@@ -60,7 +60,7 @@
                         }
                         else
                         {
-                            <p>@((int)course.Grade)</p>
+                            <p>@((double)course.Grade)</p>
                         }
                     </td>
                     <td>
@@ -76,7 +76,7 @@
                         {
                             <p>
                                 Your grade is less then @((int)Grade.B)<br />
-                                In order to get a certificate you have to take it with a higher grade
+                                In order to get a certificate you have to retake this exam with a higher grade
                             </p>
                         }
                         else

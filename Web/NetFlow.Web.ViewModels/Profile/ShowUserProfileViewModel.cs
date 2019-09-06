@@ -1,10 +1,7 @@
-﻿using NetFlow.Services.Profile.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetFlow.Web.ViewModels.Profile
+﻿namespace NetFlow.Web.ViewModels.Profile
 {
+    using NetFlow.Services.Profile.Models;
+
     public class ShowUserProfileViewModel
     {
         public string UserId { get; set; }

@@ -16,7 +16,7 @@ A search dialog at the Layout page allows the user to search for specific course
 
 ## Implementation Technologies
 
--  Visual Studio Community Edition 2019
+-  Visual Studio Enterprise Edition 2019
 -  ASP.NET MVC CORE 2.2
 -  Microsoft SQL Server
 -  Cloudinary
@@ -35,8 +35,9 @@ A search dialog at the Layout page allows the user to search for specific course
 
 - Download Visual Studio 2017 or higher
 - Configure the connection string in appsettings.json file with the correct SQL Server instance
-- Build the solution by pressing "Ctrl + F5"
-- The back-office can be accessed via Admin Panel using the pre-created account : username: Administrator, password: admin123
+- Build the solution "Ctrl + F5"
+- The back-office can be accessed via Admin Panel using the pre-created account : username: Administrator, password: admin123;
+Publisher,publisher123; Student,student123; Teacher,teacher123
 
 ## DevOps pipeline
 

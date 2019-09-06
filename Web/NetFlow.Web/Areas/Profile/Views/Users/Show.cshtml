@@ -1,4 +1,4 @@
-﻿@model NetFlow.Web.ViewModels.Profile.ShowUserProfileViewModel
+﻿@model ShowUserProfileViewModel
 
 @{
     ViewData["Title"] = "Profile";
@@ -20,12 +20,12 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="list-group">
-                        <li class="list-group-item">Id: <h6>@Model.UserId</h6></li>
-                        <li class="list-group-item">Name: <h6>@Model.Profile.FirstName @Model.Profile.LastName</h6></li>
-                        <li class="list-group-item">Username: <h6>@Model.Profile.Username</h6></li>
-                        <li class="list-group-item">Date of Birth: <h6>@Model.Profile.BirthDate.ToString("dd/MM/yyyy")</h6></li>
-                        <li class="list-group-item">Email: <h6>@Model.Profile.Email</h6></li>
-                        <li class="list-group-item">Phone: <h6>@Model.Profile.PhoneNumber</h6></li>
+                        <li class="list-group-item"><h6>Id: </h6>@Model.UserId</li>
+                        <li class="list-group-item"><h6>Name: </h6> @Model.Profile.FirstName @Model.Profile.LastName</li>
+                        <li class="list-group-item"><h6>Username: </h6>@Model.Profile.Username</li>
+                        <li class="list-group-item"><h6>Date of Birth: </h6>@Model.Profile.BirthDate.ToString("dd/MM/yyyy")</li>
+                        <li class="list-group-item"><h6>Email: </h6>@Model.Profile.Email</li>
+                        <li class="list-group-item"><h6>Phone: </h6>@Model.Profile.PhoneNumber</li>
                     </ul>
                 </div>
             </div>

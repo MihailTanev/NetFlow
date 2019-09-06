@@ -49,7 +49,7 @@
 else if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.STUDENT_ROLE))
 {
     <div class="container p-5">
-        @await Html.PartialAsync("_ProfileCoursesPartial", Model.Profile)
+        @await Html.PartialAsync("_ProfilePartial", Model.Profile)
     </div>
 }
 else
