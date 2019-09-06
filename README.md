@@ -40,6 +40,5 @@ A search dialog at the Layout page allows the user to search for specific course
 
 ## DevOps pipeline
 
-[![Build Status](https://dev.azure.com/mihailvtanev/NetFlow/_apis/build/status/NetFlow-Azure%20Web%20App%20for%20ASP.NET-CI?branchName=master)](https://dev.azure.com/mihailvtanev/NetFlow/_build/latest?definitionId=23&branchName=master)
-
+[![Build Status](https://dev.azure.com/mihailtanevazuredevops/NetFlow/_apis/build/status/NetFlow-CI?branchName=master)](https://dev.azure.com/mihailtanevazuredevops/NetFlow/_build/latest?definitionId=1&branchName=master)
 This build syncs between Github and Azure DevOps repo
