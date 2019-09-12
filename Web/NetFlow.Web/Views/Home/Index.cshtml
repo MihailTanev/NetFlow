@@ -6,29 +6,31 @@
 @if (!User.Identity.IsAuthenticated)
 {
     <div class="row d-flex height-index align-items-center" id="picture">
-            <div class="offset-md-1 col">
-                <h1 class="text-success display-4 text-uppercase font-weight-bold">
-                    Net<small class="text-danger text-lowercase display-4">Flow</small>
-                </h1>
-                <p class="text-white lead py-2 w-75">
-                    NetFlow - more than paperless. A digital exam and assessment platform
-                    that is easy to use and provides a great functionality
-                </p>
-                <form class="row" asp-action="Search">
-                    <div class="col-md-5">
-                        <div class="input-group">
-                            <input asp-for="SearchString" class="form-control" placeholder="Search..." />
-                            <div class="input-group-prepend">
-                                <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
-                            </div>
+        <div class="offset-md-1 col">
+            <h1 class="text-success display-4 text-uppercase">
+                Net<small class="text-danger text-lowercase display-4">Flow</small>
+            </h1>
+            <p class="text-white lead py-2 w-75">
+                NetFlow - more than paperless. A digital exam and assessment platform
+                that is easy to use and provides a great functionality
+            </p>
+            <form class="row" asp-action="Search">
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input asp-for="SearchString" class="form-control" placeholder="Search..." />
+                        <div class="input-group-prepend">
+                            <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-2x fa-search"></i></button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
 
-    <div class="container p-5">
-        @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+    <div class="container">
+        <div class="row p-3">
+            @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+        </div>
     </div>
 
     <div class="row d-flex align-items-center p-5" id="login">
@@ -42,13 +44,15 @@
         </div>
     </div>
 
-    <div class="container p-5">
-        @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+    <div class="container">
+        <div class="row p-3">
+            @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+        </div>
     </div>
 }
 else if (User.Identity.IsAuthenticated && User.IsInRole(RoleConstants.STUDENT_ROLE))
 {
-    <div class="container p-5">
+    <div class="container">
         @await Html.PartialAsync("_ProfilePartial", Model.Profile)
     </div>
 }
@@ -69,7 +73,7 @@ else
                         <img src="@Model.Profile.Picture" alt="@Model.Profile.Username" class="card-img-top" width="80" height="80" />
                     }
                 </div>
-            </div>          
-        </div>        
+            </div>
+        </div>
     </div>
 }

@@ -7,7 +7,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="adminDropDown">@UserManager.GetUserName(User)</a>
             <div class="dropdown-menu" aria-labelledby="adminDropDown">
-                <a class="dropdown-item" asp-area="Profile" asp-controller="Users" asp-action="Show" asp-route-username="@UserManager.GetUserName(User)" title="Profile">Profile</a>
+                <a class="dropdown-item" asp-area="Profile" asp-controller="Users" asp-action="Show" asp-route-id="@UserManager.GetUserName(User)" title="Profile">Profile</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Edit">Edit</a>
                 <div class="dropdown-divider"></div>

@@ -32,6 +32,8 @@
 
         public async Task<IEnumerable<SearchCourseServiceModel>> SearchCoursesAsync(string searchCourse)
         {
+            searchCourse = searchCourse ?? string.Empty;
+
             var searchString = await this.context
                 .Courses
                 .OrderBy(c => c.Id)
