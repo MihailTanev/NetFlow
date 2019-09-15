@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://dcay.github.io/SoftUni-Web-Project-Idea-Platform/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+    <title>NetFlow</title>
+    <link rel="stylesheet" href="./NetFlow/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./NetFlow/file-upload-css.css">
+    <script src="./NetFlow/jquery-3.3.1.min.js.download"></script>
+    <script src="./NetFlow/showdown.min.js.download"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <header class="mt-4">
+        <h1 class="text-center">Project Idea Platform</h1>
+        <hr style="height: 2px;" class="bg-dark">
+    </header>
+    <main>
+<div id="template-content"><h1 id="projectstopify">Project - NetFlow</h1>
+<h2 id="typewebstore">Type - User Friendly Platform for Digital Exams and Assessments</h2>
+<h2 id="description">Description</h2>
+<p>NetFlow is a digital exam platform that handles the flow of student exams and management of the assessment process. 
+It has three main user roles: Administrator, Student and Teacher.
+Administrator is authorized to perform a CRUD operations on the users. 
+Student can register and login to their account. 
+Student can view and sign up for desired educational courses. 
+Student will be able to upload his assignment as a .pdf or .zip file up till 10MB. 
+Teacher is authorized to create courses and conducting assessment of the student assignments. A search dialog at the Layout page allows the user to
+search for specific course or post. The main implementation technologies used for the project are : Visual Studio Community Edition 2019, ASP.NET MVC CORE 2.2,
+Microsoft SQL Server, Entity Framework Core, AutoMapper, Razor, GitHub, Bootstrap 4, HTML & CSS.</p>
+<h2 id="entities">Entities</h2>
+<h3 id="user">User</h3>
+<ul>
+<li>Id (string)</li>
+<li>First Name (string)</li>
+<li>Last Name (string)</li>
+<li>Username (string)</li>
+<li>Password (string)</li>
+<li>Email (string)</li>
+<li>Phone Number (string)</li>
+<li>Post (Collection of Posts)</li>
+<li>Course (Collection of Courses)</li>
+<li>Comment (Collection of Comments)</li>
+</ul>
+<h3>Course</h3>
+<ul>
+<li>Id (string)</li>
+<li>Name (string)</li>
+<li>Description (string)</li>
+<li>Credit (int)</li>
+<li>StartDate (datetime)</li>
+<li>EndDate (dateTime)</li>
+<li>Students (Collection of Students)</li>
+</ul>
+<h3>Enrollment </h3>
+<ul>
+<li>StudentId (User)</li>
+<li>CourseId (Course)</li>
+<li>Grade (enum) </li>
+<li>Assignment (byte)</li>
+</ul>
+<h3>Post</h3>
+<ul>
+<li>Id (int)</li>
+<li>Description (string)</li>
+<li>CreatedDate (dateTime)</li>
+<li>User (User)</li>
+<li>Comments (list of Comment)</li>
+</ul>
+<h3>Comment</h3>
+<ul>
+<li>Id (string)</li>
+<li>Content (string)</li>
+<li>Post (Post)</li>
+<li>User (User)</li>
+</ul></div>
+<hr style="height: 2px" class="bg-dark">
+<script>
+    if(!window.converter) {
+        window.converter = new showdown.Converter();
+    }
+    $.get('template.md', function (readmeContent) {
+        $('#template-content').html(window.converter.makeHtml(readmeContent));
+    });
+</script></main>
+</div>
+<script src="./NetFlow/file-upload-js.js.download"></script>
+<script src="./NetFlow/main.js.download"></script>
+
+</body></html>

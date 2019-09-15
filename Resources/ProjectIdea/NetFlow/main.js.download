@@ -1,0 +1,73 @@
+let cloudName = 'csharp-web';
+
+let cloudServiceURL = `https://api.cloudinary.com/v1_1/${cloudName}/upload/`;
+
+function submitIdea() {
+    let username = $('#username').val();
+    let email = $('#email').val();
+    let fileName = username + '---' + email;
+    let file = $('#file')[0].files[0];
+
+    if(!username
+        || username.length < 3
+        || !email
+        || email.length < 3
+        || !/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email)
+        || !file
+        || file.name.split('.').pop() !== 'md') {
+
+        $('#notification')
+            .empty()
+            .html('<h1 id="notification-text" class="text-center bg-danger p-3 text-white">Invalid data provided. Check your email / username / file extension.</h1>')
+
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('public_id', fileName);
+    formData.append('upload_preset', 'ilhubgkc');
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', cloudServiceURL, true);
+
+    xhr.onload = () => {
+        if(xhr.status === 200) {
+            console.log('Successfully uploaded image.');
+            $('#notification')
+                .empty()
+                .html('<h1 id="notification-text" class="text-center bg-success p-3 text-dark">Successfully uploaded project idea!</h1>')
+        } else {
+            console.log('Error occured!');
+        }
+    };
+
+    xhr.send(formData);
+}
+
+function loadMain() {
+    $.get('main.html').then((html) => {
+        $('.container-fluid main')
+            .empty()
+            .html(html);
+    });
+}
+
+function loadInstructions() {
+    $.get('instructions.html').then((html) => {
+        $('.container-fluid main')
+            .empty()
+            .html(html);
+    });
+}
+
+function loadTemplate() {
+    $.get('template.html').then((html) => {
+	console.log(html);
+        $('.container-fluid main')
+            .empty()
+            .html(html);
+    });
+}
+
+loadMain();
