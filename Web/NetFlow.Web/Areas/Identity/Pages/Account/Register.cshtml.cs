@@ -23,7 +23,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ICloudinaryService cloudinaryService;
+        private readonly ICloudinaryService _cloudinaryService;
 
         public RegisterModel(
             ICloudinaryService cloudinaryService,
@@ -32,7 +32,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
-            this.cloudinaryService = cloudinaryService;
+            _cloudinaryService = cloudinaryService;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
@@ -108,7 +108,7 @@ namespace NetFlow.Web.Areas.Identity.Pages.Account
                     Email = this.Input.Email,
                     CreatedOn = DateTime.UtcNow,
                 };
-                string pictureUrl = await this.cloudinaryService.UploadProfilePictureAsync(Input.Picture, Input.Username);
+                string pictureUrl = await this._cloudinaryService.UploadProfilePictureAsync(Input.Picture, Input.Username);
 
                 user.Picture = pictureUrl;
 
