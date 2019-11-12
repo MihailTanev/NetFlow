@@ -34,13 +34,13 @@
         [AllowAnonymous]
         public async Task<IActionResult> Index(int? page)
         {
-            var users = await this.blogPostService.GetAllPostsAsync();
+            var posts = await this.blogPostService.GetAllPostsAsync();
 
             var pageNumber = page ?? 1;
 
             var model = new PostViewModel
             {
-                Posts = await users.ToPagedListAsync(pageNumber, 10)
+                Posts = await posts.ToPagedListAsync(pageNumber, 10)
             };
 
             return this.View(model);

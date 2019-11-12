@@ -98,7 +98,7 @@
 
         [Authorize]
         [HttpPost]
-        public async Task <IActionResult> Participate(int courseId)
+        public async Task <IActionResult> Enroll(int courseId)
         {
             var userId = this.userManager.GetUserId(User);
 
