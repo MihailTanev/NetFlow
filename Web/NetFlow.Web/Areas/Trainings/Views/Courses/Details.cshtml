@@ -74,7 +74,14 @@
         }
         else
         {
-            <h4 class="underline-info">The registration period has expired</h4>
+            if (Model.Course.EndDate < DateTime.UtcNow)
+            {
+                <h4 class="underline-info">This course has already finished</h4>
+            }
+            else
+            {
+                <h4 class="underline-info">The registration period has expired</h4>
+            }
 
         }
 
