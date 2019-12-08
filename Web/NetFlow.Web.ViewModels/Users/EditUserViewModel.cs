@@ -30,5 +30,7 @@
         [Display(Name = UserConstants.REGISTER_USER_BIRTHDAY)]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
+        public string Description { get; set; }
     }
 }

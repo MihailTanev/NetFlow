@@ -107,7 +107,8 @@
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                BirthDate = user.BirthDate
+                BirthDate = user.BirthDate,
+                Description = user.Description
             };
 
             return this.View(model);
@@ -129,6 +130,7 @@
             user.Email = model.Email;
             user.BirthDate = model.BirthDate;
             user.UserName = model.Username;
+            user.Description = model.Description;
 
             if (ModelState.IsValid)
             {

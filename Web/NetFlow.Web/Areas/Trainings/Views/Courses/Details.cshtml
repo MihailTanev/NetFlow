@@ -25,68 +25,68 @@
         </div>
     }
 
-<div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (Model.Course.StartDate > DateTime.UtcNow)
+    <div class="offset-md-3 col-md-6 offset-md-3 text-center pb-3">
+        @if (User.Identity.IsAuthenticated)
         {
-            if (Model.StudentIsEnrolledInCourse)
+            if (Model.Course.StartDate > DateTime.UtcNow)
             {
-                <form asp-action="SignOut" asp-route-courseId="@Model.Course.Id" method="post">
-                    <input type="submit" class="btn btn-danger" value="Sign Out" />
-                </form>
+                if (Model.StudentIsEnrolledInCourse)
+                {
+                    <form asp-action="SignOut" asp-route-courseId="@Model.Course.Id" method="post">
+                        <input type="submit" class="btn btn-danger" value="Sign Out" />
+                    </form>
+                }
+                else
+                {
+                    <p class="underline-info">
+                        @String.Format("{0} days, {1} hours, {2} minutes", counter.Days, counter.Hours, counter.Minutes)
+                    </p>
+                    <img class="img-fluid" src="https://res.cloudinary.com/netflow/image/upload/v1566746950/NetFlow/Images/animated-clock-image.gif" />
+
+                    <form asp-action="Enroll" asp-route-courseId="@Model.Course.Id" method="post">
+                        <input type="submit" class="btn btn-outline-warning" value="enroll" />
+                    </form>
+                }
             }
             else
+            {
+                if (Model.Course.EndDate < DateTime.UtcNow)
+                {
+                    <h4 class="underline-info">This course has already finished</h4>
+                }
+                else
+                {
+                    <h4 class="underline-info">The registration period has expired</h4>
+                }
+            }
+        }
+        else
+        {
+            if (Model.Course.StartDate > DateTime.UtcNow)
             {
                 <p class="underline-info">
                     @String.Format("{0} days, {1} hours, {2} minutes", counter.Days, counter.Hours, counter.Minutes)
                 </p>
                 <img class="img-fluid" src="https://res.cloudinary.com/netflow/image/upload/v1566746950/NetFlow/Images/animated-clock-image.gif" />
 
-                <form asp-action="Enroll" asp-route-courseId="@Model.Course.Id" method="post">
-                    <input type="submit" class="btn btn-outline-warning" value="enroll" />
-                </form>
-            }
-        }
-        else
-        {
-            if (Model.Course.EndDate < DateTime.UtcNow)
-            {
-                <h4 class="underline-info">This course has already finished</h4>
+                <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
+
             }
             else
             {
-                <h4 class="underline-info">The registration period has expired</h4>
-            }
-        }
-    }
-    else
-    {
-        if (Model.Course.StartDate > DateTime.UtcNow)
-        {
-            <p class="underline-info">
-                @String.Format("{0} days, {1} hours, {2} minutes", counter.Days, counter.Hours, counter.Minutes)
-            </p>
-            <img class="img-fluid" src="https://res.cloudinary.com/netflow/image/upload/v1566746950/NetFlow/Images/animated-clock-image.gif" />
+                if (Model.Course.EndDate < DateTime.UtcNow)
+                {
+                    <h4 class="underline-info">This course has already finished</h4>
+                }
+                else
+                {
+                    <h4 class="underline-info">The registration period has expired</h4>
+                }
 
-            <p>Please <a href="/Identity/Account/Login" class="text-info">login</a> into your account to sign up for this course.</p>
-
-        }
-        else
-        {
-            if (Model.Course.EndDate < DateTime.UtcNow)
-            {
-                <h4 class="underline-info">This course has already finished</h4>
-            }
-            else
-            {
-                <h4 class="underline-info">The registration period has expired</h4>
             }
 
         }
-
-    }
-</div>
+    </div>
     <div class="card">
         <div class="p-3 text-dark bg-grey text-muted">
             <div class="col text-center pb-3">
@@ -133,6 +133,33 @@
             }
         }
     </div>
+    <br />
+    <div class="card">
+        <div class="p-3 text-dark bg-grey text-muted">
+            <div class="col text-center pb-3">
+                <h3>Lecturer</h3>
+                <div class="title-underline"></div>
+            </div>
+        </div>
+        <div class="card-body bg-grey">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    @if (Model.Course.Teacher.Picture != null)
+                    {
+                        <img src="@Model.Course.Teacher.Picture" alt="@Model.Course.Teacher.UserName" id="profilepic-show" />
+                    }
+                </div>
+
+                <div class="col-md-6 pt-3">
+                    <div>
+                        <h4 class="text-info">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</h4>
+                        <p class=""><strong class="text-uppercase text-dark">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</strong> @Model.Course.Teacher.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @section Scripts {

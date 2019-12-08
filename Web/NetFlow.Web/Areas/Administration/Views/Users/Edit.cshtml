@@ -68,13 +68,26 @@
                 <input asp-for="Username" class="form-control" placeholder="Username" />
             </div>
             <span asp-validation-for="Username" class="text-danger"></span>
+        </div>       
+    </div>
+
+    <div class="row text-center">
+        <div class="offset-md-2 col-md-8 offset-md-2 form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-file"></i></span>
+                </div>
+                <textarea asp-for="Description" rows="20" class="form-control"></textarea>
+            </div>
+            <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
 
-    <br />
-    <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">save</button>
-    </div>
+        <br />
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">save</button>
+        </div>
 </form>
 <hr class="mb-2" />
 
