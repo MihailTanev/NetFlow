@@ -47,7 +47,7 @@
                         }
                         else if (course.StartDate < DateTime.UtcNow && course.EndDate < DateTime.UtcNow)
                         {
-                            <i class="fas fa-circle text-danger"></i> <span class="text-danger">The course is inactive</span>
+                            <i class="fas fa-circle text-danger"></i> <span class="text-danger">This Course Has Already Finished</span>
                         }
                     </td>
                     <td>
@@ -70,7 +70,7 @@
                         @if (course.Grade == Grade.A || course.Grade == Grade.B)
                         //Student gets a certificate if grade is 5(B) or 6(A)
                         {
-                            <a asp-controller="Users" asp-action="DownloadCertificate" asp-route-id="@course.Id">Yes</a>
+                            <a asp-area="Profile" asp-controller="Users" asp-action="DownloadCertificate" asp-route-id="@course.Id">Yes</a>
                         }
                         else if (course.Grade == Grade.C || course.Grade == Grade.D || course.Grade == Grade.F)
                         {
