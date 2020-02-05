@@ -5,7 +5,7 @@
         <h2>@Model.FirstName @Model.LastName</h2>
         <h3 class="text-lowercase">@@@Model.Username</h3>
         <h5 class="text-lowercase"><a href="mailto:@Model.Email" class="text-info">@Model.Email</a></h5>
-        <p>Total Credits: @Model.Courses.Where(i => i.EndDate < DateTime.UtcNow && i.Grade >= Grade.B).Sum(i => i.Credit)</p>
+        <p>Total Credits: @Model.Courses.Where(i => i.Grade >= Grade.B).Sum(i => i.Credit)</p>
 
         @if (Model.Picture != null)
         {
