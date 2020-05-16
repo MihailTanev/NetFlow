@@ -40,7 +40,7 @@
 
             var model = new UsersViewModel
             {
-                Users = await users.ToPagedListAsync(pageNumber, 10)
+                Users = await users.ToPagedListAsync(pageNumber, 2)
             };
 
             return this.View(model);
