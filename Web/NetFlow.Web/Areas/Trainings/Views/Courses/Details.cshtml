@@ -108,7 +108,7 @@
                             <li><h4>End Date:</h4><p class="text-info">@Model.Course.EndDate.ToString("dd MMMM yyyy")</p></li>
                             <li><h4>Credits:</h4><p class="text-info">@Model.Course.Credit</p></li>
                             <li><h4>Teacher:</h4><p class="text-info">@Model.Course.Teacher.FirstName @Model.Course.Teacher.LastName</p></li>
-                            <li><h4>total weeks:</h4><p class="text-info">@((Model.Course.EndDate - Model.Course.StartDate).TotalDays / 7)</p></li>
+                            <li><h4>total weeks:</h4><p class="text-info">@(Math.Round((Model.Course.EndDate - Model.Course.StartDate).TotalDays / 7))</p></li>
                         </ul>
                     </div>
                 </div>
