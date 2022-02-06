@@ -29,7 +29,11 @@
 
     <div class="container">
         <div class="row p-3">
-            @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+            <div class="col text-center">
+                <h1 class="pt-3">open courses</h1>
+                <div class="title-underline"></div>
+                @await Html.PartialAsync("_OpenCoursesPartial", Model.Courses)
+            </div>           
         </div>
     </div>
 
@@ -46,7 +50,11 @@
 
     <div class="container">
         <div class="row p-3">
-            @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+            <div class="col text-center">
+                <h1 class="pt-3">recent posts</h1>
+                <div class="title-underline"></div>
+                @await Html.PartialAsync("_BlogPostPartial", Model.Posts)
+            </div>
         </div>
     </div>
 }
